@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		562597DF1CBF223100E66C2D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 562597DE1CBF223100E66C2D /* main.cpp */; };
+		1A830D0B1CBF74330031C529 /* post.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A830D0A1CBF74330031C529 /* post.cpp */; };
+		1A944B741CBF5ECA00C63F00 /* index.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A944B731CBF5ECA00C63F00 /* index.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		562597D91CBF223100E66C2D /* CopyFiles */ = {
+		1A944B691CBF5DE500C63F00 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -23,12 +24,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		562597DB1CBF223100E66C2D /* BitQA-Backend */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "BitQA-Backend"; sourceTree = BUILT_PRODUCTS_DIR; };
-		562597DE1CBF223100E66C2D /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		1A830D0A1CBF74330031C529 /* post.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = post.cpp; path = process/post.cpp; sourceTree = "<group>"; };
+		1A830D0C1CBF743B0031C529 /* post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = post.h; path = process/post.h; sourceTree = "<group>"; };
+		1A944B6B1CBF5DE500C63F00 /* index.html */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = index.html; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A944B731CBF5ECA00C63F00 /* index.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = index.cpp; path = drivers/index.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		562597D81CBF223100E66C2D /* Frameworks */ = {
+		1A944B681CBF5DE500C63F00 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -38,97 +41,108 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		562597D21CBF223100E66C2D = {
+		1A830D091CBF74280031C529 /* process */ = {
 			isa = PBXGroup;
 			children = (
-				562597DD1CBF223100E66C2D /* BitQA-Backend */,
-				562597DC1CBF223100E66C2D /* Products */,
+				1A830D0C1CBF743B0031C529 /* post.h */,
+				1A830D0A1CBF74330031C529 /* post.cpp */,
+			);
+			name = process;
+			sourceTree = "<group>";
+		};
+		1A944B541CBF5D0300C63F00 = {
+			isa = PBXGroup;
+			children = (
+				1A830D091CBF74280031C529 /* process */,
+				1A944B721CBF5EB100C63F00 /* drivers */,
+				1A944B5E1CBF5D0300C63F00 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		562597DC1CBF223100E66C2D /* Products */ = {
+		1A944B5E1CBF5D0300C63F00 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				562597DB1CBF223100E66C2D /* BitQA-Backend */,
+				1A944B6B1CBF5DE500C63F00 /* index.html */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		562597DD1CBF223100E66C2D /* BitQA-Backend */ = {
+		1A944B721CBF5EB100C63F00 /* drivers */ = {
 			isa = PBXGroup;
 			children = (
-				562597DE1CBF223100E66C2D /* main.cpp */,
+				1A944B731CBF5ECA00C63F00 /* index.cpp */,
 			);
-			path = "BitQA-Backend";
+			name = drivers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		562597DA1CBF223100E66C2D /* BitQA-Backend */ = {
+		1A944B6A1CBF5DE500C63F00 /* index.html */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 562597E21CBF223100E66C2D /* Build configuration list for PBXNativeTarget "BitQA-Backend" */;
+			buildConfigurationList = 1A944B6F1CBF5DE500C63F00 /* Build configuration list for PBXNativeTarget "index.html" */;
 			buildPhases = (
-				562597D71CBF223100E66C2D /* Sources */,
-				562597D81CBF223100E66C2D /* Frameworks */,
-				562597D91CBF223100E66C2D /* CopyFiles */,
+				1A944B671CBF5DE500C63F00 /* Sources */,
+				1A944B681CBF5DE500C63F00 /* Frameworks */,
+				1A944B691CBF5DE500C63F00 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "BitQA-Backend";
-			productName = "BitQA-Backend";
-			productReference = 562597DB1CBF223100E66C2D /* BitQA-Backend */;
+			name = index.html;
+			productName = index.html;
+			productReference = 1A944B6B1CBF5DE500C63F00 /* index.html */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		562597D31CBF223100E66C2D /* Project object */ = {
+		1A944B551CBF5D0300C63F00 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0730;
-				ORGANIZATIONNAME = "Asjad Athick";
+				ORGANIZATIONNAME = CSCI222;
 				TargetAttributes = {
-					562597DA1CBF223100E66C2D = {
+					1A944B6A1CBF5DE500C63F00 = {
 						CreatedOnToolsVersion = 7.3;
 					};
 				};
 			};
-			buildConfigurationList = 562597D61CBF223100E66C2D /* Build configuration list for PBXProject "BitQA-Backend" */;
+			buildConfigurationList = 1A944B581CBF5D0300C63F00 /* Build configuration list for PBXProject "BitQA" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 562597D21CBF223100E66C2D;
-			productRefGroup = 562597DC1CBF223100E66C2D /* Products */;
+			mainGroup = 1A944B541CBF5D0300C63F00;
+			productRefGroup = 1A944B5E1CBF5D0300C63F00 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				562597DA1CBF223100E66C2D /* BitQA-Backend */,
+				1A944B6A1CBF5DE500C63F00 /* index.html */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		562597D71CBF223100E66C2D /* Sources */ = {
+		1A944B671CBF5DE500C63F00 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				562597DF1CBF223100E66C2D /* main.cpp in Sources */,
+				1A944B741CBF5ECA00C63F00 /* index.cpp in Sources */,
+				1A830D0B1CBF74330031C529 /* post.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		562597E01CBF223100E66C2D /* Debug */ = {
+		1A944B621CBF5D0300C63F00 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -162,6 +176,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "/usr/local/include/**";
+				LIBRARY_SEARCH_PATHS = "/usr/local/lib/**";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -169,10 +185,10 @@
 			};
 			name = Debug;
 		};
-		562597E11CBF223100E66C2D /* Release */ = {
+		1A944B631CBF5D0300C63F00 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -200,22 +216,26 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "/usr/local/include/**";
+				LIBRARY_SEARCH_PATHS = "/usr/local/lib/**";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 			};
 			name = Release;
 		};
-		562597E31CBF223100E66C2D /* Debug */ = {
+		1A944B701CBF5DE500C63F00 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CONFIGURATION_BUILD_DIR = /Users/james/Repos/BitQA/www;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		562597E41CBF223100E66C2D /* Release */ = {
+		1A944B711CBF5DE500C63F00 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CONFIGURATION_BUILD_DIR = /Users/james/Repos/BitQA/www;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -223,24 +243,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		562597D61CBF223100E66C2D /* Build configuration list for PBXProject "BitQA-Backend" */ = {
+		1A944B581CBF5D0300C63F00 /* Build configuration list for PBXProject "BitQA" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				562597E01CBF223100E66C2D /* Debug */,
-				562597E11CBF223100E66C2D /* Release */,
+				1A944B621CBF5D0300C63F00 /* Debug */,
+				1A944B631CBF5D0300C63F00 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		562597E21CBF223100E66C2D /* Build configuration list for PBXNativeTarget "BitQA-Backend" */ = {
+		1A944B6F1CBF5DE500C63F00 /* Build configuration list for PBXNativeTarget "index.html" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				562597E31CBF223100E66C2D /* Debug */,
-				562597E41CBF223100E66C2D /* Release */,
+				1A944B701CBF5DE500C63F00 /* Debug */,
+				1A944B711CBF5DE500C63F00 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 562597D31CBF223100E66C2D /* Project object */;
+	rootObject = 1A944B551CBF5D0300C63F00 /* Project object */;
 }
