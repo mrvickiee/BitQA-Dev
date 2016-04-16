@@ -38,6 +38,8 @@ $ sudo make install
 
 -> need to make shortcuts etc in /usr/local/include/ and /usr/local/lib/
 
+ln -s ~/Foo\ Bar/ Foo
+
 2. In Build Settings:
 
 	a) Header Search Paths
@@ -63,3 +65,8 @@ Use Brew:
 
 brew install mysql-connector-c++
 brew install boost
+
+
+# Jesus Christ
+### Problems = recursive headers and libs in xcode
+http://stackoverflow.com/questions/12573271/xcode-with-boost-semantic-issue-undeclared-identifier-va-start

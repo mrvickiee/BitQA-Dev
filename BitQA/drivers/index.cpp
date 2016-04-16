@@ -1,12 +1,5 @@
 #include <iostream>
 
-int main()
-{
-	return 0;
-}
-
-/*
-
 #include <mysql_connection.h>
 
 #include <cppconn/driver.h>
@@ -20,49 +13,12 @@ int main()
 
 using namespace std;
 
-// using namespace cgicc;
+using namespace cgicc;
 
 int main(void)
 {
 	
-	cout << "Running 'SELECT 'Hello World!";
-	
-	try {
-  sql::Driver *driver;
-  sql::Connection *con;
-  sql::Statement *stmt;
-  sql::ResultSet *res;
-		
- 
-  driver = get_driver_instance();
-  con = driver->connect("tcp://127.0.0.1:3306", "root", "");
- 
-  con->setSchema("test");
-		
-  stmt = con->createStatement();
-  res = stmt->executeQuery("SELECT 'Hello World!' AS _message");
-  while (res->next()) {
-	  cout << "\t... MySQL replies: ";
- 
-	  cout << res->getString("_message") << endl;
-	  cout << "\t... MySQL says it again: ";
-	  
-	  cout << res->getString(1) << endl;
-  }
-  delete res;
-  delete stmt;
-  delete con;
-		
-	} catch (sql::SQLException &e) {
-  cout << "# ERR: SQLException in " << __FILE__;
-  cout << "(" << __FUNCTION__ << ") on line "
-		<< __LINE__ << endl;
-  cout << "# ERR: " << e.what();
-  cout << " (MySQL error code: " << e.getErrorCode();
-  cout << ", SQLState: " << e.getSQLState() << " )" << endl;
-	}
-	
-	cout << endl;
+	cout << "\n\r\n\r";
 	
 	try {
 		Cgicc cgi;
@@ -80,6 +36,43 @@ int main(void)
 			// cout << "Your name: " << **name << endl;
 		}
 		
+		cout << "Running 'SELECT 'Hello World!";
+		
+		try {
+			sql::Driver *driver;
+			sql::Connection *con;
+			sql::Statement *stmt;
+			sql::ResultSet *res;
+			
+			
+			driver = get_driver_instance();
+			con = driver->connect("tcp://db.csci222.com:3306", "root", "password");
+			
+			con->setSchema("BitQA");
+			
+			stmt = con->createStatement();
+			res = stmt->executeQuery("SELECT 'Hello World!' AS _message");
+			while (res->next()) {
+				cout << "\t... MySQL replies: ";
+				
+				cout << res->getString("_message") << endl;
+				cout << "\t... MySQL says it again: ";
+				
+				cout << res->getString(1) << endl;
+			}
+			delete res;
+			delete stmt;
+			delete con;
+			
+		} catch (sql::SQLException &e) {
+			cout << "# ERR: SQLException in " << __FILE__;
+			cout << "(" << __FUNCTION__ << ") on line "
+			<< __LINE__ << endl;
+			cout << "# ERR: " << e.what();
+			cout << " (MySQL error code: " << e.getErrorCode();
+			cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+		}
+		
 		// Close the HTML document
 		cout << body() << html();
 	}
@@ -89,4 +82,3 @@ int main(void)
 	
 	return EXIT_SUCCESS;
 }
- */
