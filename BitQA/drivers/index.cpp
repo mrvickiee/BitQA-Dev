@@ -28,6 +28,7 @@ int main(void)
 		
 		// Set up the HTML document
 		cout << html() << head(title("cgicc example")) << endl;
+		cout << "<style>html{font-family:Arial;}</style>";
 		cout << body() << endl;
 		
 		// Print out the submitted element
@@ -36,6 +37,8 @@ int main(void)
 			// cout << "Your name: " << **name << endl;
 		}
 		
+		cout << "<center>";
+		cout << "<h1>Connection to Databases</h1>";
 		cout << "Running 'SELECT 'Hello World!";
 		
 		try {
@@ -73,6 +76,9 @@ int main(void)
 			cout << ", SQLState: " << e.getSQLState() << " )" << endl;
 		}
 		
+		cout << "<br><br><br><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/Rg4fH8fxJuk?rel=0&amp;controls=0&amp;showinfo=0&amp;autoplay=true\" frameborder=\"0\" allowfullscreen></iframe>";
+		
+		cout << "</center>";
 		// Close the HTML document
 		cout << body() << html();
 	}
