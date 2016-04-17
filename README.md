@@ -70,3 +70,33 @@ brew install boost
 # Jesus Christ
 ### Problems = recursive headers and libs in xcode
 http://stackoverflow.com/questions/12573271/xcode-with-boost-semantic-issue-undeclared-identifier-va-start
+
+# Ubuntu Server config
+$ sudo a2enmod cgi
+$ nano /etc/apache2/sites-available/000-default.conf
+
+<VirtualHost *:80>
+	ServerName www.csci222.com
+
+	ServerAdmin admin@csci222.com
+	DocumentRoot /var/www/csci222.com/www
+
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+	CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+	<Directory "/var/www/csci222.com/www">
+		Options ExecCGI
+		AddHandler cgi-script .html
+		AllowOverride All
+		Require all granted
+		Allow from all
+	</Directory>
+
+</VirtualHost>
+
+
+### Libaries
+$ apt-get install libcgicc5-dev
+$ apt-get install libmysqlcppconn-dev
+
+
