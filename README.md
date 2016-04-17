@@ -99,4 +99,50 @@ $ nano /etc/apache2/sites-available/000-default.conf
 $ apt-get install libcgicc5-dev
 $ apt-get install libmysqlcppconn-dev
 
+### Visual Studio Config
+## CGICC
+1. download latest tar.gz from site above
+2. open win/cgicc.dsp
+3. build with release configurations
+3.5 copy *.lib to /usr/lib/ and all headers *.h too /usr/include/
+4. project project properties -> vc++ dirs -> include -> add include / add lib
+5. in settings too go linker/input/additional dep/ add cgicc.lib (no dir)
+6. copy .dll into /usr/bin
+7. config properties -> debugging -> environment ADD ->PATH=\usr\bin
 
+Install xampp, edit vhosts
+
+----------
+
+DocumentRoot "C:/Users/James/Repos/BitQA/www"
+<Directory "C:/Users/James/Repos/BitQA/www">
+    Options ExecCGI
+    AddHandler cgi-script .html
+    AllowOverride All
+    Require all granted
+    Allow from all
+</Directory>
+
+ServerName csci222.local:80
+
+----------
+
+edit hosts file
+C:\Windows\System32\drivers\etc\hosts
+127.0.0.1	csci222.local
+
+----------
+
+to change output dir and targets
+config -> general -> output dir && target name
+
+----------
+
+mysql:
+http://dev.mysql.com/downloads/connector/cpp/
+copy lib and .h into /usr, will install in program files
+
+install boost too:
+https://sourceforge.net/projects/boost/files/boost/1.55.0/boost_1_55_0.zip/download
+http://www.boost.org/doc/libs/1_55_0/more/getting_started/windows.html
+copy into /usr/
