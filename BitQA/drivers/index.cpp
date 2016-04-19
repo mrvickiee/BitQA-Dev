@@ -1,90 +1,52 @@
-#include <iostream>
-
-#include <mysql_connection.h>
-
-#include <cppconn/driver.h>
-#include <cppconn/exception.h>
-#include <cppconn/resultset.h>
-#include <cppconn/statement.h>
-
-#include <cgicc/Cgicc.h>
-#include <cgicc/HTTPHTMLHeader.h>
-#include <cgicc/HTMLClasses.h>
+#include "post.hpp"
+#include "includes.hpp"
 
 using namespace std;
-
 using namespace cgicc;
 
-int main(void)
+int main()
 {
+	Includes::displayHeader();
 	
-	cout << "\n\r\n\r";
+	cout << "<div class=\"row\">";
+	
+	cout << "<h1>Welcome to Bit QA, <span>Liam</span></h1>" << endl
+		<< "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempus blandit metus, id aliquet orci lacinia eget. Sed quis tempor turpis. In ornare lacus ut lacus tincidunt, nec euismod dolor tristique.</p>" << endl;
+	
+	cout << "<h3>Attempting DB Connection</h3>" << endl;
 	
 	try {
-		Cgicc cgi;
+		sql::Driver *driver;
+		sql::Connection *con;
+		sql::Statement *stmt;
+		sql::ResultSet *res;
 		
-		// Send HTTP header
-		//cout << HTTPHTMLHeader() << endl;
 		
-		// Set up the HTML document
-		cout << html() << head(title("cgicc example")) << endl;
-		cout << "<style>html{font-family:Arial;}</style>";
-		cout << body() << endl;
+		driver = get_driver_instance();
+		con = driver->connect("tcp://db.csci222.com:3306", "root", "password");
 		
-		// Print out the submitted element
-		form_iterator name = cgi.getElement("name");
-		if(name != cgi.getElements().end()) {
-			// cout << "Your name: " << **name << endl;
+		con->setSchema("BitQA");
+		
+		stmt = con->createStatement();
+		
+		cout << "<p>Query: <code>SELECT 'Hello World!' AS _message</code>:</p>";
+		res = stmt->executeQuery("SELECT 'Hello World!' AS _message");
+		
+		while (res->next()) {
+			cout << "<p>Response: <span class=\"label label-success\">" << res->getString("_message") << "</span></p>" << endl;
 		}
 		
-		cout << "<center>";
-		cout << "<h1>Connection to Databases</h1>";
-		cout << "Running 'SELECT 'Hello World!";
+		delete res;
+		delete stmt;
+		delete con;
 		
-		try {
-			sql::Driver *driver;
-			sql::Connection *con;
-			sql::Statement *stmt;
-			sql::ResultSet *res;
-			
-			
-			driver = get_driver_instance();
-			con = driver->connect("tcp://db.csci222.com:3306", "root", "password");
-			
-			con->setSchema("BitQA");
-			
-			stmt = con->createStatement();
-			res = stmt->executeQuery("SELECT 'Hello World!' AS _message");
-			while (res->next()) {
-				cout << "\t... MySQL replies: ";
-				
-				cout << res->getString("_message") << endl;
-				cout << "\t... MySQL says it again: ";
-				
-				cout << res->getString(1) << endl;
-			}
-			delete res;
-			delete stmt;
-			delete con;
-			
-		} catch (sql::SQLException &e) {
-			cout << "# ERR: SQLException in " << __FILE__;
-			cout << "(" << __FUNCTION__ << ") on line "
-			<< __LINE__ << endl;
-			cout << "# ERR: " << e.what();
-			cout << " (MySQL error code: " << e.getErrorCode();
-			cout << ", SQLState: " << e.getSQLState() << " )" << endl;
-		}
-		
-		cout << "<br><br><br><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/Rg4fH8fxJuk?rel=0&amp;controls=0&amp;showinfo=0&amp;autoplay=true\" frameborder=\"0\" allowfullscreen></iframe>";
-		
-		cout << "</center>";
-		// Close the HTML document
-		cout << body() << html();
-	}
-	catch(exception& e) {
-		// handle any errors - omitted for brevity
+	} catch (sql::SQLException &e) {
+		cout << "<p>Response: <span class=\"label label-danger\">Error " << e.getErrorCode() << "</span></p>" << endl;
 	}
 	
-	return EXIT_SUCCESS;
+	cout << "</div>" << endl;
+	
+	Includes::displayFooter();
+	
+	return 0;
 }
