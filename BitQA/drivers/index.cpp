@@ -1,5 +1,5 @@
-#include "post.hpp"
-#include "includes.hpp"
+#include "../process/post.hpp"
+#include "../includes/includes.hpp"
 
 using namespace std;
 using namespace cgicc;
