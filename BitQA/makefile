@@ -1,2 +1,2 @@
 build:
-	g++ drivers/index.cpp -o ../www/index.html -lmysqlcppconn -lcgicc
+	g++ includes/includes.cpp process/post.cpp drivers/index.cpp -o ../www/index.html -lmysqlcppconn -lcgicc
