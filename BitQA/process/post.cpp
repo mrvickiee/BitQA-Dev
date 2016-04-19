@@ -1,4 +1,4 @@
-#include "post.h"
+#include "post.hpp"
 
 using namespace std;
 
