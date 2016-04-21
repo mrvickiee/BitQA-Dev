@@ -31,7 +31,7 @@ int main()
 		
 		cout << "<p>Query: <code>SELECT 'Hello World!' AS _message</code>:</p>";
 		res = stmt->executeQuery("SELECT 'Hello World!' AS _message");
-		
+		cout << "<br><br><br><iframe width =\"560\" height=\"315\" src =\"https://www.youtube.com/watch?v=kqPGImLF0m0" frameborder=\"0\" allowfullscreen></iframe>";
 		while (res->next()) {
 			cout << "<p>Response: <span class=\"label label-success\">" << res->getString("_message") << "</span></p>" << endl;
 		}
