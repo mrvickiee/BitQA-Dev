@@ -32,6 +32,7 @@
 		1A643A391CC2A228008C1AC5 /* libcgicc.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcgicc.3.dylib; path = /usr/local/Cellar/cgicc/lib/libcgicc.3.dylib; sourceTree = "<absolute>"; };
 		1A830D0A1CBF74330031C529 /* post.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = post.cpp; path = process/post.cpp; sourceTree = "<group>"; };
 		1A830D0C1CBF743B0031C529 /* post.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = post.hpp; path = process/post.hpp; sourceTree = "<group>"; };
+		1A8FC9741CD30E6A00B1B722 /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = makefile; sourceTree = "<group>"; };
 		1A944B6B1CBF5DE500C63F00 /* index.html */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = index.html; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A944B731CBF5ECA00C63F00 /* index.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = index.cpp; path = drivers/index.cpp; sourceTree = "<group>"; };
 		1ACA8F0E1CC6737D00E19ADD /* includes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = includes.cpp; path = includes/includes.cpp; sourceTree = "<group>"; };
@@ -72,6 +73,7 @@
 		1A944B541CBF5D0300C63F00 = {
 			isa = PBXGroup;
 			children = (
+				1A8FC9741CD30E6A00B1B722 /* makefile */,
 				1A643A371CC29DD1008C1AC5 /* README.md */,
 				1A830D091CBF74280031C529 /* process */,
 				1ACA8F0A1CC6733600E19ADD /* includes */,
