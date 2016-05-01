@@ -41,7 +41,7 @@ int main()
 		delete con;
 		
 	} catch (sql::SQLException &e) {
-		cout << "<p>Response: <span class=\"label label-danger\">Error " << e.getErrorCode() << "</span></p>" << endl;
+		cout << "<p>Response Test Change: <span class=\"label label-danger\">Error " << e.getErrorCode() << "</span></p>" << endl;
 	}
 	
 	cout << "</div>" << endl;
