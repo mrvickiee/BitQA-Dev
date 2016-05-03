@@ -1,14 +1,13 @@
-# StackOverflow
+# BitQA 
 CSCI222 Project Readme / Install
 
 ## Useful Links
 - http://www.tutorialspoint.com/cplusplus/cpp_web_programming.htm
 - https://www.gnu.org/software/cgicc/doc/index.html
+- https://dev.mysql.com/doc/connector-cpp/en/connector-cpp-getting-started-examples.html
 
-## Custom Build Directories:
-Make sure you output your build to correct path and name:
-
-### Xcode instructions:
+## Xcode instructions:
+### Setup
 1. Prefrences
 	-> locations -> advanced -> custom -> absolute
 
@@ -20,16 +19,12 @@ Make sure you output your build to correct path and name:
 	b) Product Name
 		PRODUCT_NAME = $(TARGET_NAME)
 
-### Visual Studio instructions:
-N/A ATM
-
-## Install CGI CC:
+### Install CGI CC:
 
 Download from:
 https://www.gnu.org/software/cgicc/index.html
 v 3.2.16
 
-### Xcode instructions:
 1. Follow below
 $ cd /Users/james/Desktop/cgicc-3.2.16
 $ sudo ./configure --prefix=/usr/local/Cellar/cgicc
@@ -50,10 +45,8 @@ ln -s ~/Foo\ Bar/ Foo
 
 	c) Add the .a / dylib file in /usr/local/lib/cgicc/lib/ to the Build Phases
 
-### Visual Studio instructions:
-N/A ATM
 
-## Install MySQL
+### Install MySQL
 1. Download:
 http://dev.mysql.com/downloads/connector/cpp/
 
@@ -66,15 +59,13 @@ Use Brew:
 brew install mysql-connector-c++
 brew install boost
 
+## Ubuntu Server
 
-# Jesus Christ
-### Problems = recursive headers and libs in xcode
-http://stackoverflow.com/questions/12573271/xcode-with-boost-semantic-issue-undeclared-identifier-va-start
-
-# Ubuntu Server config
+### Server
 $ sudo a2enmod cgi
 $ nano /etc/apache2/sites-available/000-default.conf
 
+----------
 <VirtualHost *:80>
 	ServerName www.csci222.com
 
@@ -93,14 +84,15 @@ $ nano /etc/apache2/sites-available/000-default.conf
 	</Directory>
 
 </VirtualHost>
-
+----------
 
 ### Libaries
 $ apt-get install libcgicc5-dev
 $ apt-get install libmysqlcppconn-dev
 
-### Visual Studio Config
-## CGICC
+## Visual Studio
+
+### CGICC
 1. download latest tar.gz from site above
 2. open win/cgicc.dsp
 3. build with release configurations
@@ -110,7 +102,7 @@ $ apt-get install libmysqlcppconn-dev
 6. copy .dll into /usr/bin
 7. config properties -> debugging -> environment ADD ->PATH=\usr\bin
 
-Install xampp, edit vhosts
+### Install xampp, edit vhosts
 
 ----------
 
@@ -127,22 +119,24 @@ ServerName csci222.local:80
 
 ----------
 
-edit hosts file
+### Edit hosts file
 C:\Windows\System32\drivers\etc\hosts
 127.0.0.1	csci222.local
-
-----------
 
 to change output dir and targets
 config -> general -> output dir && target name
 
-----------
-
-mysql:
+### MySql:
 http://dev.mysql.com/downloads/connector/cpp/
 copy lib and .h into /usr, will install in program files
 
-install boost too:
+### Boost:
 https://sourceforge.net/projects/boost/files/boost/1.55.0/boost_1_55_0.zip/download
 http://www.boost.org/doc/libs/1_55_0/more/getting_started/windows.html
 copy into /usr/
+
+## Common Problems
+1. recursive headers and libs in xcode
+http://stackoverflow.com/questions/12573271/xcode-with-boost-semantic-issue-undeclared-identifier-va-start
+2. Custom Build Directories:
+Make sure you output your build to correct path and name:

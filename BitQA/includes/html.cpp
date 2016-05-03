@@ -1,9 +1,15 @@
-#include "includes.hpp"
+#include "html.hpp"
 
 using namespace cgicc;
 using namespace std;
 
-void Includes::displayHeader(std::string title)
+#if DEBUG
+	const string BitQA::HTML::HOST = "http://csci222.local";
+#else
+	const string BitQA::HTML::HOST = "https://csci222.com";
+#endif
+
+void BitQA::HTML::displayHeader(std::string title)
 {
 	cout << HTTPHTMLHeader() << endl
 		<< "<!DOCTYPE html>" << endl
@@ -48,9 +54,14 @@ void Includes::displayHeader(std::string title)
 		<< "<div class=\"container\">";
 }
 
-void Includes::displayFooter()
+void BitQA::HTML::displayFooter()
 {
 	cout << "</div>" << endl
 		<< body() << endl
 		<< html() << endl;
+}
+
+std::string BitQA::HTML::spacer(int height)
+{
+	return "<div style=\"margin-top: " + to_string(height) + "px;\"></div>";
 }
