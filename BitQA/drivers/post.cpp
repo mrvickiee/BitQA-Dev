@@ -55,7 +55,7 @@ int main()
 			question = cgi("question");
 		} catch (exception &e) {
 			error = true;
-			response = e.what();
+			response += "Error getting post: " + string(e.what()) + "<br>";
 		}
 		
 		// Check response
@@ -63,7 +63,7 @@ int main()
 			cout << cgicc::HTTPRedirectHeader(BitQA::HTML::HOST + "/view/") << endl;
 		} else {
 			error = true;
-			response = "Question needs to be valid";
+			response += "Question needs to be valid<br>";
 		}
 		
 		// Add to database
@@ -71,7 +71,7 @@ int main()
 			addQuestion(question);
 		} catch(sql::SQLException &e) {
 			error = true;
-			response = "Error storing into Database: " + string(e.what());
+			response += "Error storing into Database: " + string(e.what()) + "<br>";
 		}
 		
 	}
