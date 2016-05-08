@@ -2,8 +2,10 @@
 #define question_hpp
 
 #include <string>
+#include <vector>
 
 using std::string;
+using std::vector;
 
 namespace BitQA
 {
@@ -11,13 +13,14 @@ namespace BitQA
 	{
 	public:
 		Question();
+		vector<int> getContentID();
 		string getTitle();
 		string getDetails();
 		string getVotes();
 		string getUsername();
 		
 	private:
-		string Something;
+		int ID;
 	};
 }
 

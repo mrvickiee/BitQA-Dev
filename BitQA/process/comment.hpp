@@ -1,14 +1,27 @@
-//
-//  comment.hpp
-//  BitQA
-//
-//  Created by James Marino on 9/05/2016.
-//  Copyright © 2016 CSCI222. All rights reserved.
-//
-
 #ifndef comment_hpp
 #define comment_hpp
 
-#include <stdio.h>
+#include <string>
+#include <vector>
 
-#endif /* comment_hpp */
+using std::string;
+using std::vector;
+
+namespace BitQA
+{
+	class Comment
+	{
+	public:
+		Comment(int ContentID);
+		int getContentID();
+		string getDetails();
+		string getVotes();
+		string getUsername();
+		
+	private:
+		Comment();
+		int ContentID;
+	};
+}
+
+#endif
