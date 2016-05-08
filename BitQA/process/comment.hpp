@@ -1,5 +1,5 @@
-#ifndef question_hpp
-#define question_hpp
+#ifndef comment_hpp
+#define comment_hpp
 
 #include <string>
 #include <vector>
@@ -9,18 +9,18 @@ using std::vector;
 
 namespace BitQA
 {
-	class Question
+	class Comment
 	{
 	public:
-		Question();
-		vector<int> getContentID();
-		string getTitle();
+		Comment(int ContentID);
+		int getContentID();
 		string getDetails();
 		string getVotes();
 		string getUsername();
 		
 	private:
-		int ID;
+		Comment();
+		int ContentID;
 	};
 }
 
