@@ -5,7 +5,7 @@
 using namespace cgicc;
 using namespace std;
 
-void addQuestion(string question)
+void addQuestion(string questionTitle, string questionDescription, string questionTags, string questionUser)
 {
 	sql::Driver *driver;
 	sql::Connection *con;
@@ -19,9 +19,11 @@ void addQuestion(string question)
 	
 	con->setSchema(BitQA::Database::SCHEMA);
 	
-	prep_stmt = con->prepareStatement("INSERT INTO test(id, label) VALUES (?, ?)");
-	prep_stmt->setString(1, "value 1");
-	prep_stmt->setString(2, question);
+	prep_stmt = con->prepareStatement("CALL ProcInsertQuestion(?,?,?,?);");
+	prep_stmt->setString(1, questionTitle);
+	prep_stmt->setString(2, questionDescription);
+    prep_stmt->setString(3, questionTags);
+    prep_stmt->setString(4, questionUser);
 	prep_stmt->execute();
 	
 	delete prep_stmt;
@@ -42,7 +44,7 @@ int main()
 {
 	
 	cgicc::Cgicc cgi;
-	string response = "", question = "";
+	string response = "", questionTitle = "", questionDescription = "", questionTags = "", questionUser = "";
 	auto error = false;
 	
 	// Check initial post
@@ -52,16 +54,20 @@ int main()
 		
 		// Get Question
 		try {
-			question = cgi("question");
+			questionTitle = cgi("questionTitle");
+            questionDescription = cgi("questionDescription");
+            questionTags = cgi("questionTags");
+            //questionUser = cgi("questionUser"); //GET FROM COOKIE
+            questionUser = "100";
 			
 			// Check response
-			if (validate(question)) {
+			if (validate(questionTitle) && validate(questionDescription) && validate(questionTags)) {
 				
 				// Add to database
 				try {
-					addQuestion(question);
+					addQuestion(questionTitle, questionDescription, questionTags, questionUser);
 					
-					cout << cgicc::HTTPRedirectHeader(BitQA::HTML::HOST + "/view/") << endl;
+					cout << cgicc::HTTPRedirectHeader(BitQA::HTML::HOST + "/post.html") << endl;
 					
 				} catch(sql::SQLException &e) {
 					error = true;
@@ -83,16 +89,21 @@ int main()
 	{
 		BitQA::HTML::displayHeader();
 		
-		cout << "<h1>Post</h1>";
-		cout << "Ask a question to Bit QA";
-		cout << "<form data-ajax=\"false\" method=\"post\">";
-		
-		cout << "<div class=\"form-group\">"
-			<< "<textarea name=\"question\" style=\"height: 100px\" class=\"form-control\">"
-			<< question
-			<< "</textarea></div><input class=\"btn btn-primary\" type=\"submit\">";
-		
-		cout << "</form>";
+        cout << "<h1>Post a new question</h1>";
+        cout << "<h4>Provide a detailed description, and as many relevant tags to make the question more effective</h4><br>";
+        cout << "<form data-ajax=\"false\" method=\"post\">";
+        
+        cout << "<div class=\"form-group\">" <<
+        "<table> <tr><td>Title:</td><td>" <<
+        "<input type=\"text\" name=\"questionTitle\" class=\"form-control\">" <<
+        questionTitle << "</td> <tr> <td>Description:</td><td>" <<
+        "<textarea name=\"questionDescription\" style=\"height: 100px\" class=\"form-control\">" << questionDescription
+        << "</textarea></td></tr><tr><td>Tags:</td><td><textarea name=\"questionTags\" style=\"height: 100px\" class=\"form-control\">" << questionTags <<
+        "</textarea></td></tr></table>"
+        
+        << "</div><input class=\"btn btn-primary\" type=\"submit\">";
+        
+        cout << "</form>";
 		
 		cout << BitQA::HTML::spacer(10);
 		
