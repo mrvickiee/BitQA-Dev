@@ -28,10 +28,10 @@
 		568CF2AC1CE0750600E1A986 /* browse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 568CF2A01CE074E100E1A986 /* browse.cpp */; };
 		568CF2AD1CE0753300E1A986 /* libmysqlcppconn.7.1.1.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A643A341CC29CCC008C1AC5 /* libmysqlcppconn.7.1.1.6.dylib */; };
 		568CF2AE1CE0753800E1A986 /* libcgicc.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A643A391CC2A228008C1AC5 /* libcgicc.3.dylib */; };
-		568CF2B11CE075C400E1A986 /* browse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 568CF2AF1CE075C400E1A986 /* browse.cpp */; };
 		568CF2B21CE0760400E1A986 /* database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AC771871CD8FA1B005D3D41 /* database.cpp */; };
 		568CF2B31CE0760700E1A986 /* html.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA8F0E1CC6737D00E19ADD /* html.cpp */; };
 		568CF2B41CE0769A00E1A986 /* comment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4EA2901CDF822400143486 /* comment.cpp */; };
+		568CF2BA1CE07ADC00E1A986 /* browse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 568CF2B81CE07ADC00E1A986 /* browse.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -97,8 +97,8 @@
 		1ACA8F0F1CC6737D00E19ADD /* html.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = html.hpp; path = includes/html.hpp; sourceTree = "<group>"; };
 		568CF2A01CE074E100E1A986 /* browse.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = browse.cpp; path = drivers/browse.cpp; sourceTree = "<group>"; };
 		568CF2A51CE074F500E1A986 /* browse.html */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = browse.html; sourceTree = BUILT_PRODUCTS_DIR; };
-		568CF2AF1CE075C400E1A986 /* browse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = browse.cpp; sourceTree = "<group>"; };
-		568CF2B01CE075C400E1A986 /* browse.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = browse.hpp; sourceTree = "<group>"; };
+		568CF2B81CE07ADC00E1A986 /* browse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = browse.cpp; path = process/browse.cpp; sourceTree = "<group>"; };
+		568CF2B91CE07ADC00E1A986 /* browse.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = browse.hpp; path = process/browse.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,14 +153,14 @@
 		1A830D091CBF74280031C529 /* process */ = {
 			isa = PBXGroup;
 			children = (
+				568CF2B81CE07ADC00E1A986 /* browse.cpp */,
+				568CF2B91CE07ADC00E1A986 /* browse.hpp */,
 				1A830D0C1CBF743B0031C529 /* post.hpp */,
 				1A830D0A1CBF74330031C529 /* post.cpp */,
 				1A4EA28A1CDF647A00143486 /* question.hpp */,
 				1A4EA2891CDF647A00143486 /* question.cpp */,
 				1A4EA2911CDF822400143486 /* comment.hpp */,
 				1A4EA2901CDF822400143486 /* comment.cpp */,
-				568CF2AF1CE075C400E1A986 /* browse.cpp */,
-				568CF2B01CE075C400E1A986 /* browse.hpp */,
 			);
 			name = process;
 			sourceTree = "<group>";
@@ -364,9 +364,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				568CF2BA1CE07ADC00E1A986 /* browse.cpp in Sources */,
 				568CF2AC1CE0750600E1A986 /* browse.cpp in Sources */,
 				568CF2B41CE0769A00E1A986 /* comment.cpp in Sources */,
-				568CF2B11CE075C400E1A986 /* browse.cpp in Sources */,
 				568CF2B31CE0760700E1A986 /* html.cpp in Sources */,
 				568CF2B21CE0760400E1A986 /* database.cpp in Sources */,
 			);
