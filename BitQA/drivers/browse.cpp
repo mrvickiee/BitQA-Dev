@@ -8,7 +8,6 @@ int main()
 {
     
     BitQA::HTML::displayHeader();
-        
     BitQA::HTML::displayFooter();
     
     return 0;
