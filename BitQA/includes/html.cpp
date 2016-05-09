@@ -65,3 +65,11 @@ std::string BitQA::HTML::spacer(int height)
 {
 	return "<div style=\"margin-top: " + to_string(height) + "px;\"></div>";
 }
+
+void BitQA::HTML::error(std::string title, std::string message)
+{
+	cout << "<div class=\"panel panel-danger\">";
+	cout << "<div class=\"panel-heading\">" << title << "</div>";
+	cout << "<div class=\"panel-body\">" << message << "</div>";
+	cout << "</div>";
+}

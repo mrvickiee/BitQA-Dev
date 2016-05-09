@@ -12,7 +12,7 @@ namespace BitQA
 	class Question
 	{
 	public:
-		Question();
+		Question(int QuestionID);
 		vector<int> getContentID();
 		string getTitle();
 		string getDetails();
@@ -20,7 +20,10 @@ namespace BitQA
 		string getUsername();
 		
 	private:
-		int ID;
+		Question();
+		int QuestionID;
+		int ContentID;
+		int QuestionOwner;
 	};
 }
 
