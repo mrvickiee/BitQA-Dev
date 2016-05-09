@@ -38,7 +38,7 @@ void BitQA::HTML::displayHeader(std::string title)
 	cout << "<nav class=\"navbar navbar-default navbar-fixed-top\">" << endl
 		<< "<div class=\"container\">" << endl
 		<< "<div class=\"navbar-header\">" << endl
-			<< "<a class=\"navbar-brand\" href=\"#\">Bit QA</a>" << endl
+			<< "<a class=\"navbar-brand\" href=\"index.html\">Bit QA</a>" << endl
 		<< "</div>";
 	
 	cout << "<div id=\"navbar\" class=\"navbar-collapse collapse\"><ul class=\"nav navbar-nav\"><li class=\"active\"><a href=\"/\">Home</a></li><li><a href=\"/post.html\">Post</a></li><li><a href=\"#\">Answers</a></li></ul>";
@@ -64,4 +64,12 @@ void BitQA::HTML::displayFooter()
 std::string BitQA::HTML::spacer(int height)
 {
 	return "<div style=\"margin-top: " + to_string(height) + "px;\"></div>";
+}
+
+void BitQA::HTML::error(std::string title, std::string message)
+{
+	cout << "<div class=\"panel panel-danger\">";
+	cout << "<div class=\"panel-heading\">" << title << "</div>";
+	cout << "<div class=\"panel-body\">" << message << "</div>";
+	cout << "</div>";
 }

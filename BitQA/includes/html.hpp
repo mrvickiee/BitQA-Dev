@@ -20,6 +20,7 @@ namespace BitQA {
 		static void displayHeader(std::string title = "Bit QA");
 		static void displayFooter();
 		static std::string spacer(int height);
+		static void error(std::string title, std::string message);
 	};
 	
 }

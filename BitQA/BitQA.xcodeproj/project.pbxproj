@@ -24,6 +24,7 @@
 		1A4EA28C1CDF64A400143486 /* database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AC771871CD8FA1B005D3D41 /* database.cpp */; };
 		1A4EA28D1CDF64BE00143486 /* html.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA8F0E1CC6737D00E19ADD /* html.cpp */; };
 		1A4EA28F1CDF64DC00143486 /* question.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4EA28E1CDF64DC00143486 /* question.cpp */; };
+		1A4EA2921CDF822400143486 /* comment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4EA2901CDF822400143486 /* comment.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -63,6 +64,8 @@
 		1A4EA2891CDF647A00143486 /* question.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = question.cpp; path = process/question.cpp; sourceTree = "<group>"; };
 		1A4EA28A1CDF647A00143486 /* question.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = question.hpp; path = process/question.hpp; sourceTree = "<group>"; };
 		1A4EA28E1CDF64DC00143486 /* question.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = question.cpp; path = drivers/question.cpp; sourceTree = "<group>"; };
+		1A4EA2901CDF822400143486 /* comment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = comment.cpp; path = process/comment.cpp; sourceTree = "<group>"; };
+		1A4EA2911CDF822400143486 /* comment.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = comment.hpp; path = process/comment.hpp; sourceTree = "<group>"; };
 		1A643A341CC29CCC008C1AC5 /* libmysqlcppconn.7.1.1.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmysqlcppconn.7.1.1.6.dylib; path = "/usr/local/Cellar/mysql-connector-c++/1.1.6_1/lib/libmysqlcppconn.7.1.1.6.dylib"; sourceTree = "<absolute>"; };
 		1A643A371CC29DD1008C1AC5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		1A643A391CC2A228008C1AC5 /* libcgicc.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcgicc.3.dylib; path = /usr/local/Cellar/cgicc/lib/libcgicc.3.dylib; sourceTree = "<absolute>"; };
@@ -125,6 +128,8 @@
 				1A830D0A1CBF74330031C529 /* post.cpp */,
 				1A4EA28A1CDF647A00143486 /* question.hpp */,
 				1A4EA2891CDF647A00143486 /* question.cpp */,
+				1A4EA2911CDF822400143486 /* comment.hpp */,
+				1A4EA2901CDF822400143486 /* comment.cpp */,
 			);
 			name = process;
 			sourceTree = "<group>";
@@ -294,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A4EA28C1CDF64A400143486 /* database.cpp in Sources */,
+				1A4EA2921CDF822400143486 /* comment.cpp in Sources */,
 				1A4EA28F1CDF64DC00143486 /* question.cpp in Sources */,
 				1A4EA28B1CDF647A00143486 /* question.cpp in Sources */,
 				1A4EA28D1CDF64BE00143486 /* html.cpp in Sources */,
@@ -500,6 +506,7 @@
 				1A4EA2851CDF644F00143486 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1A944B581CBF5D0300C63F00 /* Build configuration list for PBXProject "BitQA" */ = {
 			isa = XCConfigurationList;
