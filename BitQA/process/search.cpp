@@ -13,10 +13,10 @@ BitQA::Search::Search(string query)
 	searchTerm = query;
 }
 
-
 bool BitQA::Search::getQuestion()
 {
 		int QuestionId = -1;
+		
 		
 		try {
 		sql::Driver *driver;
@@ -39,7 +39,7 @@ bool BitQA::Search::getQuestion()
 		res = stmt->executeQuery("SELECT questionTitle FROM tblQuestion WHERE id = '" + this->searchTerm + "'");
 		
 		while (res->next()) {
-			//QuestionId = stoi(res->getString("questionTitle"));
+			QuestionId = stoi(res->getString("questionTitle"));
 		}
 		
 		delete res;
@@ -48,16 +48,23 @@ bool BitQA::Search::getQuestion()
 		
 	} catch (sql::SQLException &e) {
 		QuestionId = -1;
+		return false;
 	}
 	
-	//Redirect to question page
+	//Redirect to question page with QuestionID
+	
 	return false;
 }
 
 bool BitQA::Search::getUser()
 {
 	//At this point system knows it is a user 
-	int foundID = -1;
+	
+	//Discard @ symbol
+	this->searchTerm.erase(0,1);
+	int foundID;
+	
+	
 	try {
 		sql::Driver *driver;
 		sql::Connection *con;
@@ -75,11 +82,11 @@ bool BitQA::Search::getUser()
 		
 		stmt = con->createStatement();
 		
-		
 		res = stmt->executeQuery("SELECT id FROM tblUser WHERE username = '" + (this->searchTerm) + "'");
 		
 		while (res->next()) {
-			//foundID = stoi(res->getString("questionTitle"));
+			//incorrect??
+			foundID = stoi(res->getString("id"));
 		}
 		
 		delete res;
@@ -88,8 +95,10 @@ bool BitQA::Search::getUser()
 		
 	} catch (sql::SQLException &e) {
 		foundID = -1;
+		return false;
 	}
 	
 	//Redirect to user page
-		return true;
+	//Direct to user page with foundID
+	return true;
 }

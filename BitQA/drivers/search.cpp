@@ -5,50 +5,64 @@
 #include "../includes/html.hpp"
 #include "../includes/database.hpp"
 
+
 using namespace cgicc;
 using namespace std;
 using namespace BitQA;
 
-int isUser(BitQA::Search *mySearch) {
-		string check = mySearch->getSearchTerm();
-		if(check.at(0) == '@') {
+int parseTerm(string searchTerm) {
+		
+		if(searchTerm.at(0) == '@') {
 			return 0;
 		}
 		
-		//Else check if question or tag
+		//Else check if question
 		return 1;
+		
+		//If not question bring up any content related
 }
 
 int main() {
 		
 	cgicc::Cgicc cgi;
 	
-	//Default sets searh term to @liam
-	BitQA::Search mySearch();
 	
-	/*switch(isUser(mySearch))
+	//Get search term from search bar
+	string searchTerm;
+	
+	//Determine what it is
+	int type = -1;
+	type = parseTerm(searchTerm);
+	
+	//Create search object with term
+	BitQA::Search mySearch(searchTerm);
+	
+	
+	switch(type)
 	{
 		case 0:
+			//Directs to user page
 			mySearch.getUser();
+			break;
 		case 1:
-		
+			//Directs to question page
+			mySearch.getQuestion();
+			break;
 		case 2:
-		
+			//Brings up search results page as no user or question was found
+			//mySearch.getContentID();
+			break;
 		default:
+			break;
 			
 	};
-	*/
-	//Search table
 	
-	
-	//Return results
 	
 	
 	}
 	
 
-
-//Main and functionality
+/*
 void selectFromDB() {
 		try {
 		sql::Driver *driver;
@@ -82,4 +96,5 @@ void selectFromDB() {
 		cout << "<p>Response Test Change: <span class=\"label label-danger\">Error " << e.getErrorCode() << "</span></p>" << endl;
 	}
 }
+*/ 
 

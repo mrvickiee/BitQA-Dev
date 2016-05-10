@@ -17,7 +17,8 @@ namespace BitQA
 			bool getUser();
 			std::string getSearchTerm();
 		private:
-			std::string searchTerm;	
+			std::string searchTerm;
+			
 	};
 }
 
