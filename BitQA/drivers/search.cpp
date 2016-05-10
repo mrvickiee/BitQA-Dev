@@ -1,37 +1,43 @@
+#include "../process/question.hpp"
+#include "../process/comment.hpp"
+#include "../process/search.hpp"
 #include "../process/post.hpp"
 #include "../includes/html.hpp"
 #include "../includes/database.hpp"
 
 using namespace cgicc;
 using namespace std;
+using namespace BitQA;
 
-
-//Main and functionality
-
+int isUser(BitQA::Search *mySearch) {
+		string check = mySearch->getSearchTerm();
+		if(check.at(0) == '@') {
+			return 0;
+		}
+		
+		//Else check if question or tag
+		return 1;
+}
 
 int main() {
-	string search;
-	
+		
 	cgicc::Cgicc cgi;
 	
+	//Default sets searh term to @liam
+	BitQA::Search mySearch();
 	
-	//Get search term
-			BitQA::HTML::displayHeader();
+	/*switch(isUser(mySearch))
+	{
+		case 0:
+			mySearch.getUser();
+		case 1:
 		
-		cout << "<h1>Post</h1>";
-		cout << "Ask a question to Bit QA";
-		cout << "<form data-ajax=\"false\" method=\"post\">";
+		case 2:
 		
-		cout << "<div class=\"form-group\">"
-			<< "<textarea name=\"question\" style=\"height: 100px\" class=\"form-control\">"
-			<< search
-			<< "</textarea></div><input class=\"btn btn-primary\" type=\"submit\">";
-		
-		cout << "</form>";
-	
-	//Parse term to determine what table to search
-	
-	
+		default:
+			
+	};
+	*/
 	//Search table
 	
 	
@@ -40,16 +46,40 @@ int main() {
 	
 	}
 	
-	
-void searchUser(string search) {
-
-		//Search DB
-}
 
 
-void searchTag(string search) {
-	
-		//Search DB
-	
+//Main and functionality
+void selectFromDB() {
+		try {
+		sql::Driver *driver;
+		sql::Connection *con;
+		sql::Statement *stmt;
+		sql::ResultSet *res;
+		
+		
+		driver = get_driver_instance();
+		con = driver->connect(BitQA::Database::HOST,
+							  BitQA::Database::USERNAME,
+							  BitQA::Database::PASSWORD
+							  );
+		
+		con->setSchema(BitQA::Database::SCHEMA);
+		
+		stmt = con->createStatement();
+		
+		cout << "<p>Query: <code>SELECT 'Hello World!' AS _message</code>:</p>";
+		res = stmt->executeQuery("SELECT 'Hello World!' AS _message");
+		
+		while (res->next()) {
+			cout << "<p>Response: <span class=\"label label-success\">" << res->getString("_message") << "</span></p>" << endl;
+		}
+		
+		delete res;
+		delete stmt;
+		delete con;
+		
+	} catch (sql::SQLException &e) {
+		cout << "<p>Response Test Change: <span class=\"label label-danger\">Error " << e.getErrorCode() << "</span></p>" << endl;
+	}
 }
 

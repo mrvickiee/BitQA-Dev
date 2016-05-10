@@ -3,15 +3,22 @@
 
 #include <string>
 
+
 using std::string;
 
-class Search
+namespace BitQA
 {
-public:
-	Search();
-
-private:
-    string searchTerm;
-};
+	class Search
+	{
+		public:
+			Search();
+			Search(string);
+			bool getQuestion();
+			bool getUser();
+			std::string getSearchTerm();
+		private:
+			std::string searchTerm;	
+	};
+}
 
 #endif
