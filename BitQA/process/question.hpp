@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include "comment.hpp"
 
 using std::string;
 using std::vector;
@@ -18,6 +19,8 @@ namespace BitQA
 		string getDetails();
 		string getVotes();
 		string getUsername();
+		vector<Comment> getComments();
+		
 		
 	private:
 		Question();

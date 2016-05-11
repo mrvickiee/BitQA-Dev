@@ -33,6 +33,7 @@ BitQA::Comment::Comment(int CommentID, string CommentType)
 	
 }
 
+
 int BitQA::Comment::getCommentID()
 {
 	return this->CommentID;
@@ -53,6 +54,8 @@ string BitQA::Comment::getDetails()
 	stmt = con->createStatement();
 	
 	res = stmt->executeQuery("SELECT content FROM tblContent WHERE id = '" + to_string(this->ContentID) + "'");
+	
+	cout << "SELECT content FROM tblContent WHERE id = '" + to_string(this->ContentID) + "'";
 	
 	while (res->next()) {
 		details = res->getString("content");

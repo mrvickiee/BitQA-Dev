@@ -55,25 +55,23 @@ int main()
 			
 			cout << " <div class=\"container-fluid\">";
 			
-			vector<BitQA::Comment>::iterator questionComments_Iterator = questionComments.begin();
+			vector<BitQA::Comment> commentList = question.getComments();
 			
-			while (questionComments_Iterator != questionComments.end()) {
-				
+			for (int i = 0; i < commentList.size(); i++) {
 				cout << "<div class=\"row\">";
-					cout << "<div class=\"col-xs-2 col-sm-2 col-md-2 col-lg-2\"></div>";
-					cout << "<div class=\"col-xs-1 col-sm-1 col-md-1 col-lg-1\">";
-					cout << "<h5><a href=\"#\">&#128077;</a></h5>";
-					cout << "<span><b>" << questionComments_Iterator->getVotes() << "</b></span>";
-					cout << "</div>";
-					cout << "<div class=\"col-xs-5 col-sm-5 col-md-5 col-lg-5\">";
-					cout << "<p>" << questionComments_Iterator->getDetails() << "</p>";
-					cout << "<p><b>Comment by " << questionComments_Iterator->getUsername() << "</b></p>";
-					cout << "<hr>";
-					cout << "</div>";
+				cout << "<div class=\"col-xs-2 col-sm-2 col-md-2 col-lg-2\"></div>";
+				cout << "<div class=\"col-xs-1 col-sm-1 col-md-1 col-lg-1\">";
+				cout << "<h5><a href=\"#\">&#128077;</a></h5>";
+				cout << "<span><b>" << commentList[i].getVotes() << "</b></span>";
 				cout << "</div>";
-				
-				questionComments_Iterator++;
+				cout << "<div class=\"col-xs-5 col-sm-5 col-md-5 col-lg-5\">";
+				cout << "<p>" << commentList[i].getDetails() << "</p>";
+				cout << "<p><b>Comment by " << commentList[i].getUsername() << "</b></p>";
+				cout << "<hr>";
+				cout << "</div>";
+				cout << "</div>";
 			}
+			
 			
 			cout << "</div>";
 			cout << "<hr>";
