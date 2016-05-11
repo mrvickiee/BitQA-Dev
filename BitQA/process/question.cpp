@@ -192,7 +192,7 @@ string BitQA::Question::getUsername()
 	
 	stmt = con->createStatement();
 	
-	res = stmt->executeQuery("SELECT displayname FROM tblUser WHERE id = '" + to_string(this->QuestionOwner) + "'");
+	res = stmt->executeQuery("SELECT displayname FROM tblUser WHERE username = '" + to_string(this->QuestionOwner) + "'");
 	
 	while (res->next()) {
 		username = res->getString("displayname");
