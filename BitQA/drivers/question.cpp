@@ -58,8 +58,6 @@ int main()
 			vector<BitQA::Comment>::iterator questionComments_Iterator = questionComments.begin();
 			
 			while (questionComments_Iterator != questionComments.end()) {
-				// cout << questionComments_Iterator->getContentID() << endl;
-				
 				
 				cout << "<div class=\"row\">";
 					cout << "<div class=\"col-xs-2 col-sm-2 col-md-2 col-lg-2\"></div>";
