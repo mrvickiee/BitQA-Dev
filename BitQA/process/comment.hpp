@@ -12,15 +12,19 @@ namespace BitQA
 	class Comment
 	{
 	public:
-		Comment(int ContentID);
-		int getContentID();
+		Comment(int CommentID, string CommentType);
+		int getCommentID();
 		string getDetails();
 		string getVotes();
 		string getUsername();
 		
 	private:
 		Comment();
+		int CommentID;
+		int OwnerID;
 		int ContentID;
+		int CommentOwner;
+		string CommentType;
 	};
 }
 

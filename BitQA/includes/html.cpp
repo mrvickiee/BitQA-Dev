@@ -21,12 +21,13 @@ void BitQA::HTML::displayHeader(std::string title)
 		<< "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">" << endl
 	
 		// CSS
-		<< "<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css\" />" << endl
+		<< "<link rel=\"stylesheet\" href=\"/includes/css/bootstrap.min.css\" />" << endl
 		<< "<link rel=\"stylesheet\" href=\"/includes/css/style.css\" />" << endl
 	
 		// Scripts
-		<< "<script type=\"text/javascript\" src=\"https://code.jquery.com/jquery-2.2.3.min.js\" defer></script>" << endl
-		<< "<script type=\"text/javascript\" src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js\" defer></script>" << endl
+		<< "<script type=\"text/javascript\" src=\"/includes/javascript/jquery.min.js\"></script>" << endl
+		<< "<script type=\"text/javascript\" src=\"/includes/javascript/bootstrap.min.js\"></script>" << endl
+		<< "<script type=\"text/javascript\" src=\"/includes/javascript/main.js\"></script>" << endl
 	
 		<< head() << endl;
 	
@@ -68,8 +69,14 @@ std::string BitQA::HTML::spacer(int height)
 
 void BitQA::HTML::error(std::string title, std::string message)
 {
-	cout << "<div class=\"panel panel-danger\">";
-	cout << "<div class=\"panel-heading\">" << title << "</div>";
-	cout << "<div class=\"panel-body\">" << message << "</div>";
-	cout << "</div>";
+	cout << "<div class=\"modal fade\" id=\"errorModal\" tabindex=\"-1\" role=\"dialog\"><div class=\"modal-dialog\" role=\"document\"><div class=\"modal-content\"><div class=\"modal-header\"><h4 class=\"modal-title\">Error</h4></div>";
+	
+	cout << "<div class=\"modal-body\"><div class=\"panel panel-danger\">"
+		<< "<div class=\"panel-heading\">" << title << "</div>"
+		<< "<div class=\"panel-body\">" << message << "</div>"
+		<< "</div>";
+	
+	cout << "</div><div class=\"modal-footer\"><button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button></div></div></div></div>";
+	
+	cout << "<script type=\"text/javascript\">$(document).ready(function(){showError()});</script>";
 }
