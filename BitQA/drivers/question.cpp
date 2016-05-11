@@ -9,12 +9,15 @@ using namespace std;
 int main()
 {
 	
+	BitQA::HTML::displayHeader();
+	
 	Cgicc cgicc;
 	int id = 0;
 	
 	try {
 		id = stoi(cgicc("id"));
-	
+		//id = 278;
+		
 		BitQA::Question question(id);
 		vector<BitQA::Comment> questionComments;
 		
@@ -23,12 +26,11 @@ int main()
 		vector<int>::iterator questionCommentsID_Iterator = questionCommentsID.begin();
 		
 		while (questionCommentsID_Iterator != questionCommentsID.end()) {
-			questionComments.push_back(BitQA::Comment(*questionCommentsID_Iterator));
+			questionComments.push_back(BitQA::Comment(*questionCommentsID_Iterator, "question"));
 			questionCommentsID_Iterator++;
 		}
 		
 		{
-			BitQA::HTML::displayHeader();
 			
 			/*
 			 * Question
@@ -80,20 +82,27 @@ int main()
 			
 			cout << BitQA::HTML::spacer(10);
 			
-			BitQA::HTML::displayFooter();
 		}
+		
+	} catch (sql::SQLException &e) {
+		
+		string error(e.what());
+		
+		BitQA::HTML::error("There was an error viewing your question",
+						   "Please go <a href=\"/\">home</a><p>Details: " + error + "</p>"
+						   );
 		
 	} catch (exception &e) {
 		
-		BitQA::HTML::displayHeader();
+		string error(e.what());
 		
-		BitQA::HTML::error("Invalid Question Being Viewed",
-						   "Please go <a href=\"/\">home</a>"
+		BitQA::HTML::error("There was an error viewing your question",
+						   "Please go <a href=\"/\">home</a><p>Details: " + error + "</p>"
 						   );
 		
-		BitQA::HTML::displayFooter();
-		
 	}
+	
+	BitQA::HTML::displayFooter();
 	
 	return 0;
 }
