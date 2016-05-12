@@ -44,7 +44,7 @@ void BitQA::HTML::displayHeader(std::string title)
 	
 	cout << "<div id=\"navbar\" class=\"navbar-collapse collapse\"><ul class=\"nav navbar-nav\"><li class=\"active\"><a href=\"/\">Home</a></li><li><a href=\"/post.html\">Post</a></li><li><a href=\"#\">Answers</a></li></ul>";
 	
-	cout << "<ul class=\"nav navbar-nav navbar-right\"><li><a href=\"./\">Login</a></li><li><a href=\"signup.html\">Signup</a></li><li><a>Liam Frappell</a></li></ul>";
+	cout << "<ul class=\"nav navbar-nav navbar-right\"><li><a href=\"login.html\">Login</a></li><li><a href=\"signup.html\">Signup</a></li><li><a>Liam Frappell</a></li></ul>";
 	
 	cout << "</div>";
 	
