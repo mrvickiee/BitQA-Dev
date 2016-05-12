@@ -23,6 +23,7 @@ void BitQA::HTML::displayHeader(std::string title)
 		// CSS
 		<< "<link rel=\"stylesheet\" href=\"/includes/css/bootstrap.min.css\" />" << endl
 		<< "<link rel=\"stylesheet\" href=\"/includes/css/style.css\" />" << endl
+		<< "<link href=\"//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css\" rel=\"stylesheet\">" << endl
 	
 		// Scripts
 		<< "<script type=\"text/javascript\" src=\"/includes/javascript/jquery.min.js\"></script>" << endl
@@ -39,16 +40,17 @@ void BitQA::HTML::displayHeader(std::string title)
 	cout << "<nav class=\"navbar navbar-default navbar-fixed-top\">" << endl
 		<< "<div class=\"container\">" << endl
 		<< "<div class=\"navbar-header\">" << endl
-			<< "<a class=\"navbar-brand\" href=\"index.html\">Bit QA</a>" << endl
+			<< "<a class=\"navbar-brand\" href=\"/\">Bit QA</a>" << endl
 		<< "</div>";
 	
-	cout << "<div id=\"navbar\" class=\"navbar-collapse collapse\"><ul class=\"nav navbar-nav\"><li class=\"active\"><a href=\"/\">Home</a></li><li><a href=\"/post.html\">Post</a></li><li><a href=\"#\">Answers</a></li></ul>";
+	cout << "<div id=\"navbar\" class=\"navbar-collapse collapse\"><ul class=\"nav navbar-nav\"><li class=\"active\"><a href=\"/\">Home</a></li><li><a href=\"/post.html\">Post</a></li><li><a href=\"browse.html\">Browse Questions</a></li>";
+	cout << "</ul>";
+	
+	cout << "<div class=\"col-sm-3 col-md-3 pull-right\"><form action=\"search.html\" class=\"navbar-form\" role=\"search\"><div class=\"input-group\"><input type=\"text\" class=\"form-control\" placeholder=\"Search\" name=\"search\" id=\"search\"><div class=\"input-group-btn\"><button class=\"btn btn-default\" type=\"submit\"><i class=\"glyphicon glyphicon-search\"></i></button></div></div></form></div>";
 	
 	cout << "<ul class=\"nav navbar-nav navbar-right\"><li><a href=\"./\">Login</a></li><li><a href=\"signup.html\">Signup</a></li><li><a>Liam Frappell</a></li></ul>";
 	
-	cout << "</div>";
-	
-	cout << "</div></nav>";
+	cout << "</div></div></nav>";
 	
 	// Container
 	cout << "<div class=\"bitqa-nav-spacer\"></div>"
