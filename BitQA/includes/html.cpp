@@ -48,7 +48,7 @@ void BitQA::HTML::displayHeader(std::string title)
 	
 	cout << "<div class=\"col-sm-3 col-md-3 pull-right\"><form action=\"search.html\" class=\"navbar-form\" role=\"search\"><div class=\"input-group\"><input type=\"text\" class=\"form-control\" placeholder=\"Search\" name=\"search\" id=\"search\"><div class=\"input-group-btn\"><button class=\"btn btn-default\" type=\"submit\"><i class=\"glyphicon glyphicon-search\"></i></button></div></div></form></div>";
 	
-	cout << "<ul class=\"nav navbar-nav navbar-right\"><li><a href=\"./\">Login</a></li><li><a href=\"signup.html\">Signup</a></li><li><a>Liam Frappell</a></li></ul>";
+	cout << "<ul class=\"nav navbar-nav navbar-right\"><li><a href=\"login.html\">Login</a></li><li><a href=\"signup.html\">Signup</a></li><li><a>Liam Frappell</a></li></ul>";
 	
 	cout << "</div></div></nav>";
 	
