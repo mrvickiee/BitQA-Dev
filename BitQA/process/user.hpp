@@ -28,7 +28,7 @@ private:
     
 public:
     User();
-    User(string,string,string,string, int, string);
+    User(string,string,string,string, int, string, string);
     string getUsername();
     string getPassword();
     string getEmail();

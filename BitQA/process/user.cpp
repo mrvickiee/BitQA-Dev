@@ -14,7 +14,7 @@ User::User(){
     
 }
 
-User::User(string username, string password, string email, string tag, int age, string location ){
+User::User(string username, string password, string email, string tag, int age, string location, string displayName ){
     this->username = username;
     this->password = password;
     this->email = email;
@@ -23,6 +23,7 @@ User::User(string username, string password, string email, string tag, int age, 
     creationDate = time(0);
     id = generateID();
     this->location = location;
+    this->displayName = displayName;
 }
 
 string User::getUsername(){

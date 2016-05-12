@@ -29,20 +29,45 @@ void addUser(User user){
     
     con->setSchema(BitQA::Database::SCHEMA);
     
-    prep_stmt = con->prepareStatement("Insert into tblUser values(?,?,?,?,?,?,?)");
+    prep_stmt = con->prepareStatement("Insert into tblUser values(?,?,?,?,NOW(),?,?)");
     
     prep_stmt->setInt(1,user.getID());
     prep_stmt->setString(2,user.getUsername());
     prep_stmt->setString(3,user.getPassword());
     prep_stmt->setString(4,user.getDisplayName());
-    prep_stmt->setDateTime(5,"11-06-2016");
-    prep_stmt->setInt(6, user.getAge());
-    prep_stmt->setString(7, user.getLocation());
+    prep_stmt->setInt(5, user.getAge());
+    prep_stmt->setString(6, user.getLocation());
     
     prep_stmt->executeUpdate();
     
     delete prep_stmt;
     delete con;
+}
+
+bool checkUsername(string username){
+    sql::Driver *driver;
+    sql::Connection *con;
+    sql::PreparedStatement *prep_stmt;
+    sql::ResultSet *res;
+    
+    driver = get_driver_instance();
+    con = driver->connect(BitQA::Database::HOST,
+                          BitQA::Database::USERNAME,
+                          BitQA::Database::PASSWORD
+                          );
+    
+    con->setSchema(BitQA::Database::SCHEMA);
+    prep_stmt = con->prepareStatement("SELECT * FROM tblUser where username = ?");
+    prep_stmt->setString(1, username);
+    
+    bool unique = false;
+    res = prep_stmt->executeQuery();
+   
+    if(res->rowsCount() == 0){
+        unique = true;
+    }
+    
+    return unique;
 }
 
 
@@ -53,7 +78,8 @@ int main(){
     
     cgicc::Cgicc cgi;
     
-    string response,username,password, confirmPassword, email, tags,location;
+    string response,username,password, confirmPassword, email, tags,location, displayName, ageString;
+    bool success = true;
     int age;
     auto error = false;
     
@@ -66,17 +92,42 @@ int main(){
             confirmPassword = cgi("confirmPassword");
             email = cgi("email");
             tags = cgi("tag");
-            age =  atoi(cgi("age").c_str());
+            ageString =  cgi("age");
             location = cgi("location");
+            displayName = cgi("displayName");
+            //checking
             
-            if(password == confirmPassword && password != ""){
-                User newUser = User(username, md5(password), email, tags, age, location);
+            if(password != confirmPassword || password == ""){
+                success = false;
+                response += "<br>Password do not match!";
+            }
+            
+            if(!checkUsername(username)){
+                success = false;
+                response += "<br>Username is not unique!";
+            }
+            
+            for(int i =0; i< ageString.size();i++){
+                if(!isdigit(ageString[i])){
+                    success = false;
+                    response += "<br>Age must be numerical!";
+                    break;
+                }
+            }
+            
+            if(success){
+                age = atoi(ageString.c_str());
+                User newUser = User(username, md5(password), email, tags, age, location,displayName);
                 addUser(newUser);
                 cout << cgicc::HTTPRedirectHeader(BitQA::HTML::HOST + "/signup.html") << endl;
             }else{
                 error = true;
-                response += "Password do not match!<br>";
+                
             }
+       
+        
+        
+        
         }catch(exception &e){
             error = true;
             response += "Error creating account: " + string(e.what()) + "<br>";
@@ -89,8 +140,16 @@ int main(){
     BitQA::HTML::displayHeader();
         User usr;
         string date = usr.getDate();
+        
     cout << "<form data-ajax=\"false\" method=\"post\">"<<endl;
+        
+    cout << "<div class=\"form-group\">" << endl;
     
+    cout << "<label for= \"displayName\"> Display name </label>" << endl;
+    cout << "<input type=\"text\" class=\"form-control\" id=\"displayName\" name=\"displayName\" placeholder = \"Enter display name\"> " << endl;
+    
+    cout << "</div>" << endl;
+        
     cout << "<div class=\"form-group\">" << endl;
 
     cout << "<label for= \"username1\"> Username </label>" << endl;
