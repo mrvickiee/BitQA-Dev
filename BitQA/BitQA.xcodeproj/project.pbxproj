@@ -25,6 +25,13 @@
 		1A4EA28D1CDF64BE00143486 /* html.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA8F0E1CC6737D00E19ADD /* html.cpp */; };
 		1A4EA28F1CDF64DC00143486 /* question.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4EA28E1CDF64DC00143486 /* question.cpp */; };
 		1A4EA2921CDF822400143486 /* comment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4EA2901CDF822400143486 /* comment.cpp */; };
+		398A780D1CE37DF800487375 /* signup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 398A780C1CE37DF800487375 /* signup.cpp */; };
+		398A780E1CE37E0C00487375 /* libcgicc.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A643A391CC2A228008C1AC5 /* libcgicc.3.dylib */; };
+		398A780F1CE37E0F00487375 /* libmysqlcppconn.7.1.1.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A643A341CC29CCC008C1AC5 /* libmysqlcppconn.7.1.1.6.dylib */; };
+		398A78101CE37E2100487375 /* database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AC771871CD8FA1B005D3D41 /* database.cpp */; };
+		398A78111CE37E2400487375 /* html.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA8F0E1CC6737D00E19ADD /* html.cpp */; };
+		398A78161CE3903800487375 /* user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 398A78121CE3817000487375 /* user.cpp */; };
+		398A78191CE40AEA00487375 /* md5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 398A78181CE40AEA00487375 /* md5.cpp */; };
 		568CF2AC1CE0750600E1A986 /* browse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 568CF2A01CE074E100E1A986 /* browse.cpp */; };
 		568CF2AD1CE0753300E1A986 /* libmysqlcppconn.7.1.1.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A643A341CC29CCC008C1AC5 /* libmysqlcppconn.7.1.1.6.dylib */; };
 		568CF2AE1CE0753800E1A986 /* libcgicc.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A643A391CC2A228008C1AC5 /* libcgicc.3.dylib */; };
@@ -54,6 +61,15 @@
 			runOnlyForDeploymentPostprocessing = 1;
 		};
 		1A4EA27E1CDF644F00143486 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		398A78001CE37D7600487375 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -95,6 +111,12 @@
 		1AC7718B1CD90410005D3D41 /* index.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; name = index.php; path = ../api/webhooks/commit/index.php; sourceTree = "<group>"; };
 		1ACA8F0E1CC6737D00E19ADD /* html.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = html.cpp; path = includes/html.cpp; sourceTree = "<group>"; };
 		1ACA8F0F1CC6737D00E19ADD /* html.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = html.hpp; path = includes/html.hpp; sourceTree = "<group>"; };
+		398A78021CE37D7600487375 /* signup.html */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = signup.html; sourceTree = BUILT_PRODUCTS_DIR; };
+		398A780C1CE37DF800487375 /* signup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = signup.cpp; path = drivers/signup.cpp; sourceTree = "<group>"; };
+		398A78121CE3817000487375 /* user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = user.cpp; path = process/user.cpp; sourceTree = "<group>"; };
+		398A78131CE3817000487375 /* user.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = user.hpp; path = process/user.hpp; sourceTree = "<group>"; };
+		398A78171CE40AD300487375 /* md5.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = md5.hpp; path = includes/md5.hpp; sourceTree = "<group>"; };
+		398A78181CE40AEA00487375 /* md5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = md5.cpp; path = includes/md5.cpp; sourceTree = "<group>"; };
 		568CF2A01CE074E100E1A986 /* browse.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = browse.cpp; path = drivers/browse.cpp; sourceTree = "<group>"; };
 		568CF2A51CE074F500E1A986 /* browse.html */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = browse.html; sourceTree = BUILT_PRODUCTS_DIR; };
 		568CF2B81CE07ADC00E1A986 /* browse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = browse.cpp; path = process/browse.cpp; sourceTree = "<group>"; };
@@ -126,6 +148,15 @@
 			files = (
 				1A4EA2871CDF645A00143486 /* libmysqlcppconn.7.1.1.6.dylib in Frameworks */,
 				1A4EA2881CDF645C00143486 /* libcgicc.3.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		398A77FF1CE37D7600487375 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				398A780F1CE37E0F00487375 /* libmysqlcppconn.7.1.1.6.dylib in Frameworks */,
+				398A780E1CE37E0C00487375 /* libcgicc.3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,6 +192,8 @@
 				1A4EA2891CDF647A00143486 /* question.cpp */,
 				1A4EA2911CDF822400143486 /* comment.hpp */,
 				1A4EA2901CDF822400143486 /* comment.cpp */,
+				398A78121CE3817000487375 /* user.cpp */,
+				398A78131CE3817000487375 /* user.hpp */,
 			);
 			name = process;
 			sourceTree = "<group>";
@@ -186,6 +219,7 @@
 				1A4EA26A1CDF601E00143486 /* post.html */,
 				1A4EA2801CDF644F00143486 /* question.html */,
 				568CF2A51CE074F500E1A986 /* browse.html */,
+				398A78021CE37D7600487375 /* signup.html */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -195,6 +229,7 @@
 			children = (
 				1A944B731CBF5ECA00C63F00 /* index.cpp */,
 				1A9F04601CD640940068B252 /* post.cpp */,
+				398A780C1CE37DF800487375 /* signup.cpp */,
 				1A4EA28E1CDF64DC00143486 /* question.cpp */,
 				568CF2A01CE074E100E1A986 /* browse.cpp */,
 			);
@@ -208,6 +243,8 @@
 				1ACA8F0E1CC6737D00E19ADD /* html.cpp */,
 				1AC771881CD8FA1B005D3D41 /* database.hpp */,
 				1AC771871CD8FA1B005D3D41 /* database.cpp */,
+				398A78171CE40AD300487375 /* md5.hpp */,
+				398A78181CE40AEA00487375 /* md5.cpp */,
 			);
 			name = includes;
 			sourceTree = "<group>";
@@ -266,6 +303,23 @@
 			productReference = 1A4EA2801CDF644F00143486 /* question.html */;
 			productType = "com.apple.product-type.tool";
 		};
+		398A78011CE37D7600487375 /* signup.html */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 398A78081CE37D7600487375 /* Build configuration list for PBXNativeTarget "signup.html" */;
+			buildPhases = (
+				398A77FE1CE37D7600487375 /* Sources */,
+				398A77FF1CE37D7600487375 /* Frameworks */,
+				398A78001CE37D7600487375 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = signup.html;
+			productName = signup.html;
+			productReference = 398A78021CE37D7600487375 /* signup.html */;
+			productType = "com.apple.product-type.tool";
+		};
 		568CF2A41CE074F500E1A986 /* browse.html */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 568CF2A91CE074F500E1A986 /* Build configuration list for PBXNativeTarget "browse.html" */;
@@ -301,6 +355,9 @@
 					1A4EA27F1CDF644F00143486 = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
+					398A78011CE37D7600487375 = {
+						CreatedOnToolsVersion = 7.3;
+					};
 					568CF2A41CE074F500E1A986 = {
 						CreatedOnToolsVersion = 7.3;
 					};
@@ -322,6 +379,7 @@
 				1A4EA2691CDF601E00143486 /* post.html */,
 				1A4EA27F1CDF644F00143486 /* question.html */,
 				568CF2A41CE074F500E1A986 /* browse.html */,
+				398A78011CE37D7600487375 /* signup.html */,
 			);
 		};
 /* End PBXProject section */
@@ -357,6 +415,18 @@
 				1A4EA28F1CDF64DC00143486 /* question.cpp in Sources */,
 				1A4EA28B1CDF647A00143486 /* question.cpp in Sources */,
 				1A4EA28D1CDF64BE00143486 /* html.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		398A77FE1CE37D7600487375 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				398A78161CE3903800487375 /* user.cpp in Sources */,
+				398A78191CE40AEA00487375 /* md5.cpp in Sources */,
+				398A78101CE37E2100487375 /* database.cpp in Sources */,
+				398A780D1CE37DF800487375 /* signup.cpp in Sources */,
+				398A78111CE37E2400487375 /* html.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -544,6 +614,34 @@
 			};
 			name = Release;
 		};
+		398A78061CE37D7600487375 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/../www";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/cgicc/lib,
+					"/usr/local/Cellar/mysql-connector-c++/1.1.6_1/lib",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		398A78071CE37D7600487375 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/../www";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/cgicc/lib,
+					"/usr/local/Cellar/mysql-connector-c++/1.1.6_1/lib",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		568CF2AA1CE074F500E1A986 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -611,6 +709,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		398A78081CE37D7600487375 /* Build configuration list for PBXNativeTarget "signup.html" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				398A78061CE37D7600487375 /* Debug */,
+				398A78071CE37D7600487375 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		568CF2A91CE074F500E1A986 /* Build configuration list for PBXNativeTarget "browse.html" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -618,6 +724,7 @@
 				568CF2AB1CE074F500E1A986 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -1,0 +1,48 @@
+//
+//  user.hpp
+//  BitQA
+//
+//  Created by Victor Ang on 12/05/2016.
+//  Copyright © 2016 CSCI222. All rights reserved.
+//
+
+#ifndef user_hpp
+#define user_hpp
+
+#include <stdio.h>
+#include <string>
+
+using std::string;
+
+class User{
+private:
+    int id;
+    int age;
+    string location;
+    string username;
+    string displayName;
+    string password;
+    string email;
+    string tagInterest;
+    time_t creationDate;
+    
+public:
+    User();
+    User(string,string,string,string, int, string);
+    string getUsername();
+    string getPassword();
+    string getEmail();
+    string getTag();
+    int getID();
+    int generateID();
+    string getLocation();
+    string getDisplayName();
+    int getAge();
+    string getDate();
+    
+    
+    
+};
+
+
+#endif /* user_hpp */
