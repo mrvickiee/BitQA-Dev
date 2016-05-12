@@ -13,7 +13,6 @@
 		1A4EA2741CDF605000143486 /* database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AC771871CD8FA1B005D3D41 /* database.cpp */; };
 		1A4EA2751CDF605200143486 /* html.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA8F0E1CC6737D00E19ADD /* html.cpp */; };
 		1A4EA2761CDF605300143486 /* html.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA8F0E1CC6737D00E19ADD /* html.cpp */; };
-		1A4EA2771CDF605600143486 /* post.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A830D0A1CBF74330031C529 /* post.cpp */; };
 		1A4EA2781CDF606000143486 /* libmysqlcppconn.7.1.1.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A643A341CC29CCC008C1AC5 /* libmysqlcppconn.7.1.1.6.dylib */; };
 		1A4EA2791CDF606100143486 /* libcgicc.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A643A391CC2A228008C1AC5 /* libcgicc.3.dylib */; };
 		1A4EA27A1CDF606B00143486 /* libmysqlcppconn.7.1.1.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A643A341CC29CCC008C1AC5 /* libmysqlcppconn.7.1.1.6.dylib */; };
@@ -112,8 +111,6 @@
 		1A643A341CC29CCC008C1AC5 /* libmysqlcppconn.7.1.1.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmysqlcppconn.7.1.1.6.dylib; path = "/usr/local/Cellar/mysql-connector-c++/1.1.6_1/lib/libmysqlcppconn.7.1.1.6.dylib"; sourceTree = "<absolute>"; };
 		1A643A371CC29DD1008C1AC5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		1A643A391CC2A228008C1AC5 /* libcgicc.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcgicc.3.dylib; path = /usr/local/Cellar/cgicc/lib/libcgicc.3.dylib; sourceTree = "<absolute>"; };
-		1A830D0A1CBF74330031C529 /* post.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = post.cpp; path = process/post.cpp; sourceTree = "<group>"; };
-		1A830D0C1CBF743B0031C529 /* post.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = post.hpp; path = process/post.hpp; sourceTree = "<group>"; };
 		1A8FC9741CD30E6A00B1B722 /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = makefile; sourceTree = "<group>"; };
 		1A944B731CBF5ECA00C63F00 /* index.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = index.cpp; path = drivers/index.cpp; sourceTree = "<group>"; };
 		1A9F04601CD640940068B252 /* post.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = post.cpp; path = drivers/post.cpp; sourceTree = "<group>"; };
@@ -216,8 +213,6 @@
 				568CF2E11CE387FD00E1A986 /* comment.hpp */,
 				568CF2B81CE07ADC00E1A986 /* browse.cpp */,
 				568CF2B91CE07ADC00E1A986 /* browse.hpp */,
-				1A830D0C1CBF743B0031C529 /* post.hpp */,
-				1A830D0A1CBF74330031C529 /* post.cpp */,
 				1A4EA28A1CDF647A00143486 /* question.hpp */,
 				1A4EA2891CDF647A00143486 /* question.cpp */,
 				398A78121CE3817000487375 /* user.cpp */,
@@ -453,7 +448,6 @@
 				1A4EA2741CDF605000143486 /* database.cpp in Sources */,
 				1A4EA2711CDF604A00143486 /* post.cpp in Sources */,
 				1A4EA2761CDF605300143486 /* html.cpp in Sources */,
-				1A4EA2771CDF605600143486 /* post.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
