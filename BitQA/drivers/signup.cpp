@@ -10,7 +10,7 @@
 #include "../includes/html.hpp"
 #include "../includes/database.hpp"
 #include <stdio.h>
-#include "md5.hpp"
+#include "../includes/md5.hpp"
 
 using namespace std;
 using namespace cgicc;
