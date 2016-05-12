@@ -10,9 +10,9 @@
 #include "../process/user.hpp"
 #include "../includes/html.hpp"
 #include "../includes/database.hpp"
+#include "../includes/md5.hpp"
 #include <cgicc/HTTPCookie.h>
 #include <string>
-#include "md5.hpp"
 using namespace cgicc;
 using namespace std;
 bool success = true;
