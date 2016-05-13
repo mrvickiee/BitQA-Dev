@@ -107,6 +107,8 @@ int main(){
         
         User usr;
         string date = usr.getDate();
+		
+		cout << "<h1>Login</h1><br>" << endl;
         
         cout << "<form data-ajax=\"false\" method=\"post\">"<<endl;
         
