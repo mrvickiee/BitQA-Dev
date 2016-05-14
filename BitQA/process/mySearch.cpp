@@ -1,19 +1,19 @@
 #include "../includes/database.hpp"
-#include "search.hpp"
+#include "mySearch.hpp"
 
 using namespace std;
 
-BitQA::Search::Search()
+mySearch::mySearch()
 {
 	searchTerm = "@liam";
 }
 
-BitQA::Search::Search(string query)
+mySearch::mySearch(string query)
 {
 	searchTerm = query;
 }
 
-bool BitQA::Search::getQuestion()
+bool mySearch::getQuestion()
 {
 		int QuestionId = -1;
 		
@@ -56,7 +56,7 @@ bool BitQA::Search::getQuestion()
 	return false;
 }
 
-bool BitQA::Search::getUser()
+bool mySearch::getUser()
 {
 	//At this point system knows it is a user 
 	

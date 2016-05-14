@@ -1,6 +1,6 @@
 #include "../process/question.hpp"
 #include "../process/comment.hpp"
-#include "../process/search.hpp"
+#include "../process/mySearch.hpp"
 #include "../process/post.hpp"
 #include "../includes/html.hpp"
 #include "../includes/database.hpp"
@@ -35,18 +35,18 @@ int main() {
 	type = parseTerm(searchTerm);
 	
 	//Create search object with term
-	BitQA::Search mySearch(searchTerm);
+	mySearch searchObj(searchTerm);
 	
 	
 	switch(type)
 	{
 		case 0:
 			//Directs to user page
-			mySearch.getUser();
+			searchObj.getUser();
 			break;
 		case 1:
 			//Directs to question page
-			mySearch.getQuestion();
+			searchObj.getQuestion();
 			break;
 		case 2:
 			//Brings up search results page as no user or question was found
