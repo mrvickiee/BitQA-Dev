@@ -8,18 +8,19 @@ using std::string;
 
 
 
-class mySearch
+class MySearch
 {
 	public:
-		mySearch();
-		mySearch(string);
+		MySearch();
+		MySearch(string);
 		bool getQuestion();
 		bool getUser();
-		std::string getSearchTerm();
+		//string getSearchTerm();
 	private:
-		std::string searchTerm;
-		
+		string searchTerm;
 };
+
+
 
 
 #endif

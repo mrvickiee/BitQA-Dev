@@ -3,17 +3,17 @@
 
 using namespace std;
 
-mySearch::mySearch()
+MySearch::MySearch()
 {
 	searchTerm = "@liam";
 }
 
-mySearch::mySearch(string query)
+MySearch::MySearch(string query)
 {
 	searchTerm = query;
 }
 
-bool mySearch::getQuestion()
+bool MySearch::getQuestion()
 {
 		int QuestionId = -1;
 		
@@ -56,7 +56,8 @@ bool mySearch::getQuestion()
 	return false;
 }
 
-bool mySearch::getUser()
+
+bool MySearch::getUser()
 {
 	//At this point system knows it is a user 
 	
@@ -102,3 +103,4 @@ bool mySearch::getUser()
 	//Direct to user page with foundID
 	return true;
 }
+

@@ -10,6 +10,7 @@ using namespace cgicc;
 using namespace std;
 using namespace BitQA;
 
+
 int parseTerm(string searchTerm) {
 		
 		if(searchTerm.at(0) == '@') {
@@ -24,6 +25,7 @@ int parseTerm(string searchTerm) {
 
 int main() {
 		
+	
 	cgicc::Cgicc cgi;
 	
 	
@@ -35,7 +37,7 @@ int main() {
 	type = parseTerm(searchTerm);
 	
 	//Create search object with term
-	mySearch searchObj(searchTerm);
+	MySearch searchObj(searchTerm);
 	
 	
 	switch(type)
@@ -56,6 +58,7 @@ int main() {
 			break;
 			
 	};
+	
 	
 	
 	
