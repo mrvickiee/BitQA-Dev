@@ -31,13 +31,17 @@
 		1A990CEA1CE715B8007F8B88 /* database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AC771871CD8FA1B005D3D41 /* database.cpp */; };
 		1A990CF61CE742E1007F8B88 /* libmysqlcppconn.7.1.1.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A643A341CC29CCC008C1AC5 /* libmysqlcppconn.7.1.1.6.dylib */; };
 		1A990CF71CE742E3007F8B88 /* libcgicc.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A643A391CC2A228008C1AC5 /* libcgicc.3.dylib */; };
-		1A990CF91CE742FA007F8B88 /* profile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A990CF81CE742FA007F8B88 /* profile.cpp */; };
+		1A990CFA1CE74570007F8B88 /* profile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A990CF81CE742FA007F8B88 /* profile.cpp */; };
+		1A990CFB1CE74584007F8B88 /* user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 398A78121CE3817000487375 /* user.cpp */; };
+		1A990CFC1CE74585007F8B88 /* user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 398A78121CE3817000487375 /* user.cpp */; };
+		1A990CFD1CE74589007F8B88 /* user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 398A78121CE3817000487375 /* user.cpp */; };
+		1A990CFE1CE7458E007F8B88 /* database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AC771871CD8FA1B005D3D41 /* database.cpp */; };
+		1A990CFF1CE74590007F8B88 /* html.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA8F0E1CC6737D00E19ADD /* html.cpp */; };
 		398A780D1CE37DF800487375 /* signup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 398A780C1CE37DF800487375 /* signup.cpp */; };
 		398A780E1CE37E0C00487375 /* libcgicc.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A643A391CC2A228008C1AC5 /* libcgicc.3.dylib */; };
 		398A780F1CE37E0F00487375 /* libmysqlcppconn.7.1.1.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A643A341CC29CCC008C1AC5 /* libmysqlcppconn.7.1.1.6.dylib */; };
 		398A78101CE37E2100487375 /* database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AC771871CD8FA1B005D3D41 /* database.cpp */; };
 		398A78111CE37E2400487375 /* html.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA8F0E1CC6737D00E19ADD /* html.cpp */; };
-		398A78161CE3903800487375 /* user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 398A78121CE3817000487375 /* user.cpp */; };
 		398A78191CE40AEA00487375 /* md5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 398A78181CE40AEA00487375 /* md5.cpp */; };
 		398A782A1CE4402100487375 /* login.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 398A78291CE4402100487375 /* login.cpp */; };
 		398A782B1CE4499E00487375 /* libmysqlcppconn.7.1.1.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A643A341CC29CCC008C1AC5 /* libmysqlcppconn.7.1.1.6.dylib */; };
@@ -45,7 +49,6 @@
 		398A782D1CE449A900487375 /* md5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 398A78181CE40AEA00487375 /* md5.cpp */; };
 		398A782E1CE449AD00487375 /* html.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA8F0E1CC6737D00E19ADD /* html.cpp */; };
 		398A782F1CE449B000487375 /* database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AC771871CD8FA1B005D3D41 /* database.cpp */; };
-		398A78301CE449B700487375 /* user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 398A78121CE3817000487375 /* user.cpp */; };
 		568CF2AC1CE0750600E1A986 /* browse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 568CF2A01CE074E100E1A986 /* browse.cpp */; };
 		568CF2AD1CE0753300E1A986 /* libmysqlcppconn.7.1.1.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A643A341CC29CCC008C1AC5 /* libmysqlcppconn.7.1.1.6.dylib */; };
 		568CF2AE1CE0753800E1A986 /* libcgicc.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A643A391CC2A228008C1AC5 /* libcgicc.3.dylib */; };
@@ -581,7 +584,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A4EA2731CDF604E00143486 /* database.cpp in Sources */,
-				1A990CF91CE742FA007F8B88 /* profile.cpp in Sources */,
 				1A4EA2721CDF604C00143486 /* index.cpp in Sources */,
 				1A4EA2751CDF605200143486 /* html.cpp in Sources */,
 			);
@@ -624,6 +626,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A990CFD1CE74589007F8B88 /* user.cpp in Sources */,
+				1A990CFA1CE74570007F8B88 /* profile.cpp in Sources */,
+				1A990CFF1CE74590007F8B88 /* html.cpp in Sources */,
+				1A990CFE1CE7458E007F8B88 /* database.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -631,10 +637,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				398A78161CE3903800487375 /* user.cpp in Sources */,
 				398A78191CE40AEA00487375 /* md5.cpp in Sources */,
 				398A78101CE37E2100487375 /* database.cpp in Sources */,
 				398A780D1CE37DF800487375 /* signup.cpp in Sources */,
+				1A990CFB1CE74584007F8B88 /* user.cpp in Sources */,
 				398A78111CE37E2400487375 /* html.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -646,7 +652,7 @@
 				398A782D1CE449A900487375 /* md5.cpp in Sources */,
 				398A782A1CE4402100487375 /* login.cpp in Sources */,
 				398A782F1CE449B000487375 /* database.cpp in Sources */,
-				398A78301CE449B700487375 /* user.cpp in Sources */,
+				1A990CFC1CE74585007F8B88 /* user.cpp in Sources */,
 				398A782E1CE449AD00487375 /* html.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1065,6 +1071,7 @@
 				1A990CF41CE742DB007F8B88 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		398A78081CE37D7600487375 /* Build configuration list for PBXNativeTarget "signup.html" */ = {
 			isa = XCConfigurationList;
