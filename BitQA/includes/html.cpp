@@ -43,7 +43,7 @@ void BitQA::HTML::displayHeader(std::string title)
 			<< "<a class=\"navbar-brand\" href=\"/\">Bit QA</a>" << endl
 		<< "</div>";
 	
-	cout << "<div id=\"navbar\" class=\"navbar-collapse collapse\"><ul class=\"nav navbar-nav\"><li class=\"active\"><a href=\"/\">Home</a></li><li><a href=\"/post.html\">Post</a></li><li><a href=\"browse.html\">Browse Questions</a></li>";
+	cout << "<div id=\"navbar\" class=\"navbar-collapse collapse\"><ul class=\"nav navbar-nav\"><li class=\"active\"><a href=\"/\">Home</a></li><li><a href=\"/post.html\">Post</a></li><li><a href=\"browse.html\">Browse</a></li>";
 	cout << "</ul>";
 	
 	cout << "<div class=\"col-sm-3 col-md-3 pull-right\"><form action=\"search.html\" class=\"navbar-form\" role=\"search\"><div class=\"input-group\"><input type=\"text\" class=\"form-control\" placeholder=\"Search\" name=\"search\" id=\"search\"><div class=\"input-group-btn\"><button class=\"btn btn-default\" type=\"submit\"><i class=\"glyphicon glyphicon-search\"></i></button></div></div></form></div>";

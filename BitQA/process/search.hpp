@@ -1,17 +1,19 @@
-#ifndef search
-#define search
+#ifndef mySearch
+#define mySearch
 
 #include <string>
-
 using std::string;
 
-class Search
+class MySearch
 {
-public:
-	Search();
-
-private:
-    string searchTerm;
+	public:
+		MySearch();
+		MySearch(string);
+		int getQuestion();
+		int getUser();
+		//string getSearchTerm();
+	private:
+		string searchTerm;
 };
 
 #endif

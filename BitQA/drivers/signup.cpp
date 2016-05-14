@@ -140,6 +140,8 @@ int main(){
     BitQA::HTML::displayHeader();
         User usr;
         string date = usr.getDate();
+		
+		cout << "<h1>Sign up to BitQA</h2><br>" << endl;
         
     cout << "<form data-ajax=\"false\" method=\"post\">"<<endl;
         

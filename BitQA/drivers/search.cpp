@@ -1,55 +1,77 @@
-#include "../process/post.hpp"
+#include "../process/question.hpp"
+#include "../process/comment.hpp"
+#include "../process/search.hpp"
 #include "../includes/html.hpp"
 #include "../includes/database.hpp"
 
+
 using namespace cgicc;
 using namespace std;
+using namespace BitQA;
 
 
-//Main and functionality
-
-
-int main() {
-	string search;
-	
-	cgicc::Cgicc cgi;
-	
-	
-	//Get search term
-			BitQA::HTML::displayHeader();
-		
-		cout << "<h1>Post</h1>";
-		cout << "Ask a question to Bit QA";
-		cout << "<form data-ajax=\"false\" method=\"post\">";
-		
-		cout << "<div class=\"form-group\">"
-			<< "<textarea name=\"question\" style=\"height: 100px\" class=\"form-control\">"
-			<< search
-			<< "</textarea></div><input class=\"btn btn-primary\" type=\"submit\">";
-		
-		cout << "</form>";
-	
-	//Parse term to determine what table to search
-	
-	
-	//Search table
-	
-	
-	//Return results
-	
-	
-	}
-	
-	
-void searchUser(string search) {
-
-		//Search DB
+bool isUser(string searchTerm) {
+		if(searchTerm.at(0) == '@') {
+			return true;
+		}
+		return false;	
 }
 
+void searchResults() {
+	
+	cout << "<div class=\"row\">";
+	cout << "<h2>Search results</h2><br>" << endl;
+	cout << "<ul id = \"list\">" << endl;
+	cout << "<li> </li>" << endl;
+	cout << "<li> </li>" << endl;
+	cout << "</ul>" << endl;	
+	cout << "</div>" << endl;
+		
+}
 
-void searchTag(string search) {
+int main() {
+		
+	BitQA::HTML::displayHeader();
+	cgicc::Cgicc cgi;
 	
-		//Search DB
+	CgiEnvironment environment = cgi.getEnvironment();
 	
+	if(environment.getRequestMethod() == "POST"){		
+		//Get search term from search bar
+		string searchTerm;
+		/*
+		form_iterator fi = formData.getElement("textcontent");
+		if(!fi->isEmpty() && fi != (*formData).end()) {
+			cout << "<p>This 3is what was entered: " << **fi << " </p>" << endl;
+		}
+		string searchTerm = document.getElementById('navbar').value;
+		cout << "document.getElementById('navbar\').value" << endl;
+		*/
+		
+		//Create search object with term
+		MySearch searchObj(searchTerm);	
+		
+		//If user bring up user page, if question bring up search results
+		if(isUser(searchTerm))
+		{
+			//Redirect to user page with found ID
+			cout << cgicc::HTTPRedirectHeader(BitQA::HTML::HOST + "/browse.html") << endl;
+		}else
+		{
+			int questionID = -1;
+			questionID = searchObj.getQuestion();
+			
+			if(questionID == -1)
+			{
+				//Redirect to page with search results
+				searchResults();
+			}else {
+				//Redirect to question page with QuestionID
+				cout << cgicc::HTTPRedirectHeader(BitQA::HTML::HOST + "/question.html") << endl;
+			}
+		}	
+	}
+	
+	BitQA::HTML::displayFooter();	
 }
 
