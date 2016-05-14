@@ -13,8 +13,8 @@ class MySearch
 	public:
 		MySearch();
 		MySearch(string);
-		bool getQuestion();
-		bool getUser();
+		int getQuestion();
+		int getUser();
 		//string getSearchTerm();
 	private:
 		string searchTerm;

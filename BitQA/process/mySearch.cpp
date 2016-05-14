@@ -1,11 +1,13 @@
 #include "../includes/database.hpp"
+#include "../includes/html.hpp"
 #include "mySearch.hpp"
 
 using namespace std;
+using namespace cgicc;
 
 MySearch::MySearch()
 {
-	searchTerm = "@liam";
+	searchTerm = "";
 }
 
 MySearch::MySearch(string query)
@@ -13,12 +15,11 @@ MySearch::MySearch(string query)
 	searchTerm = query;
 }
 
-bool MySearch::getQuestion()
+int MySearch::getQuestion()
 {
-		int QuestionId = -1;
+	int QuestionId = -1;
 		
-		
-		try {
+	try {
 		sql::Driver *driver;
 		sql::Connection *con;
 		sql::Statement *stmt;
@@ -48,31 +49,28 @@ bool MySearch::getQuestion()
 		
 	} catch (sql::SQLException &e) {
 		QuestionId = -1;
-		return false;
+		return QuestionId;
 	}
 	
-	//Redirect to question page with QuestionID
-	
-	return false;
+		
+	return QuestionId;
 }
 
-
-bool MySearch::getUser()
+int MySearch::getUser()
 {
 	//At this point system knows it is a user 
 	
 	//Discard @ symbol
 	this->searchTerm.erase(0,1);
 	int foundID;
-	
+	string statement;
 	
 	try {
 		sql::Driver *driver;
 		sql::Connection *con;
 		sql::Statement *stmt;
 		sql::ResultSet *res;
-		
-		
+			
 		driver = get_driver_instance();
 		con = driver->connect(BitQA::Database::HOST,
 							  BitQA::Database::USERNAME,
@@ -80,13 +78,11 @@ bool MySearch::getUser()
 							  );
 		
 		con->setSchema(BitQA::Database::SCHEMA);
-		
+
 		stmt = con->createStatement();
-		
 		res = stmt->executeQuery("SELECT id FROM tblUser WHERE username = '" + (this->searchTerm) + "'");
 		
 		while (res->next()) {
-			//incorrect??
 			foundID = stoi(res->getString("id"));
 		}
 		
@@ -96,11 +92,16 @@ bool MySearch::getUser()
 		
 	} catch (sql::SQLException &e) {
 		foundID = -1;
-		return false;
+		return foundID;
 	}
 	
-	//Redirect to user page
-	//Direct to user page with foundID
-	return true;
+	return foundID;
+}
+
+string prepareStatement(string table, string select, string where)
+{
+	string statement = "SELECT ";
+	statement.append(select + " FROM " + table + " WHERE " + where + " = ");
+	return statement;
 }
 
