@@ -2,11 +2,7 @@
 #define mySearch
 
 #include <string>
-
-
 using std::string;
-
-
 
 class MySearch
 {
@@ -19,8 +15,5 @@ class MySearch
 	private:
 		string searchTerm;
 };
-
-
-
 
 #endif

@@ -17,7 +17,7 @@ MySearch::MySearch(string query)
 
 int MySearch::getQuestion()
 {
-	int QuestionId = -1;
+	int *QuestionId = new int;
 		
 	try {
 		sql::Driver *driver;
@@ -37,10 +37,10 @@ int MySearch::getQuestion()
 		stmt = con->createStatement();
 		
 		
-		res = stmt->executeQuery("SELECT questionTitle FROM tblQuestion WHERE id = '" + this->searchTerm + "'");
+		res = stmt->executeQuery("SELECT contentId FROM tblQuestion WHERE tag LIKE = '" + this->searchTerm + "'");
 		
 		while (res->next()) {
-			QuestionId = stoi(res->getString("questionTitle"));
+			QuestionId = stoi(res->getString("contentId"));
 		}
 		
 		delete res;

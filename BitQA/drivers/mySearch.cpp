@@ -21,7 +21,10 @@ void searchResults() {
 	
 	cout << "<div class=\"row\">";
 	cout << "<h2>Search results</h2><br>" << endl;
-	
+	cout << "<ul id = \"list\">" << endl;
+	cout << "<li> </li>" << endl;
+	cout << "<li> </li>" << endl;
+	cout << "</ul>" << endl;	
 	cout << "</div>" << endl;
 		
 }
@@ -33,22 +36,27 @@ int main() {
 	
 	CgiEnvironment environment = cgi.getEnvironment();
 	
-	
-	//Get search term from search bar
-	string searchTerm;
-	
-	if(environment.getRequestMethod() == "POST"){
+	if(environment.getRequestMethod() == "POST"){		
+		//Get search term from search bar
+		string searchTerm;
+		/*
+		form_iterator fi = formData.getElement("textcontent");
+		if(!fi->isEmpty() && fi != (*formData).end()) {
+			cout << "<p>This is what was entered: " << **fi << " </p>" << endl;
+		}
+		string searchTerm = document.getElementById('navbar').value;
+		cout << "document.getElementById('navbar\').value" << endl;
+		*/
+		
 		//Create search object with term
 		MySearch searchObj(searchTerm);	
 		
 		//If user bring up user page, if question bring up search results
 		if(isUser(searchTerm))
 		{
-			int userID = searchObj.getUser();
-			
+			int userID = searchObj.getUser();	
 			//Redirect to user page with found ID
 			cout << cgicc::HTTPRedirectHeader(BitQA::HTML::HOST + "/browse.html") << endl;
-	
 		}else
 		{
 			int questionID = -1;
@@ -62,8 +70,6 @@ int main() {
 				//Redirect to question page with QuestionID
 				cout << cgicc::HTTPRedirectHeader(BitQA::HTML::HOST + "/question.html") << endl;
 			}
-			
-
 		}	
 	}
 	
