@@ -23,8 +23,8 @@
 		1A4EA28C1CDF64A400143486 /* database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AC771871CD8FA1B005D3D41 /* database.cpp */; };
 		1A4EA28D1CDF64BE00143486 /* html.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA8F0E1CC6737D00E19ADD /* html.cpp */; };
 		1A4EA28F1CDF64DC00143486 /* question.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4EA28E1CDF64DC00143486 /* question.cpp */; };
-		1A990CD11CE70EE0007F8B88 /* mySearch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A990CCE1CE70ED4007F8B88 /* mySearch.cpp */; };
-		1AAE64B91CE4397A000DDC9F /* search.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AAE64B81CE4397A000DDC9F /* search.cpp */; };
+		1A990CD11CE70EE0007F8B88 /* search.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A990CCE1CE70ED4007F8B88 /* search.cpp */; };
+		1A990CD41CE710C6007F8B88 /* search.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A990CD21CE71090007F8B88 /* search.cpp */; };
 		1AAE64BD1CE43C87000DDC9F /* html.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA8F0E1CC6737D00E19ADD /* html.cpp */; };
 		1AAE64BE1CE43C8A000DDC9F /* database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AC771871CD8FA1B005D3D41 /* database.cpp */; };
 		1AAE64BF1CE43CD7000DDC9F /* libmysqlcppconn.7.1.1.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A643A341CC29CCC008C1AC5 /* libmysqlcppconn.7.1.1.6.dylib */; };
@@ -130,11 +130,11 @@
 		1A643A391CC2A228008C1AC5 /* libcgicc.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcgicc.3.dylib; path = /usr/local/Cellar/cgicc/lib/libcgicc.3.dylib; sourceTree = "<absolute>"; };
 		1A8FC9741CD30E6A00B1B722 /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = makefile; sourceTree = "<group>"; };
 		1A944B731CBF5ECA00C63F00 /* index.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = index.cpp; path = drivers/index.cpp; sourceTree = "<group>"; };
-		1A990CCE1CE70ED4007F8B88 /* mySearch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mySearch.cpp; path = process/mySearch.cpp; sourceTree = "<group>"; };
-		1A990CCF1CE70ED4007F8B88 /* mySearch.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mySearch.hpp; path = process/mySearch.hpp; sourceTree = "<group>"; };
+		1A990CCE1CE70ED4007F8B88 /* search.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = search.cpp; path = process/search.cpp; sourceTree = "<group>"; };
+		1A990CCF1CE70ED4007F8B88 /* search.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = search.hpp; path = process/search.hpp; sourceTree = "<group>"; };
+		1A990CD21CE71090007F8B88 /* search.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = search.cpp; path = drivers/search.cpp; sourceTree = "<group>"; };
 		1A9F04601CD640940068B252 /* post.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = post.cpp; path = drivers/post.cpp; sourceTree = "<group>"; };
 		1AAE64AF1CE43827000DDC9F /* search.html */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = search.html; sourceTree = BUILT_PRODUCTS_DIR; };
-		1AAE64B81CE4397A000DDC9F /* search.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = search.cpp; path = drivers/search.cpp; sourceTree = "<group>"; };
 		1AC771871CD8FA1B005D3D41 /* database.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = database.cpp; path = includes/database.cpp; sourceTree = "<group>"; };
 		1AC771881CD8FA1B005D3D41 /* database.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = database.hpp; path = includes/database.hpp; sourceTree = "<group>"; };
 		1AC7718B1CD90410005D3D41 /* index.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; name = index.php; path = ../api/webhooks/commit/index.php; sourceTree = "<group>"; };
@@ -235,8 +235,8 @@
 		1A830D091CBF74280031C529 /* process */ = {
 			isa = PBXGroup;
 			children = (
-				1A990CCF1CE70ED4007F8B88 /* mySearch.hpp */,
-				1A990CCE1CE70ED4007F8B88 /* mySearch.cpp */,
+				1A990CCF1CE70ED4007F8B88 /* search.hpp */,
+				1A990CCE1CE70ED4007F8B88 /* search.cpp */,
 				568CF2E01CE387FD00E1A986 /* comment.cpp */,
 				568CF2E11CE387FD00E1A986 /* comment.hpp */,
 				568CF2B81CE07ADC00E1A986 /* browse.cpp */,
@@ -280,7 +280,7 @@
 		1A944B721CBF5EB100C63F00 /* drivers */ = {
 			isa = PBXGroup;
 			children = (
-				1AAE64B81CE4397A000DDC9F /* search.cpp */,
+				1A990CD21CE71090007F8B88 /* search.cpp */,
 				398A78291CE4402100487375 /* login.cpp */,
 				398A780C1CE37DF800487375 /* signup.cpp */,
 				1A944B731CBF5ECA00C63F00 /* index.cpp */,
@@ -519,8 +519,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1AAE64BD1CE43C87000DDC9F /* html.cpp in Sources */,
-				1A990CD11CE70EE0007F8B88 /* mySearch.cpp in Sources */,
-				1AAE64B91CE4397A000DDC9F /* search.cpp in Sources */,
+				1A990CD41CE710C6007F8B88 /* search.cpp in Sources */,
+				1A990CD11CE70EE0007F8B88 /* search.cpp in Sources */,
 				1AAE64BE1CE43C8A000DDC9F /* database.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

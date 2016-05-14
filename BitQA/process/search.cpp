@@ -1,6 +1,6 @@
 #include "../includes/database.hpp"
 #include "../includes/html.hpp"
-#include "mySearch.hpp"
+#include "search.hpp"
 
 using namespace std;
 using namespace cgicc;
@@ -17,7 +17,7 @@ MySearch::MySearch(string query)
 
 int MySearch::getQuestion()
 {
-	int *QuestionId = new int;
+	int QuestionId = 0;
 		
 	try {
 		sql::Driver *driver;
@@ -62,7 +62,7 @@ int MySearch::getUser()
 	
 	//Discard @ symbol
 	this->searchTerm.erase(0,1);
-	int foundID;
+	int foundID = 0;
 	string statement;
 	
 	try {
