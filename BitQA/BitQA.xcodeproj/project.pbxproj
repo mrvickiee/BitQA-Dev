@@ -42,6 +42,12 @@
 		398A782E1CE449AD00487375 /* html.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA8F0E1CC6737D00E19ADD /* html.cpp */; };
 		398A782F1CE449B000487375 /* database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AC771871CD8FA1B005D3D41 /* database.cpp */; };
 		398A78301CE449B700487375 /* user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 398A78121CE3817000487375 /* user.cpp */; };
+		398A783E1CE4C96900487375 /* libmysqlcppconn.7.1.1.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A643A341CC29CCC008C1AC5 /* libmysqlcppconn.7.1.1.6.dylib */; };
+		398A783F1CE4C96B00487375 /* libcgicc.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A643A391CC2A228008C1AC5 /* libcgicc.3.dylib */; };
+		398A78401CE4C97000487375 /* html.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA8F0E1CC6737D00E19ADD /* html.cpp */; };
+		398A78411CE4C97200487375 /* database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AC771871CD8FA1B005D3D41 /* database.cpp */; };
+		398A78421CE4C97C00487375 /* user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 398A78121CE3817000487375 /* user.cpp */; };
+		398A78441CE611DB00487375 /* profile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 398A78431CE611DB00487375 /* profile.cpp */; };
 		568CF2AC1CE0750600E1A986 /* browse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 568CF2A01CE074E100E1A986 /* browse.cpp */; };
 		568CF2AD1CE0753300E1A986 /* libmysqlcppconn.7.1.1.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A643A341CC29CCC008C1AC5 /* libmysqlcppconn.7.1.1.6.dylib */; };
 		568CF2AE1CE0753800E1A986 /* libcgicc.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A643A391CC2A228008C1AC5 /* libcgicc.3.dylib */; };
@@ -106,6 +112,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		398A78331CE4C94000487375 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		568CF2A31CE074F500E1A986 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -147,6 +162,8 @@
 		398A78181CE40AEA00487375 /* md5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = md5.cpp; path = includes/md5.cpp; sourceTree = "<group>"; };
 		398A781E1CE43F3E00487375 /* login.html */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = login.html; sourceTree = BUILT_PRODUCTS_DIR; };
 		398A78291CE4402100487375 /* login.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = login.cpp; path = drivers/login.cpp; sourceTree = "<group>"; };
+		398A78351CE4C94000487375 /* profile.html */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = profile.html; sourceTree = BUILT_PRODUCTS_DIR; };
+		398A78431CE611DB00487375 /* profile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = profile.cpp; path = drivers/profile.cpp; sourceTree = "<group>"; };
 		568CF2A01CE074E100E1A986 /* browse.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = browse.cpp; path = drivers/browse.cpp; sourceTree = "<group>"; };
 		568CF2A51CE074F500E1A986 /* browse.html */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = browse.html; sourceTree = BUILT_PRODUCTS_DIR; };
 		568CF2B81CE07ADC00E1A986 /* browse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = browse.cpp; path = process/browse.cpp; sourceTree = "<group>"; };
@@ -207,6 +224,15 @@
 			files = (
 				398A782B1CE4499E00487375 /* libmysqlcppconn.7.1.1.6.dylib in Frameworks */,
 				398A782C1CE449A000487375 /* libcgicc.3.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		398A78321CE4C94000487375 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				398A783E1CE4C96900487375 /* libmysqlcppconn.7.1.1.6.dylib in Frameworks */,
+				398A783F1CE4C96B00487375 /* libcgicc.3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +298,7 @@
 				398A78021CE37D7600487375 /* signup.html */,
 				1AAE64AF1CE43827000DDC9F /* search.html */,
 				398A781E1CE43F3E00487375 /* login.html */,
+				398A78351CE4C94000487375 /* profile.html */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -280,6 +307,7 @@
 			isa = PBXGroup;
 			children = (
 				1AAE64B81CE4397A000DDC9F /* search.cpp */,
+				398A78431CE611DB00487375 /* profile.cpp */,
 				398A78291CE4402100487375 /* login.cpp */,
 				398A780C1CE37DF800487375 /* signup.cpp */,
 				1A944B731CBF5ECA00C63F00 /* index.cpp */,
@@ -408,6 +436,23 @@
 			productReference = 398A781E1CE43F3E00487375 /* login.html */;
 			productType = "com.apple.product-type.tool";
 		};
+		398A78341CE4C94000487375 /* profile.html */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 398A783B1CE4C94000487375 /* Build configuration list for PBXNativeTarget "profile.html" */;
+			buildPhases = (
+				398A78311CE4C94000487375 /* Sources */,
+				398A78321CE4C94000487375 /* Frameworks */,
+				398A78331CE4C94000487375 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = profile.html;
+			productName = profile.html;
+			productReference = 398A78351CE4C94000487375 /* profile.html */;
+			productType = "com.apple.product-type.tool";
+		};
 		568CF2A41CE074F500E1A986 /* browse.html */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 568CF2A91CE074F500E1A986 /* Build configuration list for PBXNativeTarget "browse.html" */;
@@ -452,6 +497,9 @@
 					398A781D1CE43F3E00487375 = {
 						CreatedOnToolsVersion = 7.3;
 					};
+					398A78341CE4C94000487375 = {
+						CreatedOnToolsVersion = 7.3;
+					};
 					568CF2A41CE074F500E1A986 = {
 						CreatedOnToolsVersion = 7.3;
 					};
@@ -476,6 +524,7 @@
 				398A78011CE37D7600487375 /* signup.html */,
 				1AAE64AE1CE43827000DDC9F /* search.html */,
 				398A781D1CE43F3E00487375 /* login.html */,
+				398A78341CE4C94000487375 /* profile.html */,
 			);
 		};
 /* End PBXProject section */
@@ -544,6 +593,17 @@
 				398A782F1CE449B000487375 /* database.cpp in Sources */,
 				398A78301CE449B700487375 /* user.cpp in Sources */,
 				398A782E1CE449AD00487375 /* html.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		398A78311CE4C94000487375 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				398A78421CE4C97C00487375 /* user.cpp in Sources */,
+				398A78441CE611DB00487375 /* profile.cpp in Sources */,
+				398A78401CE4C97000487375 /* html.cpp in Sources */,
+				398A78411CE4C97200487375 /* database.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -814,6 +874,34 @@
 			};
 			name = Release;
 		};
+		398A78391CE4C94000487375 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/../www";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/usr/local/Cellar/mysql-connector-c++/1.1.6_1/lib",
+					/usr/local/Cellar/cgicc/lib,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		398A783A1CE4C94000487375 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/../www";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/usr/local/Cellar/mysql-connector-c++/1.1.6_1/lib",
+					/usr/local/Cellar/cgicc/lib,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		568CF2AA1CE074F500E1A986 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -904,6 +992,15 @@
 			buildConfigurations = (
 				398A78221CE43F3E00487375 /* Debug */,
 				398A78231CE43F3E00487375 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		398A783B1CE4C94000487375 /* Build configuration list for PBXNativeTarget "profile.html" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				398A78391CE4C94000487375 /* Debug */,
+				398A783A1CE4C94000487375 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

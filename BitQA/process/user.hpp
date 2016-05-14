@@ -39,6 +39,12 @@ public:
     string getDisplayName();
     int getAge();
     string getDate();
+    void setUsername(string);
+    void setAge(int);
+    void setLocation(string);
+    void setDisplayName(string);
+    void setEmail(string);
+    void setTag(string);
     
     
     
