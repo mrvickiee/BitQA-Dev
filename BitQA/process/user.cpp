@@ -11,7 +11,6 @@
 #include <string>
 
 User::User(){
-    
 }
 
 User::User(string username, string password, string email, string tag, int age, string location, string displayName ){
@@ -104,4 +103,28 @@ int User::generateID(){
 
 int User::getID(){
     return id;
+}
+
+void User::setUsername(string username){
+    this->username = username;
+}
+
+void User::setAge(int age){
+    this->age = age;
+}
+
+void User::setLocation(string location){
+    this->location = location;
+}
+
+void User::setDisplayName(string displayName){
+    this->displayName = displayName;
+}
+
+void User::setEmail(string email){
+    this->email = email;
+}
+
+void User::setTag(string tag){
+    this->tagInterest = tag;
 }
