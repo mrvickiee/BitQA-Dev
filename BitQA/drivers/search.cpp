@@ -36,35 +36,24 @@ int main() {
 	cgicc::Cgicc cgi;
 
 	CgiEnvironment environment = cgi.getEnvironment();
-	
-	
-	vector<int> questionResults;
+	if(environment.getRequestMethod() == "POST"){
+		string test = cgi("search");
+		cout << "<h1> " << test << "</h1>" << endl;
+	}	
 
 
-	//Create search object with term
-	//MySearch searchObj("<php><mysql>");
-	/*cout << "<h1> Test " << searchObj.getSearchTerm() << "</h1>" <<endl;
-	questionResults = searchObj.getQuestion();
-	
-	cout << "<h1> Test " << searchObj.getSearchTerm() << "</h1>" <<endl;
-	for(vector<int>::iterator it = questionResults.begin(); it != questionResults.end(); ++it) {
-		cout << "<p>This" << *it << "</p>" << endl;
-	}
-	*/
-	
+	//Get search term from search bar
+	string searchTerm = "@Leon Bambrick";
+	string testA = "<c++>";
+	cout << "<h3>" << testA << "</h3>";
+	MySearch testObject(testA);
 
-		//Get search term from search bar
-		string searchTerm = "@Leon Bambrick";
-		string testA = "<php><mysql>";
+
+    cout << "<form data-ajax=\"false\" method=\"post\">";  
+    cout << "<div class=\"form-group\">" << "<input type=\"text\" name=\"search\" class=\"form-control\">" << "</div><input class=\"btn btn-primary\" type=\"submit\">";
+    cout << "</form>";
+	testObject.getQuestion();
 	
-		
-		//Create search object with term
-		MySearch searchObj(searchTerm);
-			int userID = searchObj.getUser();	
-			string userPage = to_string(userID);
-			userPage = (BitQA::HTML::HOST + "/profile.html?username=" + userPage);
-			cout << "<h2> Search results </h2>" << endl;
-			cout << "<a href=\"" << userPage << "\">" << searchObj.getSearchTerm() << "</a>" << endl;
 
 	
 
@@ -91,7 +80,7 @@ int main() {
 		}else
 		{
 			int questionID = -1;
-			questionResults = searchObj.getQuestion();
+			//questionResults = searchObj.getQuestion();
 			
 			if(questionID == -1)
 			{
