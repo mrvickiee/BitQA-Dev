@@ -12,12 +12,13 @@ report functionality declaration
 using namespace std;
 
 class Report{
-//private:
-	//int userId
+private:
+	string userid;
 public:
 	Report();
-	//Report(int userid);
-	//void setUserId(int userid);
+	Report(string userId);
+	void setUserId(string userId);
+
 	//Home page reports
 	void recQuestions();
 	void topUsers();
