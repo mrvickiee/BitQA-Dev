@@ -11,7 +11,7 @@ class MySearch
 		MySearch(string);
 		int getQuestion();
 		int getUser();
-		//string getSearchTerm();
+		string getSearchTerm();
 	private:
 		string searchTerm;
 };

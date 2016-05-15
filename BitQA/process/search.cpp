@@ -78,12 +78,13 @@ int MySearch::getUser()
 							  );
 		
 		con->setSchema(BitQA::Database::SCHEMA);
-
+		//Testing
+		cout << "<br> <p>" << this->searchTerm << "</p>" << endl;
 		stmt = con->createStatement();
-		res = stmt->executeQuery("SELECT id FROM tblUser WHERE username = '" + (this->searchTerm) + "'");
-		
+		res = stmt->executeQuery("SELECT username FROM tblUser WHERE displayname = '" + (this->searchTerm) + "'");
+
 		while (res->next()) {
-			foundID = stoi(res->getString("id"));
+			foundID = stoi(res->getString("username"));
 		}
 		
 		delete res;
@@ -105,3 +106,7 @@ string prepareStatement(string table, string select, string where)
 	return statement;
 }
 
+string MySearch::getSearchTerm()
+{
+	return this->searchTerm;
+}
