@@ -10,7 +10,7 @@ class MySearch
 	public:
 		MySearch();
 		MySearch(string);
-		std::vector<int> getQuestion();
+		void getQuestion();
 		int getUser();
 		string getSearchTerm();
 	private:

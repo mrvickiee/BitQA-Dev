@@ -33,7 +33,7 @@ MySearch::MySearch(string query)
 	this->searchTerm = query;
 }
 
-vector<int> MySearch::getQuestion()
+void MySearch::getQuestion()
 {
 	vector<int> result;
 	int QuestionId = 0;
@@ -61,13 +61,25 @@ vector<int> MySearch::getQuestion()
 		stmt = con->createStatement();
 		
 		
-		res = stmt->executeQuery("SELECT contentId FROM tblQuestion WHERE tag LIKE '<php><mysql>'");
+		res = stmt->executeQuery("SELECT contentId, questionTitle FROM tblQuestion WHERE tags LIKE '<php><mysql>'");
 		
+		cout << "<h2> Search results: </h2>" << endl;
+		cout << "<table>";
+		cout << "<tr>";
+		cout << "<th>Question Title</th>";
+		cout << "</tr>";
 		while (res->next()) {
-			QuestionId = stoi(res->getString("contentId"));
-			cout <<"<h1>error" << QuestionId <<  "</h1>";
-			result.push_back(QuestionId);
+			cout << "<ul>";
+			//cout << "<li>" << res->getString("questionTitle") << "</li>";
+			int qID = stoi(res->getString("contentId"));	
+			string qPage = to_string(qID);
+			qPage = (BitQA::HTML::HOST + "/question.html?id=" + qPage);
+			cout << "<li>";
+			cout << "<a href=\"" << qPage << "\">" << res->getString("questionTitle") << "</a>" << endl;
+			cout << "</li>";
+			cout << "</ul>";
 		}
+		cout << "</table>";
 		
 		delete res;
 		delete stmt;
@@ -75,11 +87,12 @@ vector<int> MySearch::getQuestion()
 		
 	} catch (sql::SQLException &e) {
 		QuestionId = -1;
-		return result;
+		cout <<"<h1>error" << QuestionId <<  "</h1>";
+		return;
 	}
 	
 		
-	return result;
+	return;
 }
 
 int MySearch::getUser()
