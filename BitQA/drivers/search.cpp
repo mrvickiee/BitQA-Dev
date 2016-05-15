@@ -10,6 +10,7 @@ using namespace std;
 using namespace BitQA;
 
 
+
 bool isUser(string searchTerm) {
 		if(searchTerm.at(0) == '@') {
 			return true;
@@ -33,69 +34,50 @@ int main() {
 		
 	BitQA::HTML::displayHeader();
 	cgicc::Cgicc cgi;
-	Cgicc formData;
+
 	CgiEnvironment environment = cgi.getEnvironment();
 	
-	string searchTerm = "@Leon Bambrick";
-
-	/*	TESTING
-	//Attempt form with information
-	string searchTerm = "@Leon Bambrick";
-	cout << "<form data-ajax=\"false\" method=\"post\">"<<endl;
-        
-    cout << "<div class=\"form-group\">" << endl;
-        
-    cout << "<label for= \"Username\"> Username </label>" << endl;
-    cout << "<input type=\"text\" class=\"form-control\" id=\"userName\" name=\"userName\" placeholder = \"Enter Username\"> " << endl;
-        
-    cout << "</div>" << endl;
-
-    
-
-
-    if(environment.getRequestMethod() == "POST"){
-		try{
-			searchTerm = cgi("search");
-			cout << "<h1> " << searchTerm << "</h1>" << endl;
-		}catch(exception &e){
-			string error(e.what());
-			BitQA::HTML::error("There was an error viewing your question",
-						   "Please go <a href=\"/\">home</a><p>Details: " + error + "</p>");
-        }
-		
-	}
 	
+	vector<int> questionResults;
+
+
 	//Create search object with term
-	MySearch searchObj(searchTerm);
+	//MySearch searchObj("<php><mysql>");
+	/*cout << "<h1> Test " << searchObj.getSearchTerm() << "</h1>" <<endl;
+	questionResults = searchObj.getQuestion();
 	
-	
-	//Redirect to user page with found ID
-	int userID = searchObj.getUser();	
-	string userPage = to_string(userID);
-	userPage = (BitQA::HTML::HOST + "/profile.html?username=" + userPage);
-	cout << "<a href=\"" << userPage << "\">" << searchObj.getSearchTerm() << "</a>" << endl;
+	cout << "<h1> Test " << searchObj.getSearchTerm() << "</h1>" <<endl;
+	for(vector<int>::iterator it = questionResults.begin(); it != questionResults.end(); ++it) {
+		cout << "<p>This" << *it << "</p>" << endl;
+	}
 	*/
+	
+
+		//Get search term from search bar
+		string searchTerm = "@Leon Bambrick";
+		string testA = "<php><mysql>";
+	
+		
+		//Create search object with term
+		MySearch searchObj(searchTerm);
+			int userID = searchObj.getUser();	
+			string userPage = to_string(userID);
+			userPage = (BitQA::HTML::HOST + "/profile.html?username=" + userPage);
+			cout << "<h2> Search results </h2>" << endl;
+			cout << "<a href=\"" << userPage << "\">" << searchObj.getSearchTerm() << "</a>" << endl;
 
 	
-	        
-	
-	
+
 	if(environment.getRequestMethod() == "POST"){		
 		cout << "<h1> Hello Benjamin </h1> " << endl;
 		//Get search term from search bar
 		string searchTerm = "@Leon Bambrick";
-
-		/*
-		form_iterator fi = formData.getElement("textcontent");
-		if(!fi->isEmpty() && fi != (*formData).end()) {
-			cout << "<p>This 3is what was entered: " << **fi << " </p>" << endl;
-		}
-		string searchTerm = document.getElementById('navbar').value;
-		cout << "document.getElementById('navbar\').value" << endl;
-		*/
+	
 		
 		//Create search object with term
-		MySearch searchObj(searchTerm);	
+		MySearch searchObj(searchTerm);
+		
+		cout << "<h2> Search results" << searchObj.getSearchTerm() <<  "</h2>" << endl;	
 		
 		//If user bring up user page, if question bring up search results
 		if(isUser(searchTerm))
@@ -109,7 +91,7 @@ int main() {
 		}else
 		{
 			int questionID = -1;
-			questionID = searchObj.getQuestion();
+			questionResults = searchObj.getQuestion();
 			
 			if(questionID == -1)
 			{
@@ -119,10 +101,43 @@ int main() {
 				//Redirect to question page with QuestionID
 				cout << cgicc::HTTPRedirectHeader(BitQA::HTML::HOST + "/question.html") << endl;
 			}
-		}	
+		}
+
 	}
+	
+	
 	
 	
 	BitQA::HTML::displayFooter();	
 }
 
+	/*
+	if(environment.getRequestMethod() == "POST"){
+		
+		    form_iterator fi = formData.getElement("search");
+    if( !fi->isEmpty() && fi != (*formData).end()) {
+		cout << "<p> Data entered: " << **fi << "</p>" << endl;
+	}
+
+		try{
+			string searchTerm = cgi("search");
+			cout << "<h1> " << searchTerm << "</h1>" << endl;
+		}catch(exception &e){
+			string error(e.what());
+			BitQA::HTML::error("There was an error viewing your question",
+						   "Please go <a href=\"/\">home</a><p>Details: " + error + "</p>");
+        }
+		
+	}
+	
+	
+	if(environment.getRequestMethod() == "POST"){
+		string test = cgi("search");
+		cout << "<h1> " << test << "</h1>" << endl;
+	}
+	
+    cout << "<form data-ajax=\"false\" method=\"post\">";  
+    cout << "<div class=\"form-group\">" << "<input type=\"text\" name=\"search\" class=\"form-control\">" << "</div><input class=\"btn btn-primary\" type=\"submit\">";
+    cout << "</form>";
+    */ 
+    

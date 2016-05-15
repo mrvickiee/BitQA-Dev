@@ -2,6 +2,7 @@
 #define mySearch
 
 #include <string>
+#include <vector>
 using std::string;
 
 class MySearch
@@ -9,11 +10,12 @@ class MySearch
 	public:
 		MySearch();
 		MySearch(string);
-		int getQuestion();
+		std::vector<int> getQuestion();
 		int getUser();
 		string getSearchTerm();
 	private:
 		string searchTerm;
+
 };
 
 #endif
