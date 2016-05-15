@@ -12,7 +12,7 @@ using namespace std;
 
 int main()
 {
-	Report report;
+	Report report("0");
     
     BitQA::HTML::displayHeader();
 
