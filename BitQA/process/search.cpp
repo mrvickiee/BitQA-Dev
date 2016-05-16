@@ -8,7 +8,6 @@ using namespace cgicc;
 
 
 string spaceToTag(string text) {
-	
 	int length = text.length();
 	for(int i =0; i < length; i++) {
 		if(text.at(i) == ' ') {
@@ -18,14 +17,13 @@ string spaceToTag(string text) {
 	}
 	text.replace(text.begin(), text.begin(), "<");
 	text.replace(text.end(), text.end(), ">");
-	cout << "<h1>" << text << "</h1>";
 	return text;
 }
 
 
 MySearch::MySearch()
 {
-	this->searchTerm = "<php><mysql>";
+	this->searchTerm = "";
 }
 
 MySearch::MySearch(string query)
@@ -38,9 +36,8 @@ void MySearch::getQuestion()
 	bool found = false;
 	
 	//Splits words into individual tags
-	string searchTags = "Hello there my pal";
-	searchTags = spaceToTag(searchTags);
-	cout << "<h1>" << searchTags << "</h1>" << endl;
+	string searchTags;
+	searchTags = spaceToTag(this->searchTerm);
 	
 
 	try {
@@ -60,7 +57,7 @@ void MySearch::getQuestion()
 		
 		stmt = con->createStatement();
 		
-		searchTags = "<php>";
+	
 		res = stmt->executeQuery("SELECT contentId, questionTitle FROM tblQuestion WHERE tags LIKE '" + searchTags + "'");
 		
 		cout << "<h2> Search results: </h2>" << endl;

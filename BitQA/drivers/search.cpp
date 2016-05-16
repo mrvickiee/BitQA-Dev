@@ -12,11 +12,9 @@ using namespace BitQA;
 
 /*
  * Issues
- * - get string from navbar
  * - Add tag if not on list
  * - Checkbox for unanswered/answered questions?
  * - StringToTag not working
- * - testA not outputing
  */ 
 
 
@@ -33,38 +31,11 @@ int main() {
 	cgicc::Cgicc cgi;
 
 	CgiEnvironment environment = cgi.getEnvironment();
-	if(environment.getRequestMethod() == "POST"){
-		string test = cgi("search");
-		cout << "<h1> " << test << "</h1>" << endl;
-	}	
-
-
-	//Get search term from search bar
-	string searchTerm = "@Leon Bambrick";
-	string testA = " <c++> ";
-	//Why why why
-	cout << "<h3>" << testA << "</h3>";
-	MySearch testObject(testA);
-	//string test = testA.getSearchTerm();
-	cout << "<h1>test1" << testObject.getSearchTerm() << "</h1>" << endl; 
-
-
-    cout << "<form method=\"post\" action=\"\">";  
-    cout << "<div class=\"form-group\">" << "<input type=\"text\" name=\"search\" class=\"form-control\">" << "</div><input class=\"btn btn-primary\" type=\"submit\">";
-    cout << "</form>";
-	
-	
-	//Runs with <php><mysql>
-	testObject.getQuestion();
-	
-
-	
-
 	if(environment.getRequestMethod() == "POST"){		
 
 		//Get search term from search bar
 		string searchTerm;
-		searchTerm = cgi("navbar");
+		searchTerm = cgi("search");
 	
 		
 		//Create search object with term
@@ -87,7 +58,7 @@ int main() {
 			searchObj.getQuestion();
 		}
 
-	}
+	}	
 	
 	BitQA::HTML::displayFooter();	
 }
