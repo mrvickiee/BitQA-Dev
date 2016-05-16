@@ -44,7 +44,7 @@ int main()
 				cout << "</div>";
 				cout << "<div class=\"col-xs-8 col-sm-8 col-md-8 col-lg-8\">";
 					cout << "<br><p>" << question.getDetails() << "</p>";
-					cout << "<p><i><b>Question by " << question.getUsername() << "</i></b></p>";
+					cout << "<p><i><b>Questioned by " << question.getUsername() << "</i></b></p>";
 				cout << "</div>";
 			cout << "</div></div>";
 			
