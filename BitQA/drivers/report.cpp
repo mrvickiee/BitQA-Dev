@@ -18,7 +18,7 @@ int main()
 
 	cout << "<h1>Homepage Reports</h1>";
 	cout << "<h3>Reccomended Questions<br></h3>";
-	report.recQuestions();
+	//report.recQuestions();
 	cout << "<h3>Top 10 Users<br></h3>";
 	report.topUsers();
 	cout << "<h3>Recent Featured Questions<br></h3>";

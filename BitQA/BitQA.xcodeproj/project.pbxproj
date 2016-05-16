@@ -37,6 +37,12 @@
 		1A990CFD1CE74589007F8B88 /* user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 398A78121CE3817000487375 /* user.cpp */; };
 		1A990CFE1CE7458E007F8B88 /* database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AC771871CD8FA1B005D3D41 /* database.cpp */; };
 		1A990CFF1CE74590007F8B88 /* html.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA8F0E1CC6737D00E19ADD /* html.cpp */; };
+		1A9AB8AF1CE97F1400578B9A /* libmysqlcppconn.7.1.1.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A643A341CC29CCC008C1AC5 /* libmysqlcppconn.7.1.1.6.dylib */; };
+		1A9AB8B01CE97F1700578B9A /* libcgicc.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A643A391CC2A228008C1AC5 /* libcgicc.3.dylib */; };
+		1A9AB8B11CE97F2200578B9A /* report.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A9AB8A21CE97EE600578B9A /* report.cpp */; };
+		1A9AB8B21CE97F2800578B9A /* report.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A9AB89F1CE97EAB00578B9A /* report.cpp */; };
+		1A9AB8B31CE97F3E00578B9A /* html.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA8F0E1CC6737D00E19ADD /* html.cpp */; };
+		1A9AB8B41CE97F4200578B9A /* database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AC771871CD8FA1B005D3D41 /* database.cpp */; };
 		398A780D1CE37DF800487375 /* signup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 398A780C1CE37DF800487375 /* signup.cpp */; };
 		398A780E1CE37E0C00487375 /* libcgicc.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A643A391CC2A228008C1AC5 /* libcgicc.3.dylib */; };
 		398A780F1CE37E0F00487375 /* libmysqlcppconn.7.1.1.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A643A341CC29CCC008C1AC5 /* libmysqlcppconn.7.1.1.6.dylib */; };
@@ -109,6 +115,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		1A9AB8A61CE97F0B00578B9A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		398A78001CE37D7600487375 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -165,6 +180,10 @@
 		1A990CE51CE7159D007F8B88 /* search.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = search.cpp; path = drivers/search.cpp; sourceTree = "<group>"; };
 		1A990CEF1CE742DB007F8B88 /* profile.html */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = profile.html; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A990CF81CE742FA007F8B88 /* profile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = profile.cpp; path = drivers/profile.cpp; sourceTree = "<group>"; };
+		1A9AB89F1CE97EAB00578B9A /* report.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = report.cpp; path = process/report.cpp; sourceTree = "<group>"; };
+		1A9AB8A01CE97EAB00578B9A /* report.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = report.hpp; path = process/report.hpp; sourceTree = "<group>"; };
+		1A9AB8A21CE97EE600578B9A /* report.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = report.cpp; path = drivers/report.cpp; sourceTree = "<group>"; };
+		1A9AB8A81CE97F0B00578B9A /* report.html */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = report.html; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9F04601CD640940068B252 /* post.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = post.cpp; path = drivers/post.cpp; sourceTree = "<group>"; };
 		1AC771871CD8FA1B005D3D41 /* database.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = database.cpp; path = includes/database.cpp; sourceTree = "<group>"; };
 		1AC771881CD8FA1B005D3D41 /* database.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = database.hpp; path = includes/database.hpp; sourceTree = "<group>"; };
@@ -235,6 +254,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1A9AB8A51CE97F0B00578B9A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A9AB8AF1CE97F1400578B9A /* libmysqlcppconn.7.1.1.6.dylib in Frameworks */,
+				1A9AB8B01CE97F1700578B9A /* libcgicc.3.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		398A77FF1CE37D7600487375 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -286,6 +314,8 @@
 		1A830D091CBF74280031C529 /* process */ = {
 			isa = PBXGroup;
 			children = (
+				1A9AB8A01CE97EAB00578B9A /* report.hpp */,
+				1A9AB89F1CE97EAB00578B9A /* report.cpp */,
 				1A990CE31CE71592007F8B88 /* search.hpp */,
 				1A990CE21CE71592007F8B88 /* search.cpp */,
 				568CF2E01CE387FD00E1A986 /* comment.cpp */,
@@ -326,6 +356,7 @@
 				568F2BE71CE70DE400C085AD /* allquestions.html */,
 				1A990CD91CE71517007F8B88 /* search.html */,
 				1A990CEF1CE742DB007F8B88 /* profile.html */,
+				1A9AB8A81CE97F0B00578B9A /* report.html */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -333,6 +364,7 @@
 		1A944B721CBF5EB100C63F00 /* drivers */ = {
 			isa = PBXGroup;
 			children = (
+				1A9AB8A21CE97EE600578B9A /* report.cpp */,
 				1A990CF81CE742FA007F8B88 /* profile.cpp */,
 				1A990CE51CE7159D007F8B88 /* search.cpp */,
 				398A78291CE4402100487375 /* login.cpp */,
@@ -447,6 +479,23 @@
 			productReference = 1A990CEF1CE742DB007F8B88 /* profile.html */;
 			productType = "com.apple.product-type.tool";
 		};
+		1A9AB8A71CE97F0B00578B9A /* report.html */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A9AB8AC1CE97F0B00578B9A /* Build configuration list for PBXNativeTarget "report.html" */;
+			buildPhases = (
+				1A9AB8A41CE97F0B00578B9A /* Sources */,
+				1A9AB8A51CE97F0B00578B9A /* Frameworks */,
+				1A9AB8A61CE97F0B00578B9A /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = report.html;
+			productName = report.html;
+			productReference = 1A9AB8A81CE97F0B00578B9A /* report.html */;
+			productType = "com.apple.product-type.tool";
+		};
 		398A78011CE37D7600487375 /* signup.html */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 398A78081CE37D7600487375 /* Build configuration list for PBXNativeTarget "signup.html" */;
@@ -539,6 +588,9 @@
 					1A990CEE1CE742DB007F8B88 = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
+					1A9AB8A71CE97F0B00578B9A = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
 					398A78011CE37D7600487375 = {
 						CreatedOnToolsVersion = 7.3;
 					};
@@ -574,6 +626,7 @@
 				568F2BE61CE70DE400C085AD /* allquestions.html */,
 				1A990CD81CE71517007F8B88 /* search.html */,
 				1A990CEE1CE742DB007F8B88 /* profile.html */,
+				1A9AB8A71CE97F0B00578B9A /* report.html */,
 			);
 		};
 /* End PBXProject section */
@@ -630,6 +683,17 @@
 				1A990CFA1CE74570007F8B88 /* profile.cpp in Sources */,
 				1A990CFF1CE74590007F8B88 /* html.cpp in Sources */,
 				1A990CFE1CE7458E007F8B88 /* database.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A9AB8A41CE97F0B00578B9A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A9AB8B11CE97F2200578B9A /* report.cpp in Sources */,
+				1A9AB8B21CE97F2800578B9A /* report.cpp in Sources */,
+				1A9AB8B41CE97F4200578B9A /* database.cpp in Sources */,
+				1A9AB8B31CE97F3E00578B9A /* html.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -882,6 +946,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/../www";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/usr/local/Cellar/mysql-connector-c++/1.1.6_1/lib",
@@ -895,6 +960,35 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/../www";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/usr/local/Cellar/mysql-connector-c++/1.1.6_1/lib",
+					/usr/local/Cellar/cgicc/lib,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		1A9AB8AD1CE97F0B00578B9A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/../www";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/usr/local/Cellar/mysql-connector-c++/1.1.6_1/lib",
+					/usr/local/Cellar/cgicc/lib,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		1A9AB8AE1CE97F0B00578B9A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/../www";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/usr/local/Cellar/mysql-connector-c++/1.1.6_1/lib",
@@ -1072,6 +1166,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		1A9AB8AC1CE97F0B00578B9A /* Build configuration list for PBXNativeTarget "report.html" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A9AB8AD1CE97F0B00578B9A /* Debug */,
+				1A9AB8AE1CE97F0B00578B9A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		398A78081CE37D7600487375 /* Build configuration list for PBXNativeTarget "signup.html" */ = {
 			isa = XCConfigurationList;

@@ -53,7 +53,7 @@ void Report::recQuestions(){
 
 		subRes = stmt->executeQuery("SELECT tags FROM tblUserTags WHERE id = '" + this->userid + "'");
 
-		while(res->next()){
+		while(subRes->next()){
 			searchTerm = subRes->getString("tags");
 		}
 
