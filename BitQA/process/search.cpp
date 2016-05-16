@@ -6,7 +6,7 @@
 using namespace std;
 using namespace cgicc;
 
-//Does not work in here??
+
 string spaceToTag(string text) {
 	
 	int length = text.length();
@@ -18,7 +18,7 @@ string spaceToTag(string text) {
 	}
 	text.replace(text.begin(), text.begin(), "<");
 	text.replace(text.end(), text.end(), ">");
-	//cout << "<h1>" << text << "</h1>";
+	cout << "<h1>" << text << "</h1>";
 	return text;
 }
 
@@ -37,10 +37,10 @@ void MySearch::getQuestion()
 {
 	bool found = false;
 	
-	
 	//Splits words into individual tags
-	string searchTags;
-	searchTags = spaceToTag(this->searchTerm);
+	string searchTags = "Hello there my pal";
+	searchTags = spaceToTag(searchTags);
+	cout << "<h1>" << searchTags << "</h1>" << endl;
 	
 
 	try {
@@ -60,14 +60,11 @@ void MySearch::getQuestion()
 		
 		stmt = con->createStatement();
 		
-		
-		res = stmt->executeQuery("SELECT contentId, questionTitle FROM tblQuestion WHERE tags LIKE '<c++>'");
+		searchTags = "<php>";
+		res = stmt->executeQuery("SELECT contentId, questionTitle FROM tblQuestion WHERE tags LIKE '" + searchTags + "'");
 		
 		cout << "<h2> Search results: </h2>" << endl;
 		cout << "<table>";
-		cout << "<tr>";
-		cout << "<th>Question Title</th>";
-		cout << "</tr>";
 		while (res->next()) {
 			cout << "<ul>";
 			//cout << "<li>" << res->getString("questionTitle") << "</li>";
@@ -139,7 +136,7 @@ int MySearch::getUser()
 		return foundID;
 	}
 	if(!found) {
-		cout << "<h2> No results </h2>" << endl;
+		cout << "<h2> User not found </h2>" << endl;
 	}
 	
 	return foundID;

@@ -27,18 +27,6 @@ bool isUser(string searchTerm) {
 		return false;	
 }
 
-void searchResults() {
-	
-	cout << "<div class=\"row\">";
-	cout << "<h2>Search results</h2><br>" << endl;
-	cout << "<ul id = \"list\">" << endl;
-	cout << "<li> </li>" << endl;
-	cout << "<li> </li>" << endl;
-	cout << "</ul>" << endl;	
-	cout << "</div>" << endl;
-		
-}
-
 int main() {
 		
 	BitQA::HTML::displayHeader();
@@ -53,12 +41,15 @@ int main() {
 
 	//Get search term from search bar
 	string searchTerm = "@Leon Bambrick";
-	string testA = "<c++>";
+	string testA = " <c++> ";
+	//Why why why
 	cout << "<h3>" << testA << "</h3>";
 	MySearch testObject(testA);
+	//string test = testA.getSearchTerm();
+	cout << "<h1>test1" << testObject.getSearchTerm() << "</h1>" << endl; 
 
 
-    cout << "<form data-ajax=\"false\" method=\"post\">";  
+    cout << "<form method=\"post\" action=\"\">";  
     cout << "<div class=\"form-group\">" << "<input type=\"text\" name=\"search\" class=\"form-control\">" << "</div><input class=\"btn btn-primary\" type=\"submit\">";
     cout << "</form>";
 	
@@ -70,9 +61,10 @@ int main() {
 	
 
 	if(environment.getRequestMethod() == "POST"){		
-		cout << "<h1> Hello Benjamin </h1> " << endl;
+
 		//Get search term from search bar
-		string searchTerm = "@Leon Bambrick";
+		string searchTerm;
+		searchTerm = cgi("navbar");
 	
 		
 		//Create search object with term
@@ -85,9 +77,7 @@ int main() {
 		{
 			//Show link to user page
 			int userID = searchObj.getUser();
-			if(userID == -1) {
-				cout << "<h2> User not found </h2>";
-			}else {	
+			if(userID != -1) {
 				string userPage = to_string(userID);
 				userPage = (BitQA::HTML::HOST + "/profile.html?username=" + userPage);
 				cout << "<a href=\"" << userPage << "\">" << searchObj.getSearchTerm() << "</a>" << endl;
@@ -98,9 +88,6 @@ int main() {
 		}
 
 	}
-	
-	
-	
 	
 	BitQA::HTML::displayFooter();	
 }
