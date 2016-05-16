@@ -35,8 +35,8 @@ MySearch::MySearch(string query)
 
 void MySearch::getQuestion()
 {
-	vector<int> result;
-	int QuestionId = 0;
+	bool found = false;
+	
 	
 	//Splits words into individual tags
 	string searchTags;
@@ -61,7 +61,7 @@ void MySearch::getQuestion()
 		stmt = con->createStatement();
 		
 		
-		res = stmt->executeQuery("SELECT contentId, questionTitle FROM tblQuestion WHERE tags LIKE '<php><mysql>'");
+		res = stmt->executeQuery("SELECT contentId, questionTitle FROM tblQuestion WHERE tags LIKE '<c++>'");
 		
 		cout << "<h2> Search results: </h2>" << endl;
 		cout << "<table>";
@@ -78,6 +78,7 @@ void MySearch::getQuestion()
 			cout << "<a href=\"" << qPage << "\">" << res->getString("questionTitle") << "</a>" << endl;
 			cout << "</li>";
 			cout << "</ul>";
+			found = true;
 		}
 		cout << "</table>";
 		
@@ -86,23 +87,25 @@ void MySearch::getQuestion()
 		delete con;
 		
 	} catch (sql::SQLException &e) {
-		QuestionId = -1;
-		cout <<"<h1>error" << QuestionId <<  "</h1>";
+
+		cout <<"<h1>error</h1>";
 		return;
 	}
 	
-		
+	if(!found) {
+			cout << "<h2> No results </h2>" << endl;
+	}
 	return;
 }
 
 int MySearch::getUser()
 {
 	//At this point system knows it is a user 
+	bool found = false;
 	
 	//Discard @ symbol
 	this->searchTerm.erase(0,1);
-	int foundID = 0;
-	string statement;
+	int foundID = -1;
 	
 	try {
 		sql::Driver *driver;
@@ -124,6 +127,7 @@ int MySearch::getUser()
 
 		while (res->next()) {
 			foundID = stoi(res->getString("username"));
+			found = true;
 		}
 		
 		delete res;
@@ -133,6 +137,9 @@ int MySearch::getUser()
 	} catch (sql::SQLException &e) {
 		foundID = -1;
 		return foundID;
+	}
+	if(!found) {
+		cout << "<h2> No results </h2>" << endl;
 	}
 	
 	return foundID;
