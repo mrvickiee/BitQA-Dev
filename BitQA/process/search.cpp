@@ -38,108 +38,59 @@ void MySearch::getQuestion(bool filter)
 	//Splits words into individual tags
 	string searchTags;
 	searchTags = spaceToTag(this->searchTerm);
-	
-	if(!filter) {
-		try {
-			sql::Driver *driver;
-			sql::Connection *con;
-			sql::Statement *stmt;
-			sql::ResultSet *res;
-			
-			
-			driver = get_driver_instance();
-			con = driver->connect(BitQA::Database::HOST,
-								  BitQA::Database::USERNAME,
-								  BitQA::Database::PASSWORD
-								  );
-			
-			con->setSchema(BitQA::Database::SCHEMA);
-			
-			stmt = con->createStatement();
-			
-	
-    res = stmt->executeQuery("SELECT contentId, questionTitle FROM tblQuestion WHERE tags LIKE '" + searchTags + "'");
 
-			cout << "<table>";
-			while (res->next()) {
-				cout << "<ul>";
-				//cout << "<li>" << res->getString("questionTitle") << "</li>";
-				int qID = stoi(res->getString("contentId"));	
-				string qPage = to_string(qID);
-				qPage = (BitQA::HTML::HOST + "/question.html?id=" + qPage);
-				cout << "<li>";
-				cout << "<a href=\"" << qPage << "\">" << res->getString("questionTitle") << "</a>" << endl;
-				cout << "</li>";
-				cout << "</ul>";
-				found = true;
-			}
-			cout << "</table>";
-			
-			delete res;
-			delete stmt;
-			delete con;
-			
-		} catch (sql::SQLException &e) {
-			cout <<"<h1>A</h1>" << endl;
-			cout <<"<h1>error</h1>";
-			return;
-		}
+	try {
+		sql::Driver *driver;
+		sql::Connection *con;
+		sql::Statement *stmt;
+		sql::ResultSet *res;
 		
-		if(!found) {
-				cout << "<h2> No results </h2>" << endl;
-		}
-	}else {
-		try {
-			sql::Driver *driver;
-			sql::Connection *con;
-			sql::Statement *stmt;
-			sql::ResultSet *res;
 			
+		driver = get_driver_instance();
+		con = driver->connect(BitQA::Database::HOST,
+							  BitQA::Database::USERNAME,
+							  BitQA::Database::PASSWORD
+							  );
 			
-			driver = get_driver_instance();
-			con = driver->connect(BitQA::Database::HOST,
-								  BitQA::Database::USERNAME,
-								  BitQA::Database::PASSWORD
-								  );
+		con->setSchema(BitQA::Database::SCHEMA);
 			
-			con->setSchema(BitQA::Database::SCHEMA);
+		stmt = con->createStatement();
 			
-			stmt = con->createStatement();
-			
-		
+		if(!filter) {
+			res = stmt->executeQuery("SELECT contentId, questionTitle FROM tblQuestion WHERE tags LIKE '" + searchTags + "'");
+		}else {
 			res = stmt->executeQuery("SELECT contentId, questionTitle FROM tblQuestion WHERE tags LIKE '" + searchTags + "' AND acceptedAnswer = 0");
+		}
 
-			cout << "<table>";
-			while (res->next()) {
-				cout << "<ul>";
-				//cout << "<li>" << res->getString("questionTitle") << "</li>";
-				int qID = stoi(res->getString("contentId"));	
-				string qPage = to_string(qID);
-				qPage = (BitQA::HTML::HOST + "/question.html?id=" + qPage);
-				cout << "<li>";
-				cout << "<a href=\"" << qPage << "\">" << res->getString("questionTitle") << "</a>" << endl;
-				cout << "</li>";
-				cout << "</ul>";
-				found = true;
-			}
-			cout << "</table>";
+
+		cout << "<table>";
+		while (res->next()) {
+			cout << "<ul>";
+			//cout << "<li>" << res->getString("questionTitle") << "</li>";
+			int qID = stoi(res->getString("contentId"));	
+			string qPage = to_string(qID);
+			qPage = (BitQA::HTML::HOST + "/question.html?id=" + qPage);
+			cout << "<li>";
+			cout << "<a href=\"" << qPage << "\">" << res->getString("questionTitle") << "</a>" << endl;
+			cout << "</li>";
+			cout << "</ul>";
+			found = true;
+		}
+		cout << "</table>";
 			
-			delete res;
-			delete stmt;
-			delete con;
+		delete res;
+		delete stmt;
+		delete con;
 			
 		} catch (sql::SQLException &e) {
-			cout <<"<h1>B</h1>" << endl;
 			cout <<"<h1>error</h1>";
 			return;
 		}
 		
 		if(!found) {
 				cout << "<h2> No results </h2>" << endl;
-		}		
-		
-		
-	}
+		}
+	
 	return;
 }
 
