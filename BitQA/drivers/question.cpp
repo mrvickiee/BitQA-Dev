@@ -108,7 +108,6 @@ void getAnswerStack(int id)
 		cout << "<p><i><b>Answered by " << answerList[i].getUsername() << "</i></b></p>";
 		cout << "</div>";
 		cout << "</div></div>";
-		cout << "<hr>";
 		
 		vector<BitQA::Comment> commentList = answerList[i].getComments();
 		
@@ -128,6 +127,21 @@ void getAnswerStack(int id)
 			cout << "</div>";
 		}
 		
+		cout << "<div class=\"row\">";
+		cout << "<div class=\"col-xs-2 col-sm-2 col-md-2 col-lg-2\"></div>";
+		cout << "<div class=\"col-xs-1 col-sm-1 col-md-1 col-lg-1\">";
+		cout << "<form style=\"display:none\" action=\"\" method=\"post\"><div class=\"form-group\">"
+			<< "<label for=\"comment\">Comment:</label>"
+			<< "<textarea name=\"comment\" style=\"width:645px\" class=\"input-large form-control\" cols=\"20\" rows=\"2\" id=\"comment\"></textarea><br>";
+		cout << "<input type=\"hidden\" name=\"comment-id\" value=\"data\">";
+		
+		cout << "<input class=\"btn btn-default\" type=\"submit\">"
+			<< "</form></div>";
+		cout << "<div class=\"row\" style=\"width: 300px\">";
+		cout << "<a href=\"javascript:void();\">Comment on this answer</a>";
+		cout << "</div>";
+		cout << "</div></div>";
+		cout << "<hr>";
 		
 	}
 	
@@ -167,6 +181,8 @@ int main()
 						   );
 		
 	}
+	
+	//cout << "<script src=\"/includes/javascript/events.js\"></script>" << endl;
 	
 	BitQA::HTML::displayFooter();
 	
