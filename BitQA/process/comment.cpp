@@ -3,10 +3,9 @@
 
 using namespace std;
 
-BitQA::Comment::Comment(int CommentID, string CommentType)
+BitQA::Comment::Comment(int CommentID)
 {
 	this->CommentID = CommentID;
-	this->CommentType = CommentType;
 	
 	sql::Driver *driver;
 	sql::Connection *con;
@@ -49,13 +48,16 @@ string BitQA::Comment::getDetails()
 	sql::ResultSet *res;
 	
 	driver = get_driver_instance();
-	con = driver->connect(BitQA::Database::HOST, BitQA::Database::USERNAME, BitQA::Database::PASSWORD);
+	con = driver->connect(
+						  BitQA::Database::HOST,
+						  BitQA::Database::USERNAME,
+						  BitQA::Database::PASSWORD
+						  );
+	
 	con->setSchema(BitQA::Database::SCHEMA);
 	stmt = con->createStatement();
 	
 	res = stmt->executeQuery("SELECT content FROM tblContent WHERE id = '" + to_string(this->ContentID) + "'");
-	
-	cout << "SELECT content FROM tblContent WHERE id = '" + to_string(this->ContentID) + "'";
 	
 	while (res->next()) {
 		details = res->getString("content");
@@ -110,7 +112,7 @@ string BitQA::Comment::getUsername()
 	con->setSchema(BitQA::Database::SCHEMA);
 	stmt = con->createStatement();
 	
-	res = stmt->executeQuery("SELECT displayname FROM tblUser WHERE id = '" + to_string(this->CommentOwner) + "'");
+	res = stmt->executeQuery("SELECT displayname FROM tblUser WHERE username = '" + to_string(this->CommentOwner) + "'");
 	
 	while (res->next()) {
 		username = res->getString("displayname");

@@ -16,19 +16,9 @@ int main()
 	
 	try {
 		id = stoi(cgicc("id"));
-		//id = 278;
+		//id = 16955;
 		
 		BitQA::Question question(id);
-		vector<BitQA::Comment> questionComments;
-		
-		// Get Comments for question
-		vector<int> questionCommentsID = question.getContentID();
-		vector<int>::iterator questionCommentsID_Iterator = questionCommentsID.begin();
-		
-		while (questionCommentsID_Iterator != questionCommentsID.end()) {
-			questionComments.push_back(BitQA::Comment(*questionCommentsID_Iterator, "question"));
-			questionCommentsID_Iterator++;
-		}
 		
 		{
 			

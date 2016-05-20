@@ -38,7 +38,8 @@ BitQA::Question::Question(int QuestionID)
 	delete con;
 }
 
-vector<BitQA::Comment> BitQA::Question::getComments(){
+vector<BitQA::Comment> BitQA::Question::getComments()
+{
 	vector<BitQA::Comment> result;
 	
 	sql::Driver *driver;
@@ -56,15 +57,13 @@ vector<BitQA::Comment> BitQA::Question::getComments(){
 	con->setSchema(BitQA::Database::SCHEMA);
 	
 	stmt = con->createStatement();
-	//cout << "SELECT * from tblContent WHERE id IN (SELECT contentId FROM tblComment WHERE parentContentId = (SELECT contentId FROM tblQuestion WHERE id = '" + to_string(this->QuestionID) + "' ))";
-
 	
-	res = stmt->executeQuery("SELECT * from tblContent WHERE id IN (SELECT contentId FROM tblComment WHERE parentContentId = (SELECT contentId FROM tblQuestion WHERE id = '" + to_string(this->QuestionID) + "'))");
+	res = stmt->executeQuery("SELECT *, tblComment.id FROM tblComment WHERE tblComment.parentContentId IN (SELECT tblQuestion.contentId FROM tblQuestion WHERE id = '" + to_string(this->QuestionID) + "')");
 	
 	
 	while (res->next()) {
 		//construct comment
-		BitQA::Comment insComment(res->getInt("id"),"q");
+		BitQA::Comment insComment(res->getInt("id"));
 		
 		result.push_back(insComment);
 	}
