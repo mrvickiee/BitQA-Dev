@@ -38,6 +38,11 @@ BitQA::Answer::Answer(int AnswerID)
 	delete con;
 }
 
+int BitQA::Answer::getAnswerID()
+{
+	return this->AnswerID;
+}
+
 string BitQA::Answer::getDetails()
 {
 	string details = "";
