@@ -15,6 +15,7 @@ namespace BitQA
 		
 	public:
 		Answer(int AnswerID);
+		int getAnswerID();
 		string getDetails();
 		string getVotes();
 		string getUsername();
