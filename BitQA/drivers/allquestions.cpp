@@ -50,9 +50,15 @@ int main(){
 		prep_stmt->setInt(2, toVal);
 		res = prep_stmt->executeQuery();
 		
+		cout << "<h1>Showing all questions</h1>" << endl;
+		cout << "<br><br>" << endl;
+		
 		//print results
 		while (res->next()) {
-			cout << res->getString("questionTitle") << endl;
+			cout << "<div class=\"panel panel-default\"><div class=\"panel-body\">" << endl;
+			cout << "<h4><a href='question.html?id=" << res->getString("id") <<  "'>" <<  res->getString("questionTitle") << endl;
+			cout << "</a></h4>Description</div></div>" << endl;
+			
 		}
 		
 		
