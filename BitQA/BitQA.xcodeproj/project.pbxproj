@@ -43,6 +43,7 @@
 		1A9AB8B21CE97F2800578B9A /* report.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A9AB89F1CE97EAB00578B9A /* report.cpp */; };
 		1A9AB8B31CE97F3E00578B9A /* html.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA8F0E1CC6737D00E19ADD /* html.cpp */; };
 		1A9AB8B41CE97F4200578B9A /* database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AC771871CD8FA1B005D3D41 /* database.cpp */; };
+		1AF13CE71CEEADC0002F44E2 /* answer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AF13CE51CEEADC0002F44E2 /* answer.cpp */; };
 		398A780D1CE37DF800487375 /* signup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 398A780C1CE37DF800487375 /* signup.cpp */; };
 		398A780E1CE37E0C00487375 /* libcgicc.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A643A391CC2A228008C1AC5 /* libcgicc.3.dylib */; };
 		398A780F1CE37E0F00487375 /* libmysqlcppconn.7.1.1.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A643A341CC29CCC008C1AC5 /* libmysqlcppconn.7.1.1.6.dylib */; };
@@ -191,6 +192,8 @@
 		1ACA8F0E1CC6737D00E19ADD /* html.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = html.cpp; path = includes/html.cpp; sourceTree = "<group>"; };
 		1ACA8F0F1CC6737D00E19ADD /* html.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = html.hpp; path = includes/html.hpp; sourceTree = "<group>"; };
 		1AF13CE41CEEA896002F44E2 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; name = .gitignore; path = ../.gitignore; sourceTree = "<group>"; };
+		1AF13CE51CEEADC0002F44E2 /* answer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = answer.cpp; path = process/answer.cpp; sourceTree = "<group>"; };
+		1AF13CE61CEEADC0002F44E2 /* answer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = answer.hpp; path = process/answer.hpp; sourceTree = "<group>"; };
 		398A78021CE37D7600487375 /* signup.html */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = signup.html; sourceTree = BUILT_PRODUCTS_DIR; };
 		398A780C1CE37DF800487375 /* signup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = signup.cpp; path = drivers/signup.cpp; sourceTree = "<group>"; };
 		398A78121CE3817000487375 /* user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = user.cpp; path = process/user.cpp; sourceTree = "<group>"; };
@@ -327,6 +330,8 @@
 				1A4EA2891CDF647A00143486 /* question.cpp */,
 				398A78121CE3817000487375 /* user.cpp */,
 				398A78131CE3817000487375 /* user.hpp */,
+				1AF13CE61CEEADC0002F44E2 /* answer.hpp */,
+				1AF13CE51CEEADC0002F44E2 /* answer.cpp */,
 			);
 			name = process;
 			sourceTree = "<group>";
@@ -663,6 +668,7 @@
 				1A4EA28F1CDF64DC00143486 /* question.cpp in Sources */,
 				1A4EA28B1CDF647A00143486 /* question.cpp in Sources */,
 				1A4EA28D1CDF64BE00143486 /* html.cpp in Sources */,
+				1AF13CE71CEEADC0002F44E2 /* answer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
