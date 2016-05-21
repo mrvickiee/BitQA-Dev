@@ -16,16 +16,18 @@ namespace BitQA
 	public:
 		Answer(int AnswerID);
 		int getAnswerID();
+		string getUserID();
 		string getDetails();
 		string getVotes();
 		string getUsername();
+		int getContentID();
 		vector<Comment> getComments();
 		
 	private:
 		Answer();
 		int AnswerID;
 		int ContentID;
-		int AnswerOwner;
+		string AnswerOwner;
 		
 		
 	};
