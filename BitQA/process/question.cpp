@@ -38,6 +38,11 @@ BitQA::Question::Question(int QuestionID)
 	delete con;
 }
 
+string BitQA::Question::getQuestionContentID()
+{
+	return to_string(this->ContentID);
+}
+
 vector<BitQA::Comment> BitQA::Question::getComments()
 {
 	vector<BitQA::Comment> result;

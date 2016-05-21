@@ -59,8 +59,8 @@ void getQuestionStack(int id)
 		cout << "<form action=\"\" method=\"post\"><div class=\"form-group\">"
 		<< "<label for=\"comment\">Comment:</label>"
 		<< "<textarea name=\"data\" style=\"width:645px\" class=\"input-large form-control\" cols=\"20\" rows=\"2\" id=\"comment\"></textarea><br>";
-		cout << "<input type=\"hidden\" name=\"question-id\" value=\"" << to_string(id) << "\">";
-		cout << "<input type=\"hidden\" name=\"type\" value=\"questionComment\">";
+		cout << "<input type=\"hidden\" name=\"content-id\" value=\"" << question.getQuestionContentID() << "\">";
+		cout << "<input type=\"hidden\" name=\"type\" value=\"comment\">";
 		cout << "<input class=\"btn btn-default\" type=\"submit\">"
 		<< "</form></div>";
 		cout << "<div class=\"row\" style=\"width: 300px\">";
@@ -148,8 +148,8 @@ void getAnswerStack(int id)
 		cout << "<form action=\"\" method=\"post\"><div class=\"form-group\">"
 			<< "<label for=\"comment\">Comment:</label>"
 			<< "<textarea name=\"data\" style=\"width:645px\" class=\"input-large form-control\" cols=\"20\" rows=\"2\" id=\"comment\"></textarea><br>";
-		cout << "<input type=\"hidden\" name=\"answer-id\" value=\"" << answerList[i].getAnswerID() << "\">";
-		cout << "<input type=\"hidden\" name=\"type\" value=\"answerComment\">";
+		cout << "<input type=\"hidden\" name=\"content-id\" value=\"" << answerList[i].getContentID() << "\">";
+		cout << "<input type=\"hidden\" name=\"type\" value=\"comment\">";
 		cout << "<input class=\"btn btn-default\" type=\"submit\">"
 			<< "</form></div>";
 		cout << "<div class=\"row\" style=\"width: 300px\">";
@@ -174,6 +174,106 @@ void getAnswerStack(int id)
 	delete con;
 }
 
+void processPOST(int id, Cgicc cgicc)
+{
+	
+	BitQA::Answer answer(id);
+	
+	CgiEnvironment environment = cgicc.getEnvironment();
+	const_cookie_iterator cci;
+	
+	string userName = "";
+	string displayName = "";
+	
+	for (cci = environment.getCookieList().begin();
+		cci != environment.getCookieList().end();
+		cci++) {
+		if (cci->getName() == "username") {
+			userName = cci->getValue();
+		} else if (cci->getName() == "displayname") {
+			displayName = cci->getValue();
+		}
+	}
+	
+	if (environment.getRequestMethod() == "POST") {
+		
+		if (!userName.empty()) {
+			
+			string postType = cgicc("type");
+			
+			if (postType == "questionAnswer") {
+				
+				sql::Driver *driver;
+				sql::Connection *con;
+				sql::PreparedStatement *prep_stmt;
+				
+				driver = get_driver_instance();
+				con = driver->connect(BitQA::Database::HOST,
+									  BitQA::Database::USERNAME,
+									  BitQA::Database::PASSWORD
+									  );
+				
+				con->setSchema(BitQA::Database::SCHEMA);
+				
+				prep_stmt = con->prepareStatement("CALL ProcInsertAnswer(?, ?, ?);");
+				prep_stmt->setInt(1, id);
+				prep_stmt->setString(2, cgicc("data"));
+				prep_stmt->setString(3, userName);
+				prep_stmt->execute();
+				
+				delete prep_stmt;
+				delete con;
+				
+				cout << "<div class=\"alert alert-success alert-dismissible\" role=\"alert\">";
+				cout << "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">";
+				cout << "<span aria-hidden=\"true\">&times;</span></button>";
+				cout << "<strong>Success!</strong> Posted Answer Successfully!</div>";
+				
+			} else if (postType == "comment") {
+				
+				sql::Driver *driver;
+				sql::Connection *con;
+				sql::PreparedStatement *prep_stmt;
+				
+				driver = get_driver_instance();
+				con = driver->connect(BitQA::Database::HOST,
+									  BitQA::Database::USERNAME,
+									  BitQA::Database::PASSWORD
+									  );
+				
+				con->setSchema(BitQA::Database::SCHEMA);
+				
+				prep_stmt = con->prepareStatement("CALL ProcInsertComment(?, ?, ?);");
+				prep_stmt->setInt(1, stoi(cgicc("content-id")));
+				prep_stmt->setString(2, cgicc("data"));
+				prep_stmt->setString(3, userName);
+				prep_stmt->execute();
+				
+				delete prep_stmt;
+				delete con;
+				
+				cout << "<div class=\"alert alert-success alert-dismissible\" role=\"alert\">";
+				cout << "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">";
+				cout << "<span aria-hidden=\"true\">&times;</span></button>";
+				cout << "<strong>Success!</strong> Posted Comment Successfully!</div>";
+				
+			} else {
+				cout << "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\">";
+				cout << "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">";
+				cout << "<span aria-hidden=\"true\">&times;</span></button>";
+				cout << "<strong>Error!</strong> Invalid POST.</div>";
+			}
+			
+		} else {
+			cout << "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\">";
+			cout << "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">";
+			cout << "<span aria-hidden=\"true\">&times;</span></button>";
+			cout << "<strong>Error!</strong> Not logged in, could not post Answer.</div>";
+		}
+		
+	}
+}
+
 int main()
 {
 	
@@ -181,8 +281,11 @@ int main()
 	
 	try {
 		Cgicc cgicc;
+		
 		int id = stoi(cgicc("id"));
 		//int id = 16511;
+		
+		processPOST(id, cgicc);
 		
 		getQuestionStack(id);
 		
