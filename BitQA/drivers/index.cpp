@@ -4,9 +4,9 @@
 using namespace std;
 using namespace cgicc;
 
-void printKnownUser()
+void printKnownUser(Cgicc cgicc)
 {
-	cout << "<h5>Welcome back, <span>" << BitQA::HTML::getDisplayName() << "</span></h5>" << endl;
+	cout << "<h5>Welcome back, <span>" << BitQA::HTML::getDisplayName(cgicc) << "</span></h5>" << endl;
 	cout << "<br><br><iframe width=\"853\" height=\"480\" src=\"https://www.youtube.com/embed/b_KfnGBtVeA?rel=0&amp;controls=0&amp;showinfo=0&amp;autoplay=1\" frameborder=\"0\" allowfullscreen></iframe>";
 }
 
@@ -19,13 +19,15 @@ void printUnknownUser()
 
 int main()
 {
-	BitQA::HTML::displayHeader();
+	
+	Cgicc cgicc;
+	BitQA::HTML::displayHeader("Home", cgicc);
 	
 	cout << "<center><div class=\"row\">";
 	cout << "<h1>Bit QA - The World's Questions</h1>";
 	
-	if (BitQA::HTML::getLoggedInStatus()) {
-		printKnownUser();
+	if (BitQA::HTML::getLoggedInStatus(cgicc)) {
+		printKnownUser(cgicc);
 	} else {
 		printUnknownUser();
 	}

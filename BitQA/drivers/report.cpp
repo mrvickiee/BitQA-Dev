@@ -13,8 +13,9 @@ using namespace std;
 int main()
 {
 	Report report("0");
-    
-    BitQA::HTML::displayHeader();
+	Cgicc cgicc;
+	
+    BitQA::HTML::displayHeader("Reports", cgicc);
 
 	cout << "<h1>Homepage Reports</h1>";
 	cout << "<h3>Reccomended Questions<br></h3>";

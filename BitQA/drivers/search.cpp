@@ -24,11 +24,10 @@ bool isUser(string searchTerm) {
 }
 
 int main() {
-		
-	BitQA::HTML::displayHeader();
+	
 	cgicc::Cgicc cgi;
+	BitQA::HTML::displayHeader("Search", cgi);
 
-	bool filter = false;
 	string searchTerm;
 	
 

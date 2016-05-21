@@ -53,7 +53,7 @@ void getUserInfo(){
 int main(){
     
     
-    BitQA::HTML::displayHeader();
+    BitQA::HTML::displayHeader("Profile", cgi);
     getUserInfo();
     
     if(valid){

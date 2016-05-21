@@ -9,9 +9,8 @@ using namespace std;
 	const string BitQA::HTML::HOST = "https://csci222.com";
 #endif
 
-bool BitQA::HTML::getLoggedInStatus()
+bool BitQA::HTML::getLoggedInStatus(Cgicc cgicc)
 {
-	Cgicc cgicc;
 	CgiEnvironment environment = cgicc.getEnvironment();
 	const_cookie_iterator cci;
 	
@@ -30,9 +29,8 @@ bool BitQA::HTML::getLoggedInStatus()
 	return false;
 }
 
-string BitQA::HTML::getDisplayName()
+string BitQA::HTML::getDisplayName(Cgicc cgicc)
 {
-	Cgicc cgicc;
 	CgiEnvironment environment = cgicc.getEnvironment();
 	const_cookie_iterator cci;
 	
@@ -47,9 +45,8 @@ string BitQA::HTML::getDisplayName()
 	return "";
 }
 
-string BitQA::HTML::getUsername()
+string BitQA::HTML::getUsername(Cgicc cgicc)
 {
-	Cgicc cgicc;
 	CgiEnvironment environment = cgicc.getEnvironment();
 	const_cookie_iterator cci;
 	
@@ -64,8 +61,9 @@ string BitQA::HTML::getUsername()
 	return "";
 }
 
-void BitQA::HTML::displayHeader(std::string title)
+void BitQA::HTML::displayHeader(std::string title, Cgicc cgicc)
 {
+	
 	cout << HTTPHTMLHeader() << endl
 		<< "<!DOCTYPE html>" << endl
 		<< html() << endl
@@ -106,11 +104,11 @@ void BitQA::HTML::displayHeader(std::string title)
 	
 	cout << "<ul class=\"nav navbar-nav navbar-right\">";
 	
-	if (BitQA::HTML::getLoggedInStatus()) {
+	if (BitQA::HTML::getLoggedInStatus(cgicc)) {
 		cout << "<li><a href=\"/profile.html?username="
-			<< BitQA::HTML::getUsername()
+			<< BitQA::HTML::getUsername(cgicc)
 			<< "\">Welcome, "
-			<< BitQA::HTML::getDisplayName() << "</a></li>"
+			<< BitQA::HTML::getDisplayName(cgicc) << "</a></li>"
 			<< "<li><a id=\"navBarLogout\" href=\"#\">Logout</a></li>";
 	} else {
 		cout << "<li><a href=\"login.html\">Login</a></li><li><a href=\"signup.html\">Signup</a></li>";

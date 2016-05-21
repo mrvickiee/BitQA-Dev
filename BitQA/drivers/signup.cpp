@@ -77,6 +77,7 @@ bool checkUsername(string username){
 int main(){
     
     cgicc::Cgicc cgi;
+	BitQA::HTML::displayHeader("Signup", cgi);
     
     string response,username,password, confirmPassword, email, tags,location, displayName, ageString;
     bool success = true;
@@ -137,7 +138,6 @@ int main(){
     }
     
     {
-    BitQA::HTML::displayHeader();
         User usr;
         string date = usr.getDate();
 		

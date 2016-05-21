@@ -41,8 +41,9 @@ bool validate(string question)
 
 int main()
 {
-	BitQA::HTML::displayHeader();
 	cgicc::Cgicc cgi;
+	BitQA::HTML::displayHeader("Post Question", cgi);
+	
 	string response = "", questionTitle = "", questionDescription = "", questionTags = "", questionUser = "";
 	auto error = false;
 	

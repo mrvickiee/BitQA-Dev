@@ -6,8 +6,10 @@ using namespace std;
 
 int main()
 {
-    
-    BitQA::HTML::displayHeader();
+	
+	Cgicc cgicc;
+	
+    BitQA::HTML::displayHeader("Browse", cgicc);
     BitQA::HTML::displayFooter();
     
     return 0;

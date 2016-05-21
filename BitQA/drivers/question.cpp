@@ -277,10 +277,11 @@ void processPOST(int id, Cgicc cgicc)
 int main()
 {
 	
-	BitQA::HTML::displayHeader();
-	
 	try {
+		
 		Cgicc cgicc;
+		
+		BitQA::HTML::displayHeader("Question", cgicc);
 		
 		int id = stoi(cgicc("id"));
 		//int id = 16511;
@@ -308,8 +309,6 @@ int main()
 						   );
 		
 	}
-	
-	//cout << "<script src=\"/includes/javascript/events.js\"></script>" << endl;
 	
 	BitQA::HTML::displayFooter();
 	

@@ -14,9 +14,10 @@ using namespace cgicc;
 using namespace std;
 
 int main(){
-	BitQA::HTML::displayHeader();
 	
 	Cgicc cgicc;
+	
+	BitQA::HTML::displayHeader("All Questions", cgicc);
 	
 	try {
 		sql::Driver *driver;

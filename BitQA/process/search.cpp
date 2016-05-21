@@ -8,7 +8,7 @@ using namespace cgicc;
 
 
 string spaceToTag(string text) {
-	int length = text.length();
+	int length = (int)text.length();
 	for(int i =0; i < length; i++) {
 		if(text.at(i) == ' ') {
 			text.replace(i, 1, "><");
