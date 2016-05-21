@@ -21,6 +21,11 @@ namespace BitQA {
 		static void displayFooter();
 		static std::string spacer(int height);
 		static void error(std::string title, std::string message);
+		
+		// HTML User Helpers
+		static bool getLoggedInStatus();
+		static std::string getDisplayName();
+		static std::string getUsername();
 	};
 	
 }
