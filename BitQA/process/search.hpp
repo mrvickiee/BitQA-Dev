@@ -10,7 +10,7 @@ class MySearch
 	public:
 		MySearch();
 		MySearch(string);
-		void getQuestion();
+		void getQuestion(bool);
 		int getUser();
 		string getSearchTerm();
 	private:

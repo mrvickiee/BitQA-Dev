@@ -12,11 +12,7 @@ using namespace BitQA;
 
 /*
  * Issues
- * - get string from navbar
- * - Add tag if not on list
  * - Checkbox for unanswered/answered questions?
- * - StringToTag not working
- * - testA not outputing
  */ 
 
 
@@ -32,43 +28,34 @@ int main() {
 	BitQA::HTML::displayHeader();
 	cgicc::Cgicc cgi;
 
+	bool filter = false;
+	string searchTerm;
+	
+
 	CgiEnvironment environment = cgi.getEnvironment();
-	if(environment.getRequestMethod() == "POST"){
-		string test = cgi("search");
-		cout << "<h1> " << test << "</h1>" << endl;
-	}	
-
-
-	//Get search term from search bar
-	string searchTerm = "@Leon Bambrick";
-	string testA = " <c++> ";
-	//Why why why
-	cout << "<h3>" << testA << "</h3>";
-	MySearch testObject(testA);
-	//string test = testA.getSearchTerm();
-	cout << "<h1>test1" << testObject.getSearchTerm() << "</h1>" << endl; 
-
-
-    cout << "<form method=\"post\" action=\"\">";  
-    cout << "<div class=\"form-group\">" << "<input type=\"text\" name=\"search\" class=\"form-control\">" << "</div><input class=\"btn btn-primary\" type=\"submit\">";
-    cout << "</form>";
+	
+	cout << "<form method=\"post\" action=\"\">"; 
+	cout << "<div class =\"form=group\">";
+    cout << "<button type=\"submit\" class=\"btn btn-default\"> Filter unanswered </button> " <<endl;
+    cout << "<input type=\"hidden\" name=\"search\" value=\"" << cgi("search") << "\">" << endl;
+    cout << "<input type=\"hidden\" name=\"filterPress\" value=\"true\">" << endl;
+	cout << "</div>";
+	cout << "</form>";
 	
 	
-	//Runs with <php><mysql>
-	testObject.getQuestion();
-	
-
-	
-
 	if(environment.getRequestMethod() == "POST"){		
-
-		//Get search term from search bar
-		string searchTerm;
-		searchTerm = cgi("navbar");
-	
 		
+		//Get search term from search bar
+		searchTerm = cgi("search");
+
 		//Create search object with term
 		MySearch searchObj(searchTerm);
+		
+		bool filter = false;
+		if(cgi("filterPress") == "true") {
+			filter = true;
+		}
+		
 		
 		cout << "<h2> Search results for \"" << searchObj.getSearchTerm() <<  "\"</h2>" << endl;	
 		
@@ -84,9 +71,15 @@ int main() {
 			}
 		}else
 		{
-			searchObj.getQuestion();
+			if(!filter) {
+				searchObj.getQuestion(filter);
+			}else
+			{
+				searchObj.getQuestion(filter);
+			}
 		}
-
+		
+		
 	}
 	
 	BitQA::HTML::displayFooter();	
