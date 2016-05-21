@@ -41,7 +41,7 @@ bool validate(string question)
 
 int main()
 {
-	
+	BitQA::HTML::displayHeader();
 	cgicc::Cgicc cgi;
 	string response = "", questionTitle = "", questionDescription = "", questionTags = "", questionUser = "";
 	auto error = false;
@@ -66,8 +66,6 @@ int main()
 				try {
 					addQuestion(questionTitle, questionDescription, questionTags, questionUser);
 					
-					cout << cgicc::HTTPRedirectHeader(BitQA::HTML::HOST + "/post.html") << endl;
-					
 				} catch(sql::SQLException &e) {
 					error = true;
 					response += "Error storing into Database: " + string(e.what()) + "<br>";
@@ -86,18 +84,18 @@ int main()
 	}
 	
 	{
-		BitQA::HTML::displayHeader();
+		
 		
         cout << "<h1>Post a new question</h1>";
         cout << "<h4>Provide a detailed description, and as many relevant tags to make the question more effective</h4><br>";
         cout << "<form data-ajax=\"false\" method=\"post\">";
         
         cout << "<div class=\"form-group\">" <<
-        "<table> <tr><td>Title:</td><td>" <<
-        "<input type=\"text\" name=\"questionTitle\" class=\"form-control\">" <<
-        questionTitle << "</td> <tr> <td>Description:</td><td>" <<
+        "<table> <tr class='row'><td style='width:300px'>Title:</td><td style='width: 80%'>" <<
+        "<input type=\"text\" name=\"questionTitle\" class=\"form-control\" value='" <<
+        questionTitle << "'></td></tr><tr height='10px'></tr><tr class='row'><td>Description:</td><td>" <<
         "<textarea name=\"questionDescription\" style=\"height: 100px\" class=\"form-control\">" << questionDescription
-        << "</textarea></td></tr><tr><td>Tags:</td><td><textarea name=\"questionTags\" style=\"height: 100px\" class=\"form-control\">" << questionTags <<
+        << "</textarea></td></tr><tr height='10px'></tr><tr class='row'><td>Tags:</td><td><textarea name=\"questionTags\" style=\"height: 100px\" class=\"form-control\">" << questionTags <<
         "</textarea></td></tr></table>"
         
         << "</div><input class=\"btn btn-primary\" type=\"submit\">";
@@ -113,7 +111,7 @@ int main()
 				cout << "</div>";
 			} else {
 				cout << "<div class=\"alert alert-success\">" << endl;
-				cout << "<strong>Success!</strong> Added to Database." << endl;
+				cout << "<strong>Success</strong> Added question. View it <a  href= 'allquestions.html'>here</a>" << endl;
 				cout << "</div>";
 			}
 		}
