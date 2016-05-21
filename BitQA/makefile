@@ -8,6 +8,6 @@ build:
 	g++ -std=c++0x includes/database.cpp includes/md5.cpp includes/html.cpp process/user.cpp drivers/login.cpp -o ../www/login.html -lmysqlcppconn -lcgicc
 	g++ -std=c++0x includes/database.cpp includes/html.cpp drivers/allquestions.cpp -o ../www/allquestions.html -lmysqlcppconn -lcgicc
 	g++ -std=c++0x includes/database.cpp includes/html.cpp process/search.cpp drivers/search.cpp -o ../www/search.html -lmysqlcppconn -lcgicc
-	g++ -std=c++0x includes/database.cpp includes/html.cpp process/user.cpp drivers/profile.cpp -o ../www/profile.html -lmysqlcppconn -lcgicc
+	g++ -std=c++0x includes/database.cpp includes/html.cpp includes/md5.cpp process/user.cpp drivers/profile.cpp -o ../www/profile.html -lmysqlcppconn -lcgicc
 current:
 	g++ -std=c++0x includes/database.cpp includes/html.cpp process/search.cpp drivers/search.cpp -o ../www/search.html -lmysqlcppconn -lcgicc

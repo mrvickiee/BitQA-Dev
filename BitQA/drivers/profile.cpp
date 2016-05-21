@@ -10,6 +10,7 @@
 #include "../includes/html.hpp"
 #include "../includes/database.hpp"
 #include "../process/user.hpp"
+#include "../includes/md5.hpp"
 using namespace std;
 using namespace cgicc;
 
@@ -41,6 +42,9 @@ void getUserInfo(){
     curUser.setLocation(res->getString("location"));
     curUser.setDisplayName(res->getString("displayname"));
     curUser.setAge(res->getInt("age"));
+		cout << "out: " << res->getString("email") << endl;
+		
+	curUser.setEmail(res->getString("email"));
     valid = true;
     }
 }
@@ -62,7 +66,11 @@ int main(){
     cout << "<h2>" ;
     cout << curUser.getDisplayName();
     cout << "</h2>" << endl;
-    cout << "<br><img src=\"/image/cute-tiger.jpg\" alt=\"profile pic\" style=\"width:304px;height:258px;\">" <<endl;
+    cout << "<br><img src=\"";
+		
+	cout << "https://2.gravatar.com/avatar/" << md5(curUser.getEmail()) << "?s=512";
+		
+	cout << "\" alt=\"profile pic\" style=\"width:300px;\">" <<endl;
     cout << "</div>" << endl;
     cout << "<div class=\"col-xs-6\">" << endl;
     cout << "<dl class=\"dl-horizontal\" style=\"margin-top:20%;\">"<< endl;
