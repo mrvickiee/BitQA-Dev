@@ -1,9 +1,6 @@
-function eraseCookie(name) {
-    createCookie(name,"",-1);
-}
+$("#navBarLogout").click(function () {
+	Cookies.remove("username");
+	Cookies.remove("displayname");
 
-var cookies = document.cookie.split(";");
-for (var i = 0; i < cookies.length; i++)
-  eraseCookie(cookies[i].split("=")[0]);
-
-window.location.href="index.html";
+	window.location = "/index.html";
+})

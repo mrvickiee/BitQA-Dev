@@ -84,6 +84,7 @@ void BitQA::HTML::displayHeader(std::string title)
 		<< "<script type=\"text/javascript\" src=\"/includes/javascript/jquery.min.js\"></script>" << endl
 		<< "<script type=\"text/javascript\" src=\"/includes/javascript/bootstrap.min.js\"></script>" << endl
 		<< "<script type=\"text/javascript\" src=\"/includes/javascript/main.js\"></script>" << endl
+		<< "<script type=\"text/javascript\" src=\"/includes/javascript/cookie.js\"></script>" << endl
 	
 		<< head() << endl;
 	
@@ -98,7 +99,7 @@ void BitQA::HTML::displayHeader(std::string title)
 			<< "<a class=\"navbar-brand\" href=\"/\">Bit QA</a>" << endl
 		<< "</div>";
 	
-	cout << "<div id=\"navbar\" class=\"navbar-collapse collapse\"><ul class=\"nav navbar-nav\"><li class=\"active\"><a href=\"/\">Home</a></li><li><a href=\"/post.html\">Post</a></li><li><a href=\"browse.html\">Browse</a></li><li><a href=\"report.html\">Report</a></li>";
+	cout << "<div id=\"navbar\" class=\"navbar-collapse collapse\"><ul class=\"nav navbar-nav\"><li class=\"active\"><a href=\"/\">Home</a></li><li><a href=\"/post.html\">Post</a></li><li><a href=\"allquestions.html\">Browse</a></li><li><a href=\"report.html\">Report</a></li>";
 	cout << "</ul>";
 	
 	cout << "<div class=\"col-sm-3 col-md-3 pull-right\"><form action=\"search.html\" method=\"post\" class=\"navbar-form\" role=\"search\"><div class=\"input-group\"><input type=\"text\" class=\"form-control\" placeholder=\"Search\" name=\"search\" id=\"search\"><div class=\"input-group-btn\"><button class=\"btn btn-default\" type=\"submit\"><i class=\"glyphicon glyphicon-search\"></i></button></div></div></form></div>";
