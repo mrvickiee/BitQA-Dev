@@ -9,6 +9,61 @@ using namespace std;
 	const string BitQA::HTML::HOST = "https://csci222.com";
 #endif
 
+bool BitQA::HTML::getLoggedInStatus()
+{
+	Cgicc cgicc;
+	CgiEnvironment environment = cgicc.getEnvironment();
+	const_cookie_iterator cci;
+	
+	for (cci = environment.getCookieList().begin();
+		 cci != environment.getCookieList().end();
+		 cci++) {
+		if (cci->getName() == "username") {
+			if (cci->getValue().length() > 0) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+	}
+	
+	return false;
+}
+
+string BitQA::HTML::getDisplayName()
+{
+	Cgicc cgicc;
+	CgiEnvironment environment = cgicc.getEnvironment();
+	const_cookie_iterator cci;
+	
+	for (cci = environment.getCookieList().begin();
+		 cci != environment.getCookieList().end();
+		 cci++) {
+		if (cci->getName() == "displayname") {
+			return cci->getValue();
+		}
+	}
+	
+	return "";
+}
+
+string BitQA::HTML::getUsername()
+{
+	Cgicc cgicc;
+	CgiEnvironment environment = cgicc.getEnvironment();
+	const_cookie_iterator cci;
+	
+	for (cci = environment.getCookieList().begin();
+		 cci != environment.getCookieList().end();
+		 cci++) {
+		if (cci->getName() == "username") {
+			return cci->getValue();
+		}
+	}
+	
+	return "";
+}
+
 void BitQA::HTML::displayHeader(std::string title)
 {
 	cout << HTTPHTMLHeader() << endl
@@ -48,7 +103,18 @@ void BitQA::HTML::displayHeader(std::string title)
 	
 	cout << "<div class=\"col-sm-3 col-md-3 pull-right\"><form action=\"search.html\" method=\"post\" class=\"navbar-form\" role=\"search\"><div class=\"input-group\"><input type=\"text\" class=\"form-control\" placeholder=\"Search\" name=\"search\" id=\"search\"><div class=\"input-group-btn\"><button class=\"btn btn-default\" type=\"submit\"><i class=\"glyphicon glyphicon-search\"></i></button></div></div></form></div>";
 	
-	cout << "<ul class=\"nav navbar-nav navbar-right\"><li><a href=\"login.html\">Login</a></li><li><a href=\"signup.html\">Signup</a></li><li><a>Liam Frappell</a></li></ul>";
+	cout << "<ul class=\"nav navbar-nav navbar-right\">";
+	
+	if (BitQA::HTML::getLoggedInStatus()) {
+		cout << "<li><a href=\"/profile.html?username="
+			<< BitQA::HTML::getUsername()
+			<< "\">Welcome, "
+			<< BitQA::HTML::getDisplayName() << "</a></li>";
+	} else {
+		cout << "<li><a href=\"login.html\">Login</a></li><li><a href=\"signup.html\">Signup</a></li>";
+	}
+	
+	cout << "</ul>";
 	
 	cout << "</div></div></nav>";
 	
