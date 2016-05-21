@@ -32,11 +32,20 @@ int main(){
 		
 		con->setSchema(BitQA::Database::SCHEMA);
 		
+		int pageNum = 0;
+		
+		//get max page num
+		
+		
 		int fromVal, toVal;
-		if (cgicc("page") == "")
+		if (cgicc("page") == ""){
 			fromVal = 0;
-		else
+			pageNum = 1;
+		}
+		else{
 			fromVal = ((stoi(cgicc("page")) -1) * 100);
+			pageNum = stoi(cgicc("page"));
+		}
 		
 		
 		if (fromVal < 0) {
@@ -57,9 +66,25 @@ int main(){
 		while (res->next()) {
 			cout << "<div class=\"panel panel-default\"><div class=\"panel-body\">" << endl;
 			cout << "<h4><a href='question.html?id=" << res->getString("id") <<  "'>" <<  res->getString("questionTitle") << endl;
-			cout << "</a></h4>Description</div></div>" << endl;
+			cout << "</a></h4>" << "Information" << "</div></div>" << endl;
 			
 		}
+		
+		cout << "<br>" << endl;
+		
+		//pagination
+		cout << "<nav>" <<
+		"<ul class='pagination'>" <<
+		"<li>" <<
+		"<a href='allquestions.html?page=" << ((pageNum-1) < 1 ? 1 : pageNum-1) <<"'aria-label='Previous'>" <<
+		"<span aria-hidden='true'>&laquo;</span>" <<
+		"</a></li>" <<
+		"<li><a href='allquestions.html?page=" << pageNum + 1 <<"' aria-label='Next'>" <<
+		"<span aria-hidden='true'>&raquo;</span>" <<
+		"</a>" <<
+		"</li>" <<
+		"</ul>" <<
+		"</nav>"  << endl;
 		
 		
 		delete prep_stmt;
