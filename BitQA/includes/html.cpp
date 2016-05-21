@@ -109,7 +109,8 @@ void BitQA::HTML::displayHeader(std::string title)
 		cout << "<li><a href=\"/profile.html?username="
 			<< BitQA::HTML::getUsername()
 			<< "\">Welcome, "
-			<< BitQA::HTML::getDisplayName() << "</a></li>";
+			<< BitQA::HTML::getDisplayName() << "</a></li>"
+			<< "<li><a id=\"navBarLogout\" href=\"#\">Logout</a></li>";
 	} else {
 		cout << "<li><a href=\"login.html\">Login</a></li><li><a href=\"signup.html\">Signup</a></li>";
 	}
@@ -125,7 +126,8 @@ void BitQA::HTML::displayHeader(std::string title)
 
 void BitQA::HTML::displayFooter()
 {
-	cout << "</div>" << endl
+	cout << "</div>" << endl;
+	cout << "<script src=\"/includes/javascript/logout.js\" type=\"text/javascript\"></script>"
 		<< body() << endl
 		<< html() << endl;
 }

@@ -4,57 +4,33 @@
 using namespace std;
 using namespace cgicc;
 
-void selectFromDB()
+void printKnownUser()
 {
-	try {
-		sql::Driver *driver;
-		sql::Connection *con;
-		sql::Statement *stmt;
-		sql::ResultSet *res;
-		
-		
-		driver = get_driver_instance();
-		con = driver->connect(BitQA::Database::HOST,
-							  BitQA::Database::USERNAME,
-							  BitQA::Database::PASSWORD
-							  );
-		
-		con->setSchema(BitQA::Database::SCHEMA);
-		
-		stmt = con->createStatement();
-		
-		cout << "<p>Query: <code>SELECT 'Hello World!' AS _message</code>:</p>";
-		res = stmt->executeQuery("SELECT 'Hello World!' AS _message");
-		
-		while (res->next()) {
-			cout << "<p>Response: <span class=\"label label-success\">" << res->getString("_message") << "</span></p>" << endl;
-		}
-		
-		delete res;
-		delete stmt;
-		delete con;
-		
-	} catch (sql::SQLException &e) {
-		cout << "<p>Response Test Change: <span class=\"label label-danger\">Error " << e.getErrorCode() << "</span></p>" << endl;
-	}
+	cout << "<h5>Welcome back, <span>" << BitQA::HTML::getDisplayName() << "</span></h5>" << endl;
+	cout << "<br><br><iframe width=\"853\" height=\"480\" src=\"https://www.youtube.com/embed/b_KfnGBtVeA?rel=0&amp;controls=0&amp;showinfo=0&amp;autoplay=1\" frameborder=\"0\" allowfullscreen></iframe>";
+}
+
+void printUnknownUser()
+{
+	cout << "<h5>The world's greatest StackOverflow Clone.</h5>";
+	cout << "<p><a href=\"/login.html\">Login</a> or <a href=\"/signup.html\">Signup</a> to get started</p>";
+	cout << "<br><br><iframe width=\"853\" height=\"480\" src=\"https://www.youtube.com/embed/b_KfnGBtVeA?rel=0&amp;controls=0&amp;showinfo=0&amp;autoplay=1\" frameborder=\"0\" allowfullscreen></iframe>";
 }
 
 int main()
 {
 	BitQA::HTML::displayHeader();
 	
-	cout << "<div class=\"row\">";
+	cout << "<center><div class=\"row\">";
+	cout << "<h1>Bit QA - The World's Questions</h1>";
 	
-	cout << "<h1>Welcome to Bit QA, <span>Liam</span></h1>" << endl
-		<< "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempus blandit metus, id aliquet orci lacinia eget. Sed quis tempor turpis. In ornare lacus ut lacus tincidunt, nec euismod dolor tristique.</p>" << endl;
+	if (BitQA::HTML::getLoggedInStatus()) {
+		printKnownUser();
+	} else {
+		printUnknownUser();
+	}
 	
-	cout << "<h3>Attempting DB Connection</h3>" << endl;
-	
-	selectFromDB();
-	
-	cout << "<iframe width =\"560\" height=\"315\" src =\"https://www.youtube.com//embed/kqPGImLF0m0\" frameborder=\"0\" allowfullscreen></iframe>";
-	
-	cout << "</div>" << endl;
+	cout << "</div></center>" << endl;
 	
 	BitQA::HTML::displayFooter();
 	
