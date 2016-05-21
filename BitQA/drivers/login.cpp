@@ -67,7 +67,6 @@ bool verifyUser(string username, string password){
 int main(){
     
     cgicc::Cgicc cgi;
-	BitQA::HTML::displayHeader("Login", cgi);
     
     string username,password;
     
@@ -104,6 +103,8 @@ int main(){
     }
     
     {
+		
+		BitQA::HTML::displayHeader("Login", cgi);
         
         User usr;
         string date = usr.getDate();
