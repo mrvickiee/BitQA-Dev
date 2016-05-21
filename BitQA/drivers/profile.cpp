@@ -42,8 +42,6 @@ void getUserInfo(){
     curUser.setLocation(res->getString("location"));
     curUser.setDisplayName(res->getString("displayname"));
     curUser.setAge(res->getInt("age"));
-		cout << "out: " << res->getString("email") << endl;
-		
 	curUser.setEmail(res->getString("email"));
     valid = true;
     }
