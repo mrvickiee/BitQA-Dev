@@ -33,18 +33,24 @@ void getUserInfo(){
                           );
     
     con->setSchema(BitQA::Database::SCHEMA);
-    prep_stmt = con->prepareStatement("SELECT * FROM tblUser where username = ?");
+    prep_stmt = con->prepareStatement("SELECT *, (select tags from tblUserTags where id = A.id) as 'UserTag', (select reputation from tblUserReputation where id = A.id) as 'Reputation' from tblUser A where username = ?");
     prep_stmt->setString(1, currUsername);
     res = prep_stmt->executeQuery();
     
     if(res->next()){            //get user info and populate
-    curUser.setUsername(currUsername);
-    curUser.setLocation(res->getString("location"));
-    curUser.setDisplayName(res->getString("displayname"));
-    curUser.setAge(res->getInt("age"));
-	curUser.setEmail(res->getString("email"));
-    valid = true;
+        curUser.setUsername(currUsername);
+        curUser.setLocation(res->getString("location"));
+        curUser.setDisplayName(res->getString("displayname"));
+        curUser.setAge(res->getInt("age"));
+        curUser.setEmail(res->getString("email"));
+        curUser.setTag(res->getString("UserTag"));
+        curUser.setReputation(res->getInt("Reputation"));
+        
+        valid = true;
     }
+    
+    delete prep_stmt;
+    delete con;
 }
 
 
@@ -89,9 +95,13 @@ int main(){
     cout << curUser.getAge();
     cout << "</dd>" << endl;
     cout << "<dt>Tags of interest</dt>" << endl;
-    cout << "<dd></dd>" << endl;
+    cout << "<dd>";
+    cout << curUser.getTag();
+    cout <<"</dd>" << endl;
     cout << "<dt>Reputation point</dt>" << endl;
-    cout << "<dd></dd>" << endl;
+    cout << "<dd>";
+    cout << curUser.getReputation();
+    cout << "</dd>" << endl;
     cout << "<dt>Roles</dt>" << endl;
     cout << "<dd></dd>" << endl;
     cout << "</div>" << endl;

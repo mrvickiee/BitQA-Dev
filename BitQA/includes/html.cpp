@@ -109,6 +109,7 @@ void BitQA::HTML::displayHeader(std::string title, Cgicc cgicc)
 			<< BitQA::HTML::getUsername(cgicc)
 			<< "\">Welcome, "
 			<< BitQA::HTML::getDisplayName(cgicc) << "</a></li>"
+            <<"<li><a href=\"/editprofile.html\">Edit profile</a></li>"
 			<< "<li><a id=\"navBarLogout\" href=\"#\">Logout</a></li>";
 	} else {
 		cout << "<li><a href=\"login.html\">Login</a></li><li><a href=\"signup.html\">Signup</a></li>";

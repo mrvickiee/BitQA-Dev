@@ -19,7 +19,7 @@ using namespace cgicc;
 void addUser(User user){
     sql::Driver *driver;
     sql::Connection *con;
-    sql::PreparedStatement *prep_stmt, *prep_stmt2;
+    sql::PreparedStatement *prep_stmt, *prep_stmt2, *prep_stmt3;
     
     driver = get_driver_instance();
     con = driver->connect(BitQA::Database::HOST,
@@ -46,7 +46,11 @@ void addUser(User user){
     prep_stmt2->setString(2, user.getTag());
     prep_stmt2->executeUpdate();
     
-    delete prep_stmt;
+    prep_stmt3 = con->prepareStatement("Insert into tblUserReputation values(?,0,0)");
+    prep_stmt3->setInt(1, user.getID());
+    prep_stmt3->executeUpdate();
+    
+    delete prep_stmt,prep_stmt2,prep_stmt3;
     delete con;
 }
 
@@ -154,7 +158,7 @@ int main(){
                 age = atoi(ageString.c_str());
                 User newUser = User(username, md5(password), email, tags, age, location,displayName);
                 addUser(newUser);
-                cout << cgicc::HTTPRedirectHeader(BitQA::HTML::HOST + "/signup.html") << endl;
+                cout << cgicc::HTTPRedirectHeader(BitQA::HTML::HOST + "/login.html") << endl;
             }else{
                 error = true;
                 
@@ -168,6 +172,7 @@ int main(){
             response += "Error creating account: " + string(e.what()) + "<br>";
         }
     
+        
         
     }
     
