@@ -214,6 +214,10 @@ string BitQA::Question::getVotes()
 	return votes;
 }
 
+string BitQA::Question::getQuestionID(){
+	return to_string(QuestionID);
+}
+
 string BitQA::Question::getUsername()
 {
 	string username = "";
