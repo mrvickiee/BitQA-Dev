@@ -54,11 +54,31 @@ int main()
 		
 		// Get Question
 		try {
+			CgiEnvironment environment = cgi.getEnvironment();
+			const_cookie_iterator cci;
+			
+			string userName = "";
+			string displayName = "";
+			
+			for (cci = environment.getCookieList().begin();
+				 cci != environment.getCookieList().end();
+				 cci++) {
+				if (cci->getName() == "username") {
+					userName = cci->getValue();
+				} else if (cci->getName() == "displayname") {
+					displayName = cci->getValue();
+				}
+			}
+			
+			if (userName == "") {
+				error = true;
+				response += "User not logged in. <a href='login.html'>Login</a> first.\n";
+			}
+			
 			questionTitle = cgi("questionTitle");
             questionDescription = cgi("questionDescription");
             questionTags = cgi("questionTags");
-            //questionUser = cgi("questionUser"); //GET FROM COOKIE
-            questionUser = "100";
+            questionUser = userName;
 			
 			// Check response
 			if (validate(questionTitle) && validate(questionDescription) && validate(questionTags)) {
