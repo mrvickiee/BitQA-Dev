@@ -23,6 +23,7 @@ private:
     string displayName;
     string password;
     string email;
+    int reputation;
     string tagInterest;
     time_t creationDate;
     
@@ -34,6 +35,7 @@ public:
     string getEmail();
     string getTag();
     int getID();
+    void setID(int);
     int generateID();
     string getLocation();
     string getDisplayName();
@@ -45,7 +47,8 @@ public:
     void setDisplayName(string);
     void setEmail(string);
     void setTag(string);
-    
+    void setReputation(int);
+    int getReputation();
     
     
 };

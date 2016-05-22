@@ -23,6 +23,7 @@ User::User(string username, string password, string email, string tag, int age, 
     id = generateID();
     this->location = location;
     this->displayName = displayName;
+    reputation = 0;
 }
 
 string User::getUsername(){
@@ -123,6 +124,20 @@ void User::setEmail(string email){
     this->email = email;
 }
 
+void User::setID(int id){
+    this->id = id;
+}
+
 void User::setTag(string tag){
     this->tagInterest = tag;
 }
+
+
+void User::setReputation(int point){
+    reputation = point;
+}
+
+int User::getReputation(){
+    return reputation;
+}
+
