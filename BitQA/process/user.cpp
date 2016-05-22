@@ -93,9 +93,7 @@ int User::generateID(){
         }
     }
     
-    
     id += 1;
-    
     
     
     return id;
