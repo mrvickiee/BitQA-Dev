@@ -21,6 +21,7 @@ namespace BitQA
 		string getUsername();
 		vector<Comment> getComments();
 		string getQuestionContentID();
+		string getQuestionID();
 		
 		
 	private:
