@@ -19,7 +19,7 @@ using namespace cgicc;
 void addUser(User user){
     sql::Driver *driver;
     sql::Connection *con;
-    sql::PreparedStatement *prep_stmt;
+    sql::PreparedStatement *prep_stmt, *prep_stmt2;
     
     driver = get_driver_instance();
     con = driver->connect(BitQA::Database::HOST,
@@ -29,7 +29,7 @@ void addUser(User user){
     
     con->setSchema(BitQA::Database::SCHEMA);
     
-    prep_stmt = con->prepareStatement("Insert into tblUser values(?,?,?,?,NOW(),?,?)");
+    prep_stmt = con->prepareStatement("Insert into tblUser values(?,?,?,?,NOW(),?,?,?,0)");
     
     prep_stmt->setInt(1,user.getID());
     prep_stmt->setString(2,user.getUsername());
@@ -37,8 +37,14 @@ void addUser(User user){
     prep_stmt->setString(4,user.getDisplayName());
     prep_stmt->setInt(5, user.getAge());
     prep_stmt->setString(6, user.getLocation());
+    prep_stmt->setString(7, user.getEmail());
     
     prep_stmt->executeUpdate();
+    
+    prep_stmt2 = con->prepareStatement("Insert into tblUserTags values(?,?,0)");
+    prep_stmt2->setInt(1, user.getID());
+    prep_stmt2->setString(2, user.getTag());
+    prep_stmt2->executeUpdate();
     
     delete prep_stmt;
     delete con;
@@ -49,22 +55,25 @@ bool checkUsername(string username){
     sql::Connection *con;
     sql::PreparedStatement *prep_stmt;
     sql::ResultSet *res;
-    
-    driver = get_driver_instance();
-    con = driver->connect(BitQA::Database::HOST,
-                          BitQA::Database::USERNAME,
-                          BitQA::Database::PASSWORD
-                          );
-    
-    con->setSchema(BitQA::Database::SCHEMA);
-    prep_stmt = con->prepareStatement("SELECT * FROM tblUser where username = ?");
-    prep_stmt->setString(1, username);
-    
     bool unique = false;
-    res = prep_stmt->executeQuery();
-   
-    if(res->rowsCount() == 0){
-        unique = true;
+    
+    if(!isspace(username.at(0))){
+        driver = get_driver_instance();
+        con = driver->connect(BitQA::Database::HOST,
+                              BitQA::Database::USERNAME,
+                              BitQA::Database::PASSWORD
+                              );
+        
+        con->setSchema(BitQA::Database::SCHEMA);
+        prep_stmt = con->prepareStatement("SELECT * FROM tblUser where username = ?");
+        prep_stmt->setString(1, username);
+        
+        
+        res = prep_stmt->executeQuery();
+       
+        if(res->rowsCount() == 0){
+            unique = true;
+        }
     }
     
     return unique;
@@ -106,7 +115,32 @@ int main(){
             if(!checkUsername(username)){
                 success = false;
                 response += "<br>Username is not unique!";
+            }else{
+                bool gotSpace = false;
+                
+                for(int i = 0 ; i< username.size() ; i++){
+                    if(isspace(username.at(i))){
+                        gotSpace = true;
+                        break;
+                    }
+                }
+                
+                if(gotSpace){
+                    success = false;
+                    response += "<br>Username must not contain space!";
+                }
             }
+            
+            if(displayName.size() == 0 || isspace(displayName.at(0))){
+                success = false;
+                response += "<br>Please enter preferred display name!";
+            }
+            
+            if(email.size() == 0  || isspace(email.at(0))){
+                success = false;
+                response += "<br>Please enter email address!";
+            }
+            
             
             for(int i =0; i< ageString.size();i++){
                 if(!isdigit(ageString[i])){
@@ -197,7 +231,7 @@ int main(){
     cout << "<div class=\"form-group\">" << endl;
     
     cout << "<label for= \"age\"> Age </label>" << endl;
-    cout << "<input type=\"date\" class=\"form-control\" id=\"age\" name=\"age\" placeholder = \"Enter age\"> " << endl;
+    cout << "<input type=\"number\" min=\"1\" max = \"99\" class=\"form-control\" id=\"age\" name=\"age\" placeholder = \"Enter age\"> " << endl;
     
     cout << "</div>" << endl;
         
