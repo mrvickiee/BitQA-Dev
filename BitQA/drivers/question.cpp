@@ -350,8 +350,13 @@ void processPOST(int id, Cgicc cgicc, bool &exit)
 					cout << "<div class=\"alert alert-success alert-dismissible\" role=\"alert\">";
 					cout << "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">";
 					cout << "<span aria-hidden=\"true\">&times;</span></button>";
-					cout << "<strong>Question Deleted</strong> successfully</div>";
+					cout << "<strong>Question Deleted successfully</strong>, browse more <a href='allquestions.html'>here</a></div>";
 					exit = true;
+				} else {
+					cout << "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\">";
+					cout << "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">";
+					cout << "<span aria-hidden=\"true\">&times;</span></button>";
+					cout << "<strong>Question Not Deleted</strong> successfully</div>";
 				}
 			
 			} else {
