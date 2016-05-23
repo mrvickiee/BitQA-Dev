@@ -259,16 +259,18 @@ void getAnswerStack(int id, Cgicc cgicc)
 			
 			stmt = con->createStatement();
 			
-			res = stmt->executeQuery("CALL ProcGetOwner('C', " + commentList[i].getCommentIDStr() + ");");
+			res = stmt->executeQuery("CALL ProcGetOwner('C', " + commentList[j].getCommentIDStr() + ");");
 			
 			res->next();
 			
 			string qryOwner = res->getString("owner");
 			
+			//cout << "comid: " << commentList[j].getCommentID() << " usr:" << userName << endl;
+			
 			if (qryOwner == userName) {
 				cout << "<form method='post'>" << endl;
 				cout << "<input type=\"hidden\" name=\"type\" value=\"delcomment\">";
-				cout << "<input type=\"hidden\" name=\"commentid\" value=\"" << commentList[i].getCommentID() <<"\">";
+				cout << "<input type=\"hidden\" name=\"commentid\" value=\"" << commentList[j].getCommentID() <<"\">";
 				cout << "<input class='btn btn-default btn-sm' type='submit' value=&#10060;>" << endl;
 				
 				cout << "</form>" << endl;
