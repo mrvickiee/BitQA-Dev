@@ -158,7 +158,7 @@ int main(){
                 age = atoi(ageString.c_str());
                 User newUser = User(username, md5(password), email, tags, age, location,displayName);
                 addUser(newUser);
-                cout << cgicc::HTTPRedirectHeader(BitQA::HTML::HOST + "/login.html") << endl;
+                cout << "<script>location.href=\"/login.html\";</script>" << endl;
             }else{
                 error = true;
                 
