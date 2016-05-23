@@ -14,7 +14,7 @@ void printUnknownUser()
 {
 	cout << "<h5>The world's greatest StackOverflow Clone.</h5>";
 	cout << "<p><a href=\"/login.html\">Login</a> or <a href=\"/signup.html\">Signup</a> to get started</p>";
-	cout << "<br><br><iframe width=\"1280\" height=\"720\" src=\"https://www.youtube.com/embed/tD4HCZe-tew?rel=0&amp;showinfo=0\" frameborder=\"0\" allowfullscreen></iframe>";
+	cout << "<br><br><iframe width=\"853\" height=\"480\" src=\"https://www.youtube.com/embed/tD4HCZe-tew?rel=0&amp;showinfo=0\" frameborder=\"0\" allowfullscreen></iframe>";
 }
 
 int main()
