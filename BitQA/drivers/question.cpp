@@ -166,6 +166,23 @@ void getQuestionStack(int id, Cgicc cgicc)
 
 void getAnswerStack(int id, Cgicc cgicc)
 {
+	//check ownership and display
+	CgiEnvironment environment = cgicc.getEnvironment();
+	const_cookie_iterator cci;
+	
+	string userName = "";
+	string displayName = "";
+	
+	for (cci = environment.getCookieList().begin();
+		 cci != environment.getCookieList().end();
+		 cci++) {
+		if (cci->getName() == "username") {
+			userName = cci->getValue();
+		} else if (cci->getName() == "displayname") {
+			displayName = cci->getValue();
+		}
+	}
+
 	vector<BitQA::Answer> answerList;
 	
 	sql::Driver *driver;
@@ -208,6 +225,41 @@ void getAnswerStack(int id, Cgicc cgicc)
 		cout << "<div class=\"col-xs-8 col-sm-8 col-md-8 col-lg-8\">";
 		cout << "<br><p>" << answerList[i].getDetails() << "</p>";
 		cout << "<p><i><b>Answered by " << answerList[i].getUsername() << "</i></b></p>";
+		
+		//-----Delete comment
+		sql::Driver *driver;
+		sql::Connection *con;
+		sql::Statement *stmt;
+		sql::ResultSet *res;
+		
+		
+		driver = get_driver_instance();
+		con = driver->connect(BitQA::Database::HOST,
+							  BitQA::Database::USERNAME,
+							  BitQA::Database::PASSWORD
+							  );
+		
+		con->setSchema(BitQA::Database::SCHEMA);
+		
+		stmt = con->createStatement();
+		
+		res = stmt->executeQuery("CALL ProcGetOwner('A', " + to_string(answerList[i].getAnswerID()) + ");");
+		
+		res->next();
+		
+		string qryOwner = res->getString("owner");
+		
+		if (qryOwner == userName) {
+			cout << "<form method='post'>" << endl;
+			cout << "<input type=\"hidden\" name=\"type\" value=\"delanswer\">";
+			cout << "<input type=\"hidden\" name=\"answerid\" value=\"" << answerList[i].getAnswerID() <<"\">";
+			cout << "<input class='btn btn-default btn-sm' type='submit' value=&#10060;>" << endl;
+			
+			cout << "</form>" << endl;
+		}
+		
+		//-----
+		
 		cout << "</div>";
 		cout << "</div></div>";
 		
@@ -224,6 +276,43 @@ void getAnswerStack(int id, Cgicc cgicc)
 			cout << "<div class=\"col-xs-5 col-sm-5 col-md-5 col-lg-5\">";
 			cout << "<p>" << commentList[j].getDetails() << "</p>";
 			cout << "<p><b>Comment by " << commentList[j].getUsername() << "</b></p>";
+			
+			//-----Delete comment
+			sql::Driver *driver;
+			sql::Connection *con;
+			sql::Statement *stmt;
+			sql::ResultSet *res;
+			
+			
+			driver = get_driver_instance();
+			con = driver->connect(BitQA::Database::HOST,
+								  BitQA::Database::USERNAME,
+								  BitQA::Database::PASSWORD
+								  );
+			
+			con->setSchema(BitQA::Database::SCHEMA);
+			
+			stmt = con->createStatement();
+			
+			res = stmt->executeQuery("CALL ProcGetOwner('C', " + commentList[j].getCommentIDStr() + ");");
+			
+			res->next();
+			
+			string qryOwner = res->getString("owner");
+			
+			//cout << "comid: " << commentList[j].getCommentID() << " usr:" << userName << endl;
+			
+			if (qryOwner == userName) {
+				cout << "<form method='post'>" << endl;
+				cout << "<input type=\"hidden\" name=\"type\" value=\"delcomment\">";
+				cout << "<input type=\"hidden\" name=\"commentid\" value=\"" << commentList[j].getCommentID() <<"\">";
+				cout << "<input class='btn btn-default btn-sm' type='submit' value=&#10060;>" << endl;
+				
+				cout << "</form>" << endl;
+			}
+			
+			//-----
+			
 			cout << "<hr>";
 			cout << "</div>";
 			cout << "</div>";
@@ -343,6 +432,44 @@ void processPOST(int id, Cgicc cgicc, bool &exit)
 				cout << "<span aria-hidden=\"true\">&times;</span></button>";
 				cout << "<strong>Success!</strong> Posted Comment Successfully!</div>";
 				
+			} else if(postType == "delanswer"){
+				sql::Driver *driver;
+				sql::Connection *con;
+				sql::Statement *stmt;
+				sql::ResultSet *res;
+				
+				
+				driver = get_driver_instance();
+				con = driver->connect(BitQA::Database::HOST,
+									  BitQA::Database::USERNAME,
+									  BitQA::Database::PASSWORD
+									  );
+				
+				con->setSchema(BitQA::Database::SCHEMA);
+				
+				stmt = con->createStatement();
+				
+				string deleteId = cgicc("answerid");
+				
+				//cout << "del:" << deleteId << endl;
+				
+				res = stmt->executeQuery("CALL ProcDeleteContent('A', " + deleteId + ", '" + userName + "');");
+				
+				res->next();
+				string qryResult = res->getString("result");
+				if (qryResult == "OK") {
+					
+					cout << "<div class=\"alert alert-success alert-dismissible\" role=\"alert\">";
+					cout << "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">";
+					cout << "<span aria-hidden=\"true\">&times;</span></button>";
+					cout << "<strong>Answer Deleted successfully</strong></div>";
+				} else {
+					cout << "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\">";
+					cout << "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">";
+					cout << "<span aria-hidden=\"true\">&times;</span></button>";
+					cout << "<strong>Answer Not Deleted</strong> successfully</div>";
+				}
+			
 			} else if (postType == "delquestion"){
 				
 				CgiEnvironment environment = cgicc.getEnvironment();
@@ -416,9 +543,6 @@ void processPOST(int id, Cgicc cgicc, bool &exit)
 				string deleteId = cgicc("commentid");
 				
 				res = stmt->executeQuery("CALL ProcDeleteContent('C', " + deleteId + ", '" + userName + "');");
-				
-				
-				cout << "delid: " << deleteId << " user: " << userName << endl;
 				
 				res->next();
 				string qryResult = res->getString("result");
