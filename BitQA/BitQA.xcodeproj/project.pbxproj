@@ -23,6 +23,11 @@
 		1A4EA28C1CDF64A400143486 /* database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AC771871CD8FA1B005D3D41 /* database.cpp */; };
 		1A4EA28D1CDF64BE00143486 /* html.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA8F0E1CC6737D00E19ADD /* html.cpp */; };
 		1A4EA28F1CDF64DC00143486 /* question.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4EA28E1CDF64DC00143486 /* question.cpp */; };
+		1A4FEAEA1CF353C8007AAF64 /* libmysqlcppconn.7.1.1.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A643A341CC29CCC008C1AC5 /* libmysqlcppconn.7.1.1.6.dylib */; };
+		1A4FEAEB1CF353CD007AAF64 /* libcgicc.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A643A391CC2A228008C1AC5 /* libcgicc.3.dylib */; };
+		1A4FEAEE1CF353EF007AAF64 /* json.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4FEAEC1CF353EF007AAF64 /* json.cpp */; };
+		1A4FEAF01CF3540D007AAF64 /* vote.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4FEAEF1CF3540D007AAF64 /* vote.cpp */; };
+		1A4FEAF11CF354B2007AAF64 /* html.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA8F0E1CC6737D00E19ADD /* html.cpp */; };
 		1A990CE01CE71520007F8B88 /* libmysqlcppconn.7.1.1.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A643A341CC29CCC008C1AC5 /* libmysqlcppconn.7.1.1.6.dylib */; };
 		1A990CE11CE71523007F8B88 /* libcgicc.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A643A391CC2A228008C1AC5 /* libcgicc.3.dylib */; };
 		1A990CE71CE715A1007F8B88 /* search.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A990CE51CE7159D007F8B88 /* search.cpp */; };
@@ -97,6 +102,15 @@
 			runOnlyForDeploymentPostprocessing = 1;
 		};
 		1A4EA27E1CDF644F00143486 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		1A4FEAE01CF352F3007AAF64 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -186,6 +200,10 @@
 		1A4EA2891CDF647A00143486 /* question.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = question.cpp; path = process/question.cpp; sourceTree = "<group>"; };
 		1A4EA28A1CDF647A00143486 /* question.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = question.hpp; path = process/question.hpp; sourceTree = "<group>"; };
 		1A4EA28E1CDF64DC00143486 /* question.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = question.cpp; path = drivers/question.cpp; sourceTree = "<group>"; };
+		1A4FEAE21CF352F3007AAF64 /* vote.html */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = vote.html; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A4FEAEC1CF353EF007AAF64 /* json.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = json.cpp; path = includes/json.cpp; sourceTree = "<group>"; };
+		1A4FEAED1CF353EF007AAF64 /* json.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = json.hpp; path = includes/json.hpp; sourceTree = "<group>"; };
+		1A4FEAEF1CF3540D007AAF64 /* vote.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vote.cpp; path = api/vote.cpp; sourceTree = "<group>"; };
 		1A643A341CC29CCC008C1AC5 /* libmysqlcppconn.7.1.1.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmysqlcppconn.7.1.1.6.dylib; path = "/usr/local/Cellar/mysql-connector-c++/1.1.6_1/lib/libmysqlcppconn.7.1.1.6.dylib"; sourceTree = "<absolute>"; };
 		1A643A371CC29DD1008C1AC5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		1A643A391CC2A228008C1AC5 /* libcgicc.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcgicc.3.dylib; path = /usr/local/Cellar/cgicc/lib/libcgicc.3.dylib; sourceTree = "<absolute>"; };
@@ -255,6 +273,15 @@
 			files = (
 				1A4EA2871CDF645A00143486 /* libmysqlcppconn.7.1.1.6.dylib in Frameworks */,
 				1A4EA2881CDF645C00143486 /* libcgicc.3.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A4FEADF1CF352F3007AAF64 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A4FEAEA1CF353C8007AAF64 /* libmysqlcppconn.7.1.1.6.dylib in Frameworks */,
+				1A4FEAEB1CF353CD007AAF64 /* libcgicc.3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,6 +360,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A4FEADB1CF352BB007AAF64 /* api */ = {
+			isa = PBXGroup;
+			children = (
+				1A4FEAEF1CF3540D007AAF64 /* vote.cpp */,
+			);
+			name = api;
+			sourceTree = "<group>";
+		};
 		1A643A361CC29CE0008C1AC5 /* libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -372,6 +407,7 @@
 				1AC7718B1CD90410005D3D41 /* index.php */,
 				1A830D091CBF74280031C529 /* process */,
 				1ACA8F0A1CC6733600E19ADD /* includes */,
+				1A4FEADB1CF352BB007AAF64 /* api */,
 				1A944B721CBF5EB100C63F00 /* drivers */,
 				1A944B5E1CBF5D0300C63F00 /* Products */,
 				1A643A361CC29CE0008C1AC5 /* libraries */,
@@ -392,6 +428,7 @@
 				1A990CEF1CE742DB007F8B88 /* profile.html */,
 				1A9AB8A81CE97F0B00578B9A /* report.html */,
 				3972D86D1CF1E0A400B9B011 /* editprofile.html */,
+				1A4FEAE21CF352F3007AAF64 /* vote.html */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -423,6 +460,8 @@
 				1AC771871CD8FA1B005D3D41 /* database.cpp */,
 				398A78171CE40AD300487375 /* md5.hpp */,
 				398A78181CE40AEA00487375 /* md5.cpp */,
+				1A4FEAED1CF353EF007AAF64 /* json.hpp */,
+				1A4FEAEC1CF353EF007AAF64 /* json.cpp */,
 			);
 			name = includes;
 			sourceTree = "<group>";
@@ -479,6 +518,23 @@
 			name = question.html;
 			productName = question.html;
 			productReference = 1A4EA2801CDF644F00143486 /* question.html */;
+			productType = "com.apple.product-type.tool";
+		};
+		1A4FEAE11CF352F3007AAF64 /* vote.html */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A4FEAE61CF352F3007AAF64 /* Build configuration list for PBXNativeTarget "vote.html" */;
+			buildPhases = (
+				1A4FEADE1CF352F3007AAF64 /* Sources */,
+				1A4FEADF1CF352F3007AAF64 /* Frameworks */,
+				1A4FEAE01CF352F3007AAF64 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = vote.html;
+			productName = vote.html;
+			productReference = 1A4FEAE21CF352F3007AAF64 /* vote.html */;
 			productType = "com.apple.product-type.tool";
 		};
 		1A990CD81CE71517007F8B88 /* search.html */ = {
@@ -635,6 +691,9 @@
 					1A4EA27F1CDF644F00143486 = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
+					1A4FEAE11CF352F3007AAF64 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
 					1A990CD81CE71517007F8B88 = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
@@ -684,6 +743,7 @@
 				1A990CEE1CE742DB007F8B88 /* profile.html */,
 				1A9AB8A71CE97F0B00578B9A /* report.html */,
 				3972D86C1CF1E0A400B9B011 /* editprofile.html */,
+				1A4FEAE11CF352F3007AAF64 /* vote.html */,
 			);
 		};
 /* End PBXProject section */
@@ -719,6 +779,16 @@
 				1A4EA28B1CDF647A00143486 /* question.cpp in Sources */,
 				1A4EA28D1CDF64BE00143486 /* html.cpp in Sources */,
 				1AF13CE71CEEADC0002F44E2 /* answer.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A4FEADE1CF352F3007AAF64 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A4FEAEE1CF353EF007AAF64 /* json.cpp in Sources */,
+				1A4FEAF01CF3540D007AAF64 /* vote.cpp in Sources */,
+				1A4FEAF11CF354B2007AAF64 /* html.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -890,6 +960,34 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/../www";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/usr/local/Cellar/mysql-connector-c++/1.1.6_1/lib",
+					/usr/local/Cellar/cgicc/lib,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		1A4FEAE71CF352F3007AAF64 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/../www/api";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/usr/local/Cellar/mysql-connector-c++/1.1.6_1/lib",
+					/usr/local/Cellar/cgicc/lib,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		1A4FEAE81CF352F3007AAF64 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/../www/api";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/usr/local/Cellar/mysql-connector-c++/1.1.6_1/lib",
@@ -1238,6 +1336,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		1A4FEAE61CF352F3007AAF64 /* Build configuration list for PBXNativeTarget "vote.html" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A4FEAE71CF352F3007AAF64 /* Debug */,
+				1A4FEAE81CF352F3007AAF64 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		1A944B581CBF5D0300C63F00 /* Build configuration list for PBXProject "BitQA" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1281,6 +1387,7 @@
 				3972D8721CF1E0A400B9B011 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		398A78081CE37D7600487375 /* Build configuration list for PBXNativeTarget "signup.html" */ = {
 			isa = XCConfigurationList;
