@@ -397,7 +397,43 @@ void processPOST(int id, Cgicc cgicc, bool &exit)
 					cout << "<strong>Question Not Deleted</strong> successfully</div>";
 				}
 			} else if (postType == "delcomment"){
-				cout << "ok" << endl;
+				sql::Driver *driver;
+				sql::Connection *con;
+				sql::Statement *stmt;
+				sql::ResultSet *res;
+				
+				
+				driver = get_driver_instance();
+				con = driver->connect(BitQA::Database::HOST,
+									  BitQA::Database::USERNAME,
+									  BitQA::Database::PASSWORD
+									  );
+				
+				con->setSchema(BitQA::Database::SCHEMA);
+				
+				stmt = con->createStatement();
+				
+				string deleteId = cgicc("commentid");
+				
+				res = stmt->executeQuery("CALL ProcDeleteContent('C', " + deleteId + ", '" + userName + "');");
+				
+				
+				cout << "delid: " << deleteId << " user: " << userName << endl;
+				
+				res->next();
+				string qryResult = res->getString("result");
+				if (qryResult == "OK") {
+					
+					cout << "<div class=\"alert alert-success alert-dismissible\" role=\"alert\">";
+					cout << "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">";
+					cout << "<span aria-hidden=\"true\">&times;</span></button>";
+					cout << "<strong>Comment Deleted successfully</strong></div>";
+				} else {
+					cout << "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\">";
+					cout << "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">";
+					cout << "<span aria-hidden=\"true\">&times;</span></button>";
+					cout << "<strong>Comment Not Deleted</strong> successfully</div>";
+				}
 			
 			} else {
 				cout << "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\">";
