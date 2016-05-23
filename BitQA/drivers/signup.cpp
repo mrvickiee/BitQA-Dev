@@ -180,7 +180,7 @@ int main(){
         User usr;
         string date = usr.getDate();
 		
-		cout << "<h1>Sign up to BitQA</h2><br>" << endl;
+    cout << "<h1>Sign up to BitQA</h2><br>" << endl;
         
     cout << "<form data-ajax=\"false\" method=\"post\">"<<endl;
         

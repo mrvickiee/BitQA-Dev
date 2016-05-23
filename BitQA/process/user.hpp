@@ -49,7 +49,7 @@ public:
     void setTag(string);
     void setReputation(int);
     int getReputation();
-    
+    static int checkUserRight(string);
     
 };
 

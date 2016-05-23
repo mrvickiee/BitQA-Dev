@@ -9,6 +9,7 @@
 #include "user.hpp"
 #include <ctime>
 #include <string>
+#include <algorithm>
 
 User::User(){
 }
@@ -28,6 +29,36 @@ User::User(string username, string password, string email, string tag, int age, 
 
 string User::getUsername(){
     return username;
+}
+
+int User::checkUserRight(string rights){
+    
+    
+    sql::Driver *driver;
+    sql::Connection *con;
+    sql::PreparedStatement *prep_stmt;
+    sql::ResultSet *res;
+    
+    
+    
+        driver = get_driver_instance();
+        con = driver->connect(BitQA::Database::HOST,
+                              BitQA::Database::USERNAME,
+                              BitQA::Database::PASSWORD
+                              );
+        
+        con->setSchema(BitQA::Database::SCHEMA);
+        prep_stmt = con->prepareStatement("SELECT * FROM tblAccessRights where title = ?");
+        prep_stmt->setString(1, rights);
+        
+        
+        res = prep_stmt->executeQuery();
+        
+        res->next();
+        
+        int reputation = res->getInt("points");
+        
+        return reputation;
 }
 
 string User::getPassword(){
