@@ -9,6 +9,23 @@ using namespace std;
 
 void getQuestionStack(int id, Cgicc cgicc)
 {
+	//check ownership and display
+	CgiEnvironment environment = cgicc.getEnvironment();
+	const_cookie_iterator cci;
+	
+	string userName = "";
+	string displayName = "";
+	
+	for (cci = environment.getCookieList().begin();
+		 cci != environment.getCookieList().end();
+		 cci++) {
+		if (cci->getName() == "username") {
+			userName = cci->getValue();
+		} else if (cci->getName() == "displayname") {
+			displayName = cci->getValue();
+		}
+	}
+	
 	BitQA::Question question(id);
 	
 	{
@@ -26,22 +43,7 @@ void getQuestionStack(int id, Cgicc cgicc)
 		cout << "<div class=\"col-xs-8 col-sm-8 col-md-8 col-lg-8\">";
 		cout << "<br><p>" << question.getDetails() << "</p>";
 		cout << "<p><i><b>Questioned by " << question.getUsername() << "</i></b></p>";
-		//check ownership and display
-		CgiEnvironment environment = cgicc.getEnvironment();
-		const_cookie_iterator cci;
 		
-		string userName = "";
-		string displayName = "";
-		
-		for (cci = environment.getCookieList().begin();
-			 cci != environment.getCookieList().end();
-			 cci++) {
-			if (cci->getName() == "username") {
-				userName = cci->getValue();
-			} else if (cci->getName() == "displayname") {
-				displayName = cci->getValue();
-			}
-		}
 		
 		//pass username with question id
 		sql::Driver *driver;
@@ -97,6 +99,20 @@ void getQuestionStack(int id, Cgicc cgicc)
 			cout << "<div class=\"col-xs-5 col-sm-5 col-md-5 col-lg-5\">";
 			cout << "<p>" << commentList[i].getDetails() << "</p>";
 			cout << "<p><b>Comment by " << commentList[i].getUsername() << "</b></p>";
+			
+			//-----Delete comment
+			
+			//check ownership
+			
+			
+			cout << "<form method='post'>" << endl;
+			cout << "<input type=\"hidden\" name=\"type\" value=\"delcomment\">";
+			cout << "<input type=\"hidden\" name=\"commentid\" value=\"" << commentList[i].getCommentID() <<"\">";
+			cout << "<input class='btn btn-default btn-sm' type='submit' value=&#10060;>" << endl;
+			
+			cout << "</form>" << endl;
+			
+			//-----
 			cout << "<hr>";
 			cout << "</div>";
 			cout << "</div>";
@@ -112,6 +128,7 @@ void getQuestionStack(int id, Cgicc cgicc)
 		cout << "<input type=\"hidden\" name=\"type\" value=\"comment\">";
 		cout << "<input class=\"btn btn-default\" type=\"submit\">"
 		<< "</form></div>";
+		
 		cout << "<div class=\"row\" style=\"width: 300px\">";
 		cout << "<a style=\"display:none\" href=\"javascript:void();\">Comment on this answer</a>";
 		cout << "</div>";
@@ -358,6 +375,8 @@ void processPOST(int id, Cgicc cgicc, bool &exit)
 					cout << "<span aria-hidden=\"true\">&times;</span></button>";
 					cout << "<strong>Question Not Deleted</strong> successfully</div>";
 				}
+			} else if (postType == "delcomment"){
+				cout << "ok" << endl;
 			
 			} else {
 				cout << "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\">";
