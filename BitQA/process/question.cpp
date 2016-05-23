@@ -26,7 +26,7 @@ BitQA::Question::Question(int QuestionID)
 	stmt = con->createStatement();
 	
 	
-	res = stmt->executeQuery("SELECT contentId, qowner FROM tblQuestion WHERE id = '" + to_string(this->QuestionID) + "'");
+	res = stmt->executeQuery("SELECT contentId, qowner FROM tblQuestion WHERE id = '" + to_string(this->QuestionID) + "' AND deleted=0");
 	
 	while (res->next()) {
 		this->ContentID = res->getInt("contentId");

@@ -96,7 +96,7 @@ vector<BitQA::Comment> BitQA::Answer::getComments()
 	
 	stmt = con->createStatement();
 	
-	res = stmt->executeQuery("SELECT *, tblComment.id FROM tblComment WHERE tblComment.parentContentId IN (SELECT tblAnswer.contentId FROM tblAnswer WHERE id = '" + to_string(this->AnswerID) + "')");
+	res = stmt->executeQuery("SELECT *, tblComment.id FROM tblComment WHERE tblComment.parentContentId IN (SELECT tblAnswer.contentId FROM tblAnswer WHERE id = '" + to_string(this->AnswerID) + "') AND deleted=0");
 	
 	
 	while (res->next()) {
