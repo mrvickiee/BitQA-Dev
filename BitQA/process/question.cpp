@@ -7,7 +7,7 @@ BitQA::Question::Question(int QuestionID)
 {
 	this->QuestionID = QuestionID;
 	this->ContentID = 0;
-	this->QuestionOwner = 0;
+	this->QuestionOwner = "";
 	
 	sql::Driver *driver;
 	sql::Connection *con;
@@ -30,7 +30,7 @@ BitQA::Question::Question(int QuestionID)
 	
 	while (res->next()) {
 		this->ContentID = res->getInt("contentId");
-		this->QuestionOwner = res->getInt("qowner");
+		this->QuestionOwner = res->getString("qowner");
 	}
 	
 	delete res;
@@ -218,6 +218,10 @@ string BitQA::Question::getQuestionID(){
 	return to_string(QuestionID);
 }
 
+string BitQA::Question::getQuestionOwner(){
+	return QuestionOwner;
+}
+
 string BitQA::Question::getUsername()
 {
 	string username = "";
@@ -238,7 +242,7 @@ string BitQA::Question::getUsername()
 	
 	stmt = con->createStatement();
 	
-	res = stmt->executeQuery("SELECT displayname FROM tblUser WHERE username = '" + to_string(this->QuestionOwner) + "'");
+	res = stmt->executeQuery("SELECT displayname FROM tblUser WHERE username = '" + this->QuestionOwner + "'");
 	
 	while (res->next()) {
 		username = res->getString("displayname");

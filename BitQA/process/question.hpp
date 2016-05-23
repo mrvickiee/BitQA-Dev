@@ -22,13 +22,14 @@ namespace BitQA
 		vector<Comment> getComments();
 		string getQuestionContentID();
 		string getQuestionID();
+		string getQuestionOwner();
 		
 		
 	private:
 		Question();
 		int QuestionID;
 		int ContentID;
-		int QuestionOwner;
+		string QuestionOwner;
 	};
 }
 
