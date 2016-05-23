@@ -7,6 +7,9 @@
 using namespace cgicc;
 using namespace std;
 
+string qowner;
+string qid;
+
 void getQuestionStack(int id, Cgicc cgicc)
 {
 	//check ownership and display
@@ -32,6 +35,10 @@ void getQuestionStack(int id, Cgicc cgicc)
 		/*
 		 * Question
 		 */
+		
+		qowner = question.getQuestionOwner();
+		qid = question.getQuestionID();
+		
 		cout << "<h1>" << question.getTitle() << "</h1>";
 		cout << " <div class=\"container-fluid\"><div class=\"row\">";
 		cout << "<div class=\"col-xs-1 col-sm-1 col-md-1 col-lg-1\">";
@@ -224,6 +231,20 @@ void getAnswerStack(int id, Cgicc cgicc)
 		cout << "</div>";
 		cout << "<div class=\"col-xs-8 col-sm-8 col-md-8 col-lg-8\">";
 		cout << "<br><p>" << answerList[i].getDetails() << "</p>";
+		
+		//--Set accepted answer
+		if (qowner == userName) {
+			cout << "<form method='post'>" << endl;
+			cout << "<input type=\"hidden\" name=\"type\" value=\"setanswer\">";
+			cout << "<input type=\"hidden\" name=\"answerid\" value=\"" << answerList[i].getAnswerID() <<"\">";
+			cout << "<input type=\"hidden\" name=\"quesid\" value=\"" << qid <<"\">";
+			cout << "<input class='btn btn-default btn-sm' type='submit' value=&#128175;>" << endl;
+			
+			cout << "</form>" << endl;
+		}
+		
+		//-------
+		
 		cout << "<p><i><b>Answered by " << answerList[i].getUsername() << "</i></b></p>";
 		
 		//-----Delete comment
@@ -432,6 +453,46 @@ void processPOST(int id, Cgicc cgicc, bool &exit)
 				cout << "<span aria-hidden=\"true\">&times;</span></button>";
 				cout << "<strong>Success!</strong> Posted Comment Successfully!</div>";
 				
+			} else if (postType == "setanswer"){
+				string answerid = cgicc("answerid");
+				string quid = cgicc("quesid");
+				
+				sql::Driver *driver;
+				sql::Connection *con;
+				sql::Statement *stmt;
+				sql::ResultSet *res;
+				
+				
+				driver = get_driver_instance();
+				con = driver->connect(BitQA::Database::HOST,
+									  BitQA::Database::USERNAME,
+									  BitQA::Database::PASSWORD
+									  );
+				
+				con->setSchema(BitQA::Database::SCHEMA);
+				
+				stmt = con->createStatement();
+				
+				string deleteId = cgicc("questionid");
+				
+				res = stmt->executeQuery("CALL ProcSetAcceptedAnswer(" + quid + "," + answerid + ",'" + userName + "');");
+				
+				res->next();
+				string qryResult = res->getString("result");
+				if (qryResult == "OK") {
+					
+					cout << "<div class=\"alert alert-success alert-dismissible\" role=\"alert\">";
+					cout << "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">";
+					cout << "<span aria-hidden=\"true\">&times;</span></button>";
+					cout << "<strong>Accepted answer set</strong> successfully</div>";
+				} else {
+					cout << "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\">";
+					cout << "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">";
+					cout << "<span aria-hidden=\"true\">&times;</span></button>";
+					cout << "<strong>Accepted answer set</strong>failed</div>";
+				}
+				
+			
 			} else if(postType == "delanswer"){
 				sql::Driver *driver;
 				sql::Connection *con;
