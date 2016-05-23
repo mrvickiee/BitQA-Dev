@@ -17,6 +17,7 @@ namespace BitQA
 		string getDetails();
 		string getVotes();
 		string getUsername();
+		string getCommentIDStr();
 		
 	private:
 		Comment();

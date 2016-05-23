@@ -3,6 +3,10 @@
 
 using namespace std;
 
+string BitQA::Comment::getCommentIDStr(){
+	return to_string(CommentID);
+}
+
 BitQA::Comment::Comment(int CommentID)
 {
 	this->CommentID = CommentID;
