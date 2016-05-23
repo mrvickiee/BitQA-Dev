@@ -25,7 +25,6 @@ void getQuestionStack(int id, Cgicc cgicc)
 			displayName = cci->getValue();
 		}
 	}
-	
 	BitQA::Question question(id);
 	
 	{
@@ -100,17 +99,39 @@ void getQuestionStack(int id, Cgicc cgicc)
 			cout << "<p>" << commentList[i].getDetails() << "</p>";
 			cout << "<p><b>Comment by " << commentList[i].getUsername() << "</b></p>";
 			
+			//cout << commentList[i].getCommentIDStr() << endl;
+			
 			//-----Delete comment
+			sql::Driver *driver;
+			sql::Connection *con;
+			sql::Statement *stmt;
+			sql::ResultSet *res;
 			
-			//check ownership
 			
+			driver = get_driver_instance();
+			con = driver->connect(BitQA::Database::HOST,
+								  BitQA::Database::USERNAME,
+								  BitQA::Database::PASSWORD
+								  );
 			
-			cout << "<form method='post'>" << endl;
-			cout << "<input type=\"hidden\" name=\"type\" value=\"delcomment\">";
-			cout << "<input type=\"hidden\" name=\"commentid\" value=\"" << commentList[i].getCommentID() <<"\">";
-			cout << "<input class='btn btn-default btn-sm' type='submit' value=&#10060;>" << endl;
+			con->setSchema(BitQA::Database::SCHEMA);
 			
-			cout << "</form>" << endl;
+			stmt = con->createStatement();
+			
+			res = stmt->executeQuery("CALL ProcGetOwner('C', " + commentList[i].getCommentIDStr() + ");");
+			
+			res->next();
+			
+			string qryOwner = res->getString("owner");
+			
+			if (qryOwner == userName) {
+				cout << "<form method='post'>" << endl;
+				cout << "<input type=\"hidden\" name=\"type\" value=\"delcomment\">";
+				cout << "<input type=\"hidden\" name=\"commentid\" value=\"" << commentList[i].getCommentID() <<"\">";
+				cout << "<input class='btn btn-default btn-sm' type='submit' value=&#10060;>" << endl;
+				
+				cout << "</form>" << endl;
+			}
 			
 			//-----
 			cout << "<hr>";
