@@ -16,6 +16,7 @@ int main()
 		string contentId = cgicc("contentId");
 		string userId = cgicc("userId");
 		string voteType = cgicc("voteType");
+		string voteAction = cgicc("voteAction");
 		
 		sql::Driver *driver;
 		sql::Connection *con;
@@ -33,16 +34,28 @@ int main()
 		
 		stmt = con->createStatement();
 
-		if (voteType == "up") {
-			res = stmt->executeQuery("CALL ProcUpvote(" + contentId + ", '" + userId + "');");
-		} else if (voteType == "down") {
-			res = stmt->executeQuery("CALL ProcDownvote(" + contentId + ", '" + userId + "');");
+		if (voteAction == "vote") {
+			
+			if (voteType == "up") {
+				res = stmt->executeQuery("CALL ProcUpvote(" + contentId + ", '" + userId + "');");
+			} else if (voteType == "down") {
+				res = stmt->executeQuery("CALL ProcDownvote(" + contentId + ", '" + userId + "');");
+			}
+			
+		} else if (voteAction == "unvote") {
+			
+			if (voteType == "up") {
+				res = stmt->executeQuery("CALL ProcUnUpvote(" + contentId + ", '" + userId + "');");
+			} else if (voteType == "down") {
+				res = stmt->executeQuery("CALL ProcUnDownvote(" + contentId + ", '" + userId + "');");
+			}
+			
 		}
 		
 		res->next();
 		// string qryResult = res->getString("result");
 		
-		cout << "{\"success\":\"qryResult\"}";
+		cout << "{\"success\":\"true\"}";
 		
 	} catch (exception &e) {
 		
