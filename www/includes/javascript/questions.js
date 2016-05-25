@@ -4,8 +4,54 @@ $(".vote-up").click(function(event) {
 
     if (content.attr("data-selected") == "true") {
 
-        $("#genericErrorText").text("You cannot upvote your question again. Downvote to unvote.");
-        $("#genericAlert").fadeIn();
+        $(".loading").fadeIn();
+
+        $.ajax({
+            type: "post",
+            url: "/api/vote.html",
+            data: {
+                contentId: content.attr("data-content-id"),
+                userId: Cookies.get("username"),
+                voteType: content.attr("data-vote-type"),
+                voteAction: "unvote"
+            },
+
+            success: function (data)
+            {
+                if (data.hasOwnProperty("errorMessage")) {
+                    $("#genericErrorText").text("Test "
+                        + data.errorMessage
+                        + ": " + data.errorDetail
+                        );
+
+                    $("#genericAlert").fadeIn();
+                } else {
+
+                    // Vote up current question
+                    var score = $("#" + content.attr("data-content-id")).text();
+                    var finalScore = parseInt(score) - 1;
+
+                    $("#" + content.attr("data-content-id")).text(finalScore);
+
+                    // User has selected
+                    content.css("background-color", "white");
+                    content.attr("data-selected", false);
+
+                };
+            },
+
+            error: function (error)
+            {
+                console.log(error);
+                $("#genericErrorText").text("Network Error");
+                $("#genericAlert").fadeIn();
+            },
+
+            complete: function ()
+            {
+                $(".loading").fadeOut();
+            }
+        });
 
     } else {
 
@@ -16,8 +62,9 @@ $(".vote-up").click(function(event) {
             url: "/api/vote.html",
             data: {
                 contentId: content.attr("data-content-id"),
-                userId: content.attr("data-user-id"),
-                voteType: content.attr("data-vote-type")
+                userId: Cookies.get("username"),
+                voteType: content.attr("data-vote-type"),
+                voteAction: "vote"
             },
 
             success: function (data)
@@ -64,11 +111,58 @@ $(".vote-up").click(function(event) {
 $(".vote-down").click(function(event) {
 
     var content = $(event.target);
+    var voteAct = "";
 
     if (content.attr("data-selected") == "true") {
 
-        $("#genericErrorText").text("You cannot Downvote your question again. upvote to undownvote.");
-        $("#genericAlert").fadeIn();
+        $(".loading").fadeIn();
+
+        $.ajax({
+            type: "post",
+            url: "/api/vote.html",
+            data: {
+                contentId: content.attr("data-content-id"),
+                userId: Cookies.get("username"),
+                voteType: content.attr("data-vote-type"),
+                voteAction: "unvote"
+            },
+
+            success: function (data)
+            {
+                if (data.hasOwnProperty("errorMessage")) {
+                    $("#genericErrorText").text("Test "
+                        + data.errorMessage
+                        + ": " + data.errorDetail
+                        );
+
+                    $("#genericAlert").fadeIn();
+                } else {
+
+                    // Vote up current question
+                    var score = $("#" + content.attr("data-content-id")).text();
+                    var finalScore = parseInt(score) + 1;
+
+                    $("#" + content.attr("data-content-id")).text(finalScore);
+
+                    // User has selected
+                    content.css("background-color", "white");
+                    content.attr("data-selected", false);
+
+                };
+            },
+
+            error: function (error)
+            {
+                console.log(error);
+                $("#genericErrorText").text("Network Error");
+                $("#genericAlert").fadeIn();
+            },
+
+            complete: function ()
+            {
+                $(".loading").fadeOut();
+            }
+        });
 
     } else {
 
@@ -79,8 +173,9 @@ $(".vote-down").click(function(event) {
             url: "/api/vote.html",
             data: {
                 contentId: content.attr("data-content-id"),
-                userId: content.attr("data-user-id"),
-                voteType: content.attr("data-vote-type")
+                userId: Cookies.get("username"),
+                voteType: content.attr("data-vote-type"),
+                voteAction: "vote"
             },
 
             success: function (data)
@@ -119,7 +214,6 @@ $(".vote-down").click(function(event) {
                 $(".loading").fadeOut();
             }
         });
-
     }
 
 });
