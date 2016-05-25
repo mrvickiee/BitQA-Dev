@@ -122,6 +122,12 @@ void BitQA::HTML::displayHeader(std::string title, Cgicc cgicc)
 	// Container
 	cout << "<div class=\"bitqa-nav-spacer\"></div>"
 		<< "<div class=\"container\">";
+	cout << "<div style=\"display:none;\" class=\"loading\">Loading&#8230;</div>";
+	
+	cout << "<div style=\"display:none\" id=\"genericAlert\" class=\"alert alert-danger alert-dismissible\" role=\"alert\">";
+	cout << "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">";
+	cout << "<span aria-hidden=\"true\">&times;</span></button>";
+	cout << "<strong>Error</strong>, <span id=\"genericErrorText\">Error Text</span></div>";
 }
 
 void BitQA::HTML::displayFooter()

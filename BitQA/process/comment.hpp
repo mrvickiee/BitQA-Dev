@@ -19,6 +19,9 @@ namespace BitQA
 		string getUsername();
 		string getCommentIDStr();
 		
+		string getContentID();
+		string getOwnerID();
+		
 	private:
 		Comment();
 		int CommentID;

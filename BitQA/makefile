@@ -1,7 +1,7 @@
 build:
 	g++ -std=c++0x includes/database.cpp includes/html.cpp drivers/index.cpp -o ../www/index.html -lmysqlcppconn -lcgicc
 	g++ -std=c++0x includes/database.cpp includes/html.cpp drivers/post.cpp -o ../www/post.html -lmysqlcppconn -lcgicc
-	g++ -std=c++0x includes/database.cpp includes/html.cpp process/question.cpp process/answer.cpp process/comment.cpp drivers/question.cpp -o ../www/question.html -lmysqlcppconn -lcgicc
+	g++ -std=c++0x includes/database.cpp includes/html.cpp process/question.cpp process/answer.cpp process/comment.cpp process/vote.cpp drivers/question.cpp -o ../www/question.html -lmysqlcppconn -lcgicc
 	g++ -std=c++0x includes/database.cpp includes/html.cpp process/browse.cpp drivers/browse.cpp -o ../www/browse.html -lmysqlcppconn -lcgicc
 	g++ -std=c++0x includes/database.cpp includes/html.cpp process/report.cpp drivers/report.cpp -o ../www/report.html -lmysqlcppconn -lcgicc
 	g++ -std=c++0x includes/database.cpp includes/md5.cpp includes/html.cpp process/user.cpp drivers/signup.cpp -o ../www/signup.html -lmysqlcppconn -lcgicc
@@ -10,5 +10,6 @@ build:
 	g++ -std=c++0x includes/database.cpp includes/html.cpp process/search.cpp drivers/search.cpp -o ../www/search.html -lmysqlcppconn -lcgicc
 	g++ -std=c++0x includes/database.cpp includes/html.cpp includes/md5.cpp process/user.cpp drivers/profile.cpp -o ../www/profile.html -lmysqlcppconn -lcgicc
 	g++ -std=c++0x includes/database.cpp includes/html.cpp process/user.cpp drivers/editprofile.cpp -o ../www/editprofile.html -lmysqlcppconn -lcgicc
+	g++ -std=c++0x includes/database.cpp includes/json.cpp process/user.cpp drivers/vote.cpp -o ../www/api/vote.html -lmysqlcppconn -lcgicc
 current:
 	g++ -std=c++0x includes/database.cpp includes/html.cpp process/search.cpp drivers/search.cpp -o ../www/search.html -lmysqlcppconn -lcgicc

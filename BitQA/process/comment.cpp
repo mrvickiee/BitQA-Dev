@@ -36,6 +36,16 @@ BitQA::Comment::Comment(int CommentID)
 	
 }
 
+string BitQA::Comment::getContentID()
+{
+	return to_string(this->ContentID);
+}
+
+string BitQA::Comment::getOwnerID()
+{
+	return to_string(this->CommentOwner);
+}
+
 
 int BitQA::Comment::getCommentID()
 {
