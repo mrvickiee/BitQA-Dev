@@ -3,7 +3,7 @@
 using namespace std;
 using namespace cgicc;
 
-void BitQA::JSON::displayHeader(std::string title, Cgicc cgicc)
+void BitQA::JSON::displayHeader()
 {
 	cout << "Content-Type: application/json\n\r" << endl;
 }

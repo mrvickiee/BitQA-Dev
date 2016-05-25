@@ -28,6 +28,8 @@
 		1A4FEAEE1CF353EF007AAF64 /* json.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4FEAEC1CF353EF007AAF64 /* json.cpp */; };
 		1A4FEAF01CF3540D007AAF64 /* vote.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4FEAEF1CF3540D007AAF64 /* vote.cpp */; };
 		1A4FEAF11CF354B2007AAF64 /* html.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA8F0E1CC6737D00E19ADD /* html.cpp */; };
+		1A7BEE501CF5B03400B0B547 /* vote.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A7BEE4E1CF5B03400B0B547 /* vote.cpp */; };
+		1A7BEE511CF5DC7B00B0B547 /* database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AC771871CD8FA1B005D3D41 /* database.cpp */; };
 		1A990CE01CE71520007F8B88 /* libmysqlcppconn.7.1.1.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A643A341CC29CCC008C1AC5 /* libmysqlcppconn.7.1.1.6.dylib */; };
 		1A990CE11CE71523007F8B88 /* libcgicc.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A643A391CC2A228008C1AC5 /* libcgicc.3.dylib */; };
 		1A990CE71CE715A1007F8B88 /* search.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A990CE51CE7159D007F8B88 /* search.cpp */; };
@@ -207,6 +209,8 @@
 		1A643A341CC29CCC008C1AC5 /* libmysqlcppconn.7.1.1.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmysqlcppconn.7.1.1.6.dylib; path = "/usr/local/Cellar/mysql-connector-c++/1.1.6_1/lib/libmysqlcppconn.7.1.1.6.dylib"; sourceTree = "<absolute>"; };
 		1A643A371CC29DD1008C1AC5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		1A643A391CC2A228008C1AC5 /* libcgicc.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcgicc.3.dylib; path = /usr/local/Cellar/cgicc/lib/libcgicc.3.dylib; sourceTree = "<absolute>"; };
+		1A7BEE4E1CF5B03400B0B547 /* vote.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vote.cpp; path = process/vote.cpp; sourceTree = "<group>"; };
+		1A7BEE4F1CF5B03400B0B547 /* vote.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = vote.hpp; path = process/vote.hpp; sourceTree = "<group>"; };
 		1A8FC9741CD30E6A00B1B722 /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = makefile; sourceTree = "<group>"; };
 		1A944B731CBF5ECA00C63F00 /* index.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = index.cpp; path = drivers/index.cpp; sourceTree = "<group>"; };
 		1A990CD91CE71517007F8B88 /* search.html */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = search.html; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -394,6 +398,8 @@
 				398A78131CE3817000487375 /* user.hpp */,
 				1AF13CE61CEEADC0002F44E2 /* answer.hpp */,
 				1AF13CE51CEEADC0002F44E2 /* answer.cpp */,
+				1A7BEE4F1CF5B03400B0B547 /* vote.hpp */,
+				1A7BEE4E1CF5B03400B0B547 /* vote.cpp */,
 			);
 			name = process;
 			sourceTree = "<group>";
@@ -778,6 +784,7 @@
 				1A4EA28F1CDF64DC00143486 /* question.cpp in Sources */,
 				1A4EA28B1CDF647A00143486 /* question.cpp in Sources */,
 				1A4EA28D1CDF64BE00143486 /* html.cpp in Sources */,
+				1A7BEE501CF5B03400B0B547 /* vote.cpp in Sources */,
 				1AF13CE71CEEADC0002F44E2 /* answer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -788,6 +795,7 @@
 			files = (
 				1A4FEAEE1CF353EF007AAF64 /* json.cpp in Sources */,
 				1A4FEAF01CF3540D007AAF64 /* vote.cpp in Sources */,
+				1A7BEE511CF5DC7B00B0B547 /* database.cpp in Sources */,
 				1A4FEAF11CF354B2007AAF64 /* html.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1343,6 +1351,7 @@
 				1A4FEAE81CF352F3007AAF64 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1A944B581CBF5D0300C63F00 /* Build configuration list for PBXProject "BitQA" */ = {
 			isa = XCConfigurationList;

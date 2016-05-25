@@ -18,7 +18,7 @@ namespace BitQA {
 	class JSON : public HTML
 	{
 	public:
-		static void displayHeader(std::string title, cgicc::Cgicc cgicc);
+		static void displayHeader();
 		static void error(std::string title, std::string message);
 	};
 	
