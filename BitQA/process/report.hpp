@@ -16,8 +16,10 @@ private:
 	string userid;
 public:
 	Report();
-	Report(string userId);
+	
+	// Helpers
 	void setUserId(string userId);
+	bool loggedIn();
 
 	//Home page reports
 	void recQuestions();
