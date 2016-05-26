@@ -1,6 +1,16 @@
 $(".vote-up").click(function(event) {
 
-	var content = $(event.target);
+    $("#genericAlert").fadeOut();
+
+    var content = $(event.target);
+    var downVote = $("#down" + content.attr("data-content-id"));
+
+    // Check vote down is not pressed
+    if (downVote.attr("data-selected") == "true") {
+        $("#genericErrorText").text("You Must Remove your down vote before you can upvote");
+        $("#genericAlert").fadeIn();
+        return;
+    };
 
     if (content.attr("data-selected") == "true") {
 
@@ -110,7 +120,18 @@ $(".vote-up").click(function(event) {
 
 $(".vote-down").click(function(event) {
 
+    $("#genericAlert").fadeOut();
+
     var content = $(event.target);
+    var upVote = $("#up" + content.attr("data-content-id"));
+
+    // Check vote down is not pressed
+    if (upVote.attr("data-selected") == "true") {
+        $("#genericErrorText").text("You Must Remove your up vote before you can down vote");
+        $("#genericAlert").fadeIn();
+        return;
+    };
+
     var voteAct = "";
 
     if (content.attr("data-selected") == "true") {
