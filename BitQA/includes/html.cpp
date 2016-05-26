@@ -128,6 +128,9 @@ void BitQA::HTML::displayHeader(std::string title, Cgicc cgicc)
 	cout << "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">";
 	cout << "<span aria-hidden=\"true\">&times;</span></button>";
 	cout << "<strong>Error</strong>, <span id=\"genericErrorText\">Error Text</span></div>";
+	
+	// Generic Modal
+	cout << "<div id=\"genericModal\" class=\"modal fade\" role=\"dialog\"><div class=\"modal-dialog\"><div class=\"modal-content\"><div class=\"modal-header\"><button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button><h4 class=\"modal-title\">Message</h4></div><div class=\"modal-body\"><div id=\"genericModalBoday\"></div></div><div class=\"modal-footer\"><button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button></div></div></div></div>";
 }
 
 void BitQA::HTML::displayFooter()
