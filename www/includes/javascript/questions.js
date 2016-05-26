@@ -1,4 +1,21 @@
+function checkLogin()
+{
+    if ((Cookies.get("username") == null) ||
+        (Cookies.get("username") == undefined)
+    ) {
+        $("#genericModalBoday").html("<p>You must be logged in to vote, <a href=\"/login.html\">Login</a></p>");
+        $("#genericModal").modal("show");
+        return true;
+    } else {
+        return false;
+    }
+}
+
 $(".vote-up").click(function(event) {
+
+    if (checkLogin()) {
+        return false;
+    };
 
     $("#genericAlert").fadeOut();
 
@@ -119,6 +136,10 @@ $(".vote-up").click(function(event) {
 });
 
 $(".vote-down").click(function(event) {
+
+    if (checkLogin()) {
+        return false;
+    };
 
     $("#genericAlert").fadeOut();
 
