@@ -24,7 +24,6 @@ namespace BitQA
 		string getQuestionID();
 		string getQuestionOwner();
 		
-		
 	private:
 		Question();
 		int QuestionID;

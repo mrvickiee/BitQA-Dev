@@ -22,6 +22,7 @@ namespace BitQA
 		string getUsername();
 		int getContentID();
 		vector<Comment> getComments();
+		bool isAcceptedAnswer();
 		
 	private:
 		Answer();
