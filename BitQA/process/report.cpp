@@ -41,7 +41,7 @@ void Report::recQuestions()
 		string searchTerm = "";
 
 		if (this->loggedIn()) {
-			subRes = stmt->executeQuery("SELECT tags FROM tblUserTags WHERE id = '" + this->userid + "'");
+			subRes = stmt->executeQuery("SELECT tags FROM tblUserTags WHERE id = '" + this->userid + "' AND deleted=0");
 			
 			while(subRes->next()){
 				searchTerm = subRes->getString("tags");
@@ -49,7 +49,7 @@ void Report::recQuestions()
 			
 		}
 
-		res = stmt->executeQuery("SELECT tblQuestion.id, tblQuestion.questionTitle, tblContent.utimestamp FROM tblQuestion JOIN tblContent ON tblQuestion.contentId = tblContent.id WHERE tblQuestion.tags LIKE '%" + searchTerm + "%' ORDER BY tblContent.utimestamp DESC LIMIT 10");
+		res = stmt->executeQuery("SELECT tblQuestion.id, tblQuestion.questionTitle, tblContent.utimestamp FROM tblQuestion JOIN tblContent ON tblQuestion.contentId = tblContent.id WHERE tblQuestion.tags LIKE '%" + searchTerm + "%' AND tblQuestion.deleted = 0 ORDER BY tblContent.utimestamp DESC LIMIT 10");
 
 		cout << "<table class=\"table table-hover\">";
 		cout << "<tr>";
@@ -94,7 +94,7 @@ void Report::topUsers()
 		stmt = con->createStatement();
 		
 		
-		res = stmt->executeQuery("SELECT tblUser.username, tblUser.displayname, tblUserReputation.reputation, tblUser.creationdate FROM tblUser JOIN tblUserReputation ON tblUser.username = tblUserReputation.username ORDER BY tblUserReputation.reputation DESC LIMIT 10;");
+		res = stmt->executeQuery("SELECT tblUser.username, tblUser.displayname, tblUserReputation.reputation, tblUser.creationdate FROM tblUser JOIN tblUserReputation ON tblUser.username = tblUserReputation.username WHERE tblUser.deleted = 0  ORDER BY tblUserReputation.reputation DESC LIMIT 10;");
 
 		cout << "<table class=\"table table-hover\">";
 		cout << "<tr>";
@@ -141,7 +141,7 @@ void Report::featured()
 		stmt = con->createStatement();
 		
 		
-		res = stmt->executeQuery("SELECT tblQuestion.id, tblQuestion.questionTitle FROM BitQA.tblFeatured JOIN tblQuestion ON tblFeatured.id = tblQuestion.id;");
+		res = stmt->executeQuery("SELECT tblQuestion.id, tblQuestion.questionTitle FROM BitQA.tblFeatured JOIN tblQuestion ON tblFeatured.id = tblQuestion.id WHERE tblQuestion.deleted=0;");
 
 		cout << "<table class=\"table table-hover\">";
 		cout << "<tr>";
@@ -183,7 +183,7 @@ void Report::topQuestions()
 		stmt = con->createStatement();
 
 		
-		res = stmt->executeQuery("SELECT Q.id, Q.questionTitle, C.upvotes FROM tblQuestion Q JOIN tblContent C ON Q.contentId = C.id ORDER BY C.upvotes DESC LIMIT 10;");
+		res = stmt->executeQuery("SELECT Q.id, Q.questionTitle, C.upvotes FROM tblQuestion Q JOIN tblContent C ON Q.contentId = C.id WHERE Q.deleted = 0 ORDER BY C.upvotes DESC LIMIT 10;");
 
 		cout << "<table class=\"table table-hover\">";
 		cout << "<tr>";
@@ -234,7 +234,7 @@ void Report::activityGraph()
 		/*
 		 * Questions
 		 */
-		res = stmt->executeQuery("SELECT count(*) AS \"count\" FROM BitQA.tblQuestion WHERE qowner = '" + this->userid + "';");
+		res = stmt->executeQuery("SELECT count(*) AS \"count\" FROM BitQA.tblQuestion WHERE qowner = '" + this->userid + "' AND deleted=0;");
 		
 		while(res->next()) {
 			temp  = res->getString("count");
@@ -245,7 +245,7 @@ void Report::activityGraph()
 		/*
 		 * Answers
 		 */
-		res = stmt->executeQuery("SELECT count(*) AS \"count\" FROM BitQA.tblAnswer WHERE aowner = '" + this->userid + "';");
+		res = stmt->executeQuery("SELECT count(*) AS \"count\" FROM BitQA.tblAnswer WHERE aowner = '" + this->userid + "' AND deleted=0;");
 		
 		while(res->next()) {
 			temp  = res->getString("count");
@@ -256,7 +256,7 @@ void Report::activityGraph()
 		/*
 		 * Comments
 		 */
-		res = stmt->executeQuery("SELECT count(*) AS \"count\" FROM BitQA.tblComment WHERE aowner = '" + this->userid + "';");
+		res = stmt->executeQuery("SELECT count(*) AS \"count\" FROM BitQA.tblComment WHERE aowner = '" + this->userid + "' AND deleted=0;");
 		
 		while(res->next()) {
 			temp  = res->getString("count");
@@ -305,7 +305,7 @@ void Report::topTags()
 		stmt = con->createStatement();
 		
 		
-		res = stmt->executeQuery("SELECT tags, count(*) AS frequency FROM tblQuestion WHERE qowner = '" + this->userid + "' GROUP BY tags ORDER BY count(*) DESC LIMIT 5;");
+		res = stmt->executeQuery("SELECT tags, count(*) AS frequency FROM tblQuestion WHERE deleted = 0 AND qowner = '" + this->userid + "' GROUP BY tags ORDER BY count(*) DESC LIMIT 5;");
 
 		cout << "<table class=\"table table-hover\">";
 		cout << "<tr>";
@@ -361,7 +361,7 @@ void Report::topPostedQuestions()
 		stmt = con->createStatement();
 		
 		
-		res = stmt->executeQuery("SELECT Q.id, Q.questionTitle, C.upvotes FROM tblQuestion Q JOIN tblContent C ON Q.contentId = C.id WHERE Q.qowner = '" + this->userid + "' ORDER BY C.upvotes DESC LIMIT 10;");
+		res = stmt->executeQuery("SELECT Q.id, Q.questionTitle, C.upvotes FROM tblQuestion Q JOIN tblContent C ON Q.contentId = C.id WHERE Q.qowner = '" + this->userid + "' AND Q.deleted=0 ORDER BY C.upvotes DESC LIMIT 10;");
 		
 		cout << "<table class=\"table table-hover\">";
 		cout << "<tr>";
@@ -417,7 +417,7 @@ void Report::topPostedAnswers()
 		stmt = con->createStatement();
 		
 		
-		res = stmt->executeQuery("SELECT A.id, C.content, C.upvotes FROM tblAnswer A JOIN tblContent C ON A.contentId = C.id WHERE A.aowner = '" + this->userid + "' ORDER BY C.upvotes DESC LIMIT 10;");
+		res = stmt->executeQuery("SELECT A.id, C.content, C.upvotes FROM tblAnswer A JOIN tblContent C ON A.contentId = C.id WHERE A.aowner = '" + this->userid + "' AND A.deleted=0 ORDER BY C.upvotes DESC LIMIT 10;");
 		
 		cout << "<table class=\"table table-hover\">";
 		cout << "<tr>";
@@ -474,7 +474,7 @@ void Report::postHistory()
 		
 		stmt = con->createStatement();
 		
-		res = stmt->executeQuery("SELECT tblQuestion.id, tblQuestion.questionTitle, tblContent.utimestamp FROM BitQA.tblQuestion JOIN tblContent ON tblQuestion.contentId = tblContent.id WHERE tblQuestion.qowner = '" + this->userid + "' ORDER BY tblContent.utimestamp DESC LIMIT 10;");
+		res = stmt->executeQuery("SELECT tblQuestion.id, tblQuestion.questionTitle, tblContent.utimestamp FROM BitQA.tblQuestion JOIN tblContent ON tblQuestion.contentId = tblContent.id WHERE tblQuestion.qowner = '" + this->userid + "' AND tblQuestion.deleted=0 ORDER BY tblContent.utimestamp DESC LIMIT 10;");
 
 		cout << "<table class=\"table table-hover\">";
 		cout << "<tr>";
