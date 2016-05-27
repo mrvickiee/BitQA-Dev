@@ -135,8 +135,8 @@ void BitQA::HTML::displayHeader(std::string title, Cgicc cgicc)
 
 void BitQA::HTML::displayFooter()
 {
-	cout << "<br><br><hr><br><footer>&copy; BitQA 2016</footer><br><br>";
 	cout << "</div>" << endl;
+	// cout << "<br><br><div class=\"row\"><hr><br><footer>&copy; BitQA 2016</footer></div><br><br>";
 	cout << "<script src=\"/includes/javascript/logout.js\" type=\"text/javascript\"></script>";
 	cout << body() << endl
 		<< html() << endl;
