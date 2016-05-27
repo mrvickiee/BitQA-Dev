@@ -123,8 +123,8 @@ void getQuestionStack(int id, Cgicc cgicc, string userName)
 		
 		//--Setfeatured question
 		cout << "<form method='post'>" << endl;
-		cout << "<input type=\"hidden\" name=\"type\" value=\"delcomment\">";
-		cout << "<input type=\"hidden\" name=\"commentid\" value=\"" << question.getQuestionID() <<"\">";
+		cout << "<input type=\"hidden\" name=\"type\" value=\"setfeatured\">";
+		cout << "<input type=\"hidden\" name=\"questionid\" value=\"" << question.getQuestionID() <<"\">";
 		cout << "<input class='btn btn-default btn-sm' type='submit' value=&#127775;>" << endl;
 		
 		cout << "</form>" << endl;
@@ -696,6 +696,47 @@ void processPOST(int id, Cgicc cgicc, bool &exit)
 				cout << "<span aria-hidden=\"true\">&times;</span></button>";
 				cout << "<strong>Success!</strong> Posted Answer Successfully!</div>";
 				
+			} else if (postType == "setfeatured"){
+				
+				string quid = cgicc("questionid");
+				
+				sql::Driver *driver;
+				sql::Connection *con;
+				sql::Statement *stmt;
+				sql::ResultSet *res;
+				
+				
+				driver = get_driver_instance();
+				con = driver->connect(BitQA::Database::HOST,
+									  BitQA::Database::USERNAME,
+									  BitQA::Database::PASSWORD
+									  );
+				
+				con->setSchema(BitQA::Database::SCHEMA);
+				
+				stmt = con->createStatement();
+				
+				string deleteId = cgicc("questionid");
+				
+				res = stmt->executeQuery("CALL ProcSetFeatured(" + quid + ");");
+				
+				res->next();
+				string qryResult = res->getString("result");
+				if (qryResult == "OK") {
+					
+					cout << "<div class=\"alert alert-success alert-dismissible\" role=\"alert\">";
+					cout << "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">";
+					cout << "<span aria-hidden=\"true\">&times;</span></button>";
+					cout << "<strong>Featured question set</strong> successfully</div>";
+				} else {
+					cout << "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\">";
+					cout << "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">";
+					cout << "<span aria-hidden=\"true\">&times;</span></button>";
+					cout << "<strong>Featured question set</strong> failed</div>";
+				}
+
+				
+			
 			} else if (postType == "comment") {
 				
 				sql::Driver *driver;
