@@ -11,15 +11,31 @@ function checkLogin()
     }
 }
 
+function checkSelf(currentButton)
+{
+    if (Cookies.get("username") == currentButton.attr("data-user-id")) {
+        $("#genericModalBoday").html("<p>You can't vote your own content</p>");
+        $("#genericModal").modal("show");
+        return true;
+    } else {
+        return false;
+    }
+}
+
 $(".vote-up").click(function(event) {
+
+    var content = $(event.target);
 
     if (checkLogin()) {
         return false;
     };
 
+    if (checkSelf(content)) {
+        return false;
+    };
+
     $("#genericAlert").fadeOut();
 
-    var content = $(event.target);
     var downVote = $("#down" + content.attr("data-content-id"));
 
     // Check vote down is not pressed
@@ -137,13 +153,18 @@ $(".vote-up").click(function(event) {
 
 $(".vote-down").click(function(event) {
 
+    var content = $(event.target);
+
     if (checkLogin()) {
+        return false;
+    };
+
+    if (checkSelf(content)) {
         return false;
     };
 
     $("#genericAlert").fadeOut();
 
-    var content = $(event.target);
     var upVote = $("#up" + content.attr("data-content-id"));
 
     // Check vote down is not pressed
