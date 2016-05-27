@@ -38,6 +38,45 @@ BitQA::Answer::Answer(int AnswerID)
 	delete con;
 }
 
+bool BitQA::Answer::isAcceptedAnswer(){
+	bool is = true;
+	
+	sql::Driver *driver;
+	sql::Connection *con;
+	sql::Statement *stmt;
+	sql::ResultSet *res;
+	
+	
+	driver = get_driver_instance();
+	con = driver->connect(BitQA::Database::HOST,
+						  BitQA::Database::USERNAME,
+						  BitQA::Database::PASSWORD
+						  );
+	
+	con->setSchema(BitQA::Database::SCHEMA);
+	
+	stmt = con->createStatement();
+	
+	
+	res = stmt->executeQuery("SELECT count(*) as 'acceptedAnswer' FROM tblQuestion WHERE acceptedAnswer = '" + to_string(this->AnswerID) + "'");
+	
+	res->next();
+	
+	int qryAcAns = res->getInt("acceptedAnswer");
+	
+	if (qryAcAns == 0){
+		is = false;
+	}
+	
+	delete res;
+	delete stmt;
+	delete con;
+	
+	return is;
+}
+
+
+
 int BitQA::Answer::getAnswerID()
 {
 	return this->AnswerID;

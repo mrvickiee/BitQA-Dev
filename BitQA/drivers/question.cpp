@@ -230,20 +230,9 @@ void getAnswerStack(int id, Cgicc cgicc)
 		cout << "<h3><a href=\"#\">&#128078;</a></h3>";
 		cout << "</div>";
 		cout << "<div class=\"col-xs-8 col-sm-8 col-md-8 col-lg-8\">";
+		if (answerList[i].isAcceptedAnswer()) cout << "<h5>&#128175; Accepted Answer</h5>" << endl;
 		cout << "<br><p>" << answerList[i].getDetails() << "</p>";
 		
-		//--Set accepted answer
-		if (qowner == userName) {
-			cout << "<form method='post'>" << endl;
-			cout << "<input type=\"hidden\" name=\"type\" value=\"setanswer\">";
-			cout << "<input type=\"hidden\" name=\"answerid\" value=\"" << answerList[i].getAnswerID() <<"\">";
-			cout << "<input type=\"hidden\" name=\"quesid\" value=\"" << qid <<"\">";
-			cout << "<input class='btn btn-default btn-sm' type='submit' value=&#128175;>" << endl;
-			
-			cout << "</form>" << endl;
-		}
-		
-		//-------
 		
 		cout << "<p><i><b>Answered by " << answerList[i].getUsername() << "</i></b></p>";
 		
@@ -280,6 +269,20 @@ void getAnswerStack(int id, Cgicc cgicc)
 		}
 		
 		//-----
+		
+		//--Set accepted answer
+		if (qowner == userName) {
+			cout << "<form method='post'>" << endl;
+			cout << "<input type=\"hidden\" name=\"type\" value=\"setanswer\">";
+			cout << "<input type=\"hidden\" name=\"answerid\" value=\"" << answerList[i].getAnswerID() <<"\">";
+			cout << "<input type=\"hidden\" name=\"quesid\" value=\"" << qid <<"\">";
+			cout << "<input class='btn btn-default btn-sm' type='submit' value=&#128175;>" << endl;
+			
+			cout << "</form>" << endl;
+		}
+		
+		//-------
+
 		
 		cout << "</div>";
 		cout << "</div></div>";
