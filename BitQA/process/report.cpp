@@ -141,17 +141,15 @@ void Report::featured()
 		stmt = con->createStatement();
 		
 		
-		res = stmt->executeQuery("SELECT tblFeatured.questionTitle, tblUser.username FROM tblFeatured JOIN tblUser ON tblFeatured.qOwner = tblUser.id ORDER BY tblFeatured.dateFeatured DESC LIMIT 10;");
+		res = stmt->executeQuery("SELECT tblQuestion.id, tblQuestion.questionTitle FROM BitQA.tblFeatured JOIN tblQuestion ON tblFeatured.id = tblQuestion.id;");
 
 		cout << "<table class=\"table table-hover\">";
 		cout << "<tr>";
 		cout << "<th>Question Title</th>";
-		cout << "<th>Username</th>";
 		cout << "</tr>";
 		while(res->next()){
 			cout << "<tr>";
-			cout << "<td>" << res->getString("questionTitle") << "</td>";
-			cout << "<td>" << res->getString("username") << "</td>";
+			cout << "<td><a href=\"/question.html?id=" << res->getString("id") << "\">" << res->getString("questionTitle") << "</a></td>";
 			cout << "</tr>";
 		}
 		cout << "</table>";
