@@ -47,7 +47,7 @@ void addUser(User user){
     prep_stmt2->executeUpdate();
     
     prep_stmt3 = con->prepareStatement("Insert into tblUserReputation values(?,0,0)");
-    prep_stmt3->setInt(1, user.getID());
+    prep_stmt3->setString(1, user.getUsername());
     prep_stmt3->executeUpdate();
     
     delete prep_stmt,prep_stmt2,prep_stmt3;
