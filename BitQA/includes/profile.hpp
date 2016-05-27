@@ -20,10 +20,12 @@ namespace BitQA
 	public:
 		Profile(std::string userName);
 		int getUserReputation();
+		bool canDo(std::string action);
 		
 	private:
 		std::string userName;
 		int Reputation;
+		
 	};
 }
 

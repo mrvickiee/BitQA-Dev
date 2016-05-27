@@ -4,6 +4,7 @@
 #include "../includes/html.hpp"
 #include "../includes/database.hpp"
 #include "../process/vote.hpp"
+#include "../includes/profile.hpp"
 
 using namespace cgicc;
 using namespace std;
@@ -13,7 +14,7 @@ string qid;
 
 void getQuestionStack(int id, Cgicc cgicc, string userName)
 {
-	
+	BitQA::Profile userprofile(userName);
 	
 	BitQA::Question question(id);
 	vector<BitQA::Voter> voters = BitQA::Vote::getContentIDVoted(userName);
@@ -117,6 +118,22 @@ void getQuestionStack(int id, Cgicc cgicc, string userName)
 		}
 		
 		//-------
+		
+		if (userprofile.canDo("MARKFEATUREDQUES")){
+		
+		//--Setfeatured question
+		cout << "<form method='post'>" << endl;
+		cout << "<input type=\"hidden\" name=\"type\" value=\"delcomment\">";
+		cout << "<input type=\"hidden\" name=\"commentid\" value=\"" << question.getQuestionID() <<"\">";
+		cout << "<input class='btn btn-default btn-sm' type='submit' value=&#127775;>" << endl;
+		
+		cout << "</form>" << endl;
+		
+		}
+		
+		//----
+		
+		
 		cout << "</div>";
 		cout << "</div></div>";
 		
