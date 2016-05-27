@@ -50,6 +50,7 @@ public:
     void setReputation(int);
     int getReputation();
     static int checkUserRight(string);
+	void setPassword(string);
     
 };
 

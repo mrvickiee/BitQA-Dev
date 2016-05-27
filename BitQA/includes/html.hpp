@@ -10,6 +10,8 @@
 
 #include <cgicc/HTTPHTMLHeader.h>
 #include <cgicc/HTTPRedirectHeader.h>
+#include "../process/user.hpp"
+#include "database.hpp"
 
 namespace BitQA {
 	
@@ -26,6 +28,7 @@ namespace BitQA {
 		static bool getLoggedInStatus(cgicc::Cgicc cgicc);
 		static std::string getDisplayName(cgicc::Cgicc cgicc);
 		static std::string getUsername(cgicc::Cgicc cgicc);
+		static User getUserObj(cgicc::Cgicc cgicc);
 	};
 	
 }

@@ -172,3 +172,7 @@ int User::getReputation(){
     return reputation;
 }
 
+void User::setPassword(string pass){
+	this->password = pass;
+}
+
