@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A0B38DC1CF8036F00B916CA /* profile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A0B38DA1CF8036F00B916CA /* profile.cpp */; };
 		1A4EA2711CDF604A00143486 /* post.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A9F04601CD640940068B252 /* post.cpp */; };
 		1A4EA2721CDF604C00143486 /* index.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A944B731CBF5ECA00C63F00 /* index.cpp */; };
 		1A4EA2731CDF604E00143486 /* database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AC771871CD8FA1B005D3D41 /* database.cpp */; };
@@ -196,6 +197,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1A0B38DA1CF8036F00B916CA /* profile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = profile.cpp; path = includes/profile.cpp; sourceTree = "<group>"; };
+		1A0B38DB1CF8036F00B916CA /* profile.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = profile.hpp; path = includes/profile.hpp; sourceTree = "<group>"; };
 		1A4EA25F1CDF601800143486 /* index.html */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = index.html; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A4EA26A1CDF601E00143486 /* post.html */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = post.html; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A4EA2801CDF644F00143486 /* question.html */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = question.html; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -468,6 +471,8 @@
 				398A78181CE40AEA00487375 /* md5.cpp */,
 				1A4FEAED1CF353EF007AAF64 /* json.hpp */,
 				1A4FEAEC1CF353EF007AAF64 /* json.cpp */,
+				1A0B38DB1CF8036F00B916CA /* profile.hpp */,
+				1A0B38DA1CF8036F00B916CA /* profile.cpp */,
 			);
 			name = includes;
 			sourceTree = "<group>";
@@ -784,6 +789,7 @@
 				1A4EA28F1CDF64DC00143486 /* question.cpp in Sources */,
 				1A4EA28B1CDF647A00143486 /* question.cpp in Sources */,
 				1A4EA28D1CDF64BE00143486 /* html.cpp in Sources */,
+				1A0B38DC1CF8036F00B916CA /* profile.cpp in Sources */,
 				1A7BEE501CF5B03400B0B547 /* vote.cpp in Sources */,
 				1AF13CE71CEEADC0002F44E2 /* answer.cpp in Sources */,
 			);
