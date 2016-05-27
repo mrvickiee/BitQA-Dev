@@ -58,26 +58,32 @@ int main()
 		cout << "<h3>Top 10 Most Upvoted Questions</h3><br>";
 		report.topQuestions();
 		
-		cout << "<br><hr><h1>User Profile Reports<h1>";
 		
-		cout << "<br>";
-		cout << "<h3>Activity Graph</h3><br>";
-		report.activityGraph();
-		
-		cout << "<br><hr><br>";
-		cout << "<h3>Top 5 Tags</h3><br>";
-		report.topTags();
-		
-		cout << "<br><hr><br>";
-		cout << "<h3>Posting History</h3><br>";
-		report.postHistory();
-		
-		/*
-		 cout << "<h3>Top 5 Posted Answers<br></h3>";
-		 report.topPostedAnswers();
-		 cout << "<h3>Top 5 Posted Questions<br></h3>";
-		 report.topPostedQuestions();
-		 */
+		if (userName.length() > 0) {
+			
+			cout << "<br><hr><h1>User Profile Reports<h1>";
+			
+			cout << "<br>";
+			cout << "<h3>Activity Graph</h3><br>";
+			report.activityGraph();
+			
+			cout << "<br><hr><br>";
+			cout << "<h3>Top 5 Tags</h3><br>";
+			report.topTags();
+			
+			cout << "<br><hr><br>";
+			cout << "<h3>Posting History</h3><br>";
+			report.postHistory();
+			
+			cout << "<br><hr><br>";
+			cout << "<h3>Top 5 Posted Questions<br></h3>";
+			report.topPostedQuestions();
+			
+			cout << "<br><hr><br>";
+			cout << "<h3>Top 5 Posted Answers<br></h3>";
+			report.topPostedAnswers();
+			
+		}
 		
 	} catch (sql::SQLException &e) {
 		

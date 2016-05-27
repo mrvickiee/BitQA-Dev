@@ -1,8 +1,3 @@
-/*
-Matthew Twose, mt156, 4510550
-BitQA
-report functionality declaration
-*/
 #include "report.hpp"
 
 Report::Report()
@@ -10,7 +5,8 @@ Report::Report()
 	this->userid = "";
 }
 
-void Report::setUserId(string userId){
+void Report::setUserId(string userId)
+{
 	this->userid = userId;
 }
 
@@ -23,21 +19,8 @@ bool Report::loggedIn()
 	}
 }
 
-//Homepage reports
-
 void Report::recQuestions()
 {
-	/*
-	This becomes searchTerm
-	(SELECT tags
-	FROM tblUserTags
-	WHERE id = 'this->userid';)
-
-	SELECT Q.questionTitle, C.utimestamp
-	FROM tblQuestion Q JOIN tblContent C
-	WHERE Q.tags LIKE 'searchTerm'
-	ORDER BY C.utimestamp DESC LIMIT 10;
-	*/
 
 	try {
 		sql::Driver *driver;
@@ -90,13 +73,8 @@ void Report::recQuestions()
 	}
 }
 
-void Report::topUsers(){
-	/*
-	SELECT U.username, R.reputation, U.creationdate
-	FROM tblUser U JOIN tblUserReputation R
-	WHERE U.id = R.id
-	ORDER BY R.reputation DESC LIMIT 10;
-	*/
+void Report::topUsers()
+{
 
 	try {
 		sql::Driver *driver;
@@ -142,13 +120,8 @@ void Report::topUsers(){
 	}
 }
 
-void Report::featured(){
-	/*
-	SELECT F.questionTitle, U.username
-	FROM tblFeatured F JOIN tblUser U
-	WHERE F.qOwner = U.id
-	ORDER BY dateFeatured DESC LIMIT 10;
-	*/
+void Report::featured()
+{
 
 	try {
 		sql::Driver *driver;
@@ -192,13 +165,8 @@ void Report::featured(){
 	}
 }
 
-void Report::topQuestions(){
-	/*
-	SELECT Q.questionTitle, C.upvotes
-	FROM tblQuestion Q JOIN tblContent C
-	WHERE Q.contentId = C.id
-	ORDER BY C.upvotes DESC LIMIT 10;
-	*/
+void Report::topQuestions()
+{
 
 	try {
 		sql::Driver *driver;
@@ -242,20 +210,13 @@ void Report::topQuestions(){
 
 }
 
-//User profile reports
 void Report::activityGraph()
 {
 	cout << "<p>activityGraph</p>";
 }
 
-void Report::topTags(){
-	/*
-	SELECT Q.tags, count(*) AS frequency
-	FROM tblQuestion Q JOIN tblContent C
-	WHERE Q.aowner = 'this->userid'
-	GROUP BY Q.tags
-	ORDER BY count(*) DESC LIMIT 5
-	*/
+void Report::topTags()
+{
 
 	try {
 		sql::Driver *driver;
@@ -314,21 +275,118 @@ void Report::topTags(){
 
 void Report::topPostedQuestions()
 {
-	cout << "<p>topPostedQuestions</p>";
+	try {
+		sql::Driver *driver;
+		sql::Connection *con;
+		sql::Statement *stmt;
+		sql::ResultSet *res;
+		
+		driver = get_driver_instance();
+		con = driver->connect(BitQA::Database::HOST,
+							  BitQA::Database::USERNAME,
+							  BitQA::Database::PASSWORD
+							  );
+		
+		con->setSchema(BitQA::Database::SCHEMA);
+		
+		stmt = con->createStatement();
+		
+		
+		res = stmt->executeQuery("SELECT Q.id, Q.questionTitle, C.upvotes FROM tblQuestion Q JOIN tblContent C ON Q.contentId = C.id WHERE Q.qowner = '" + this->userid + "' ORDER BY C.upvotes DESC LIMIT 10;");
+		
+		cout << "<table class=\"table table-hover\">";
+		cout << "<tr>";
+		cout << "<th>Question Title</th>";
+		cout << "<th>Upvotes</th>";
+		cout << "</tr>";
+		
+		int i = 0;
+		
+		while(res->next()){
+			cout << "<tr>";
+			cout << "<td><a href=\"/question.html?id=" << res->getString("id") << "\">" << res->getString("questionTitle") << "</a></td>";
+			cout << "<td>" << res->getString("upvotes") << "</td>";
+			cout << "</tr>";
+			
+			i++;
+		}
+		
+		if (i <= 0) {
+			cout << "<tr>";
+			cout << "<td>N/A</td>";
+			cout << "<td>N/A</td>";
+			cout << "</tr>";
+		}
+		
+		cout << "</table>";
+		
+		delete res;
+		delete stmt;
+		delete con;
+		
+	} catch (sql::SQLException &e) {
+		cout << "<p>Error</p>";
+	}
 }
 
 void Report::topPostedAnswers()
 {
-	cout << "<p>topPostedAnswers</p>";
+	try {
+		sql::Driver *driver;
+		sql::Connection *con;
+		sql::Statement *stmt;
+		sql::ResultSet *res;
+		
+		driver = get_driver_instance();
+		con = driver->connect(BitQA::Database::HOST,
+							  BitQA::Database::USERNAME,
+							  BitQA::Database::PASSWORD
+							  );
+		
+		con->setSchema(BitQA::Database::SCHEMA);
+		
+		stmt = con->createStatement();
+		
+		
+		res = stmt->executeQuery("SELECT A.id, C.content, C.upvotes FROM tblAnswer A JOIN tblContent C ON A.contentId = C.id WHERE A.aowner = '" + this->userid + "' ORDER BY C.upvotes DESC LIMIT 10;");
+		
+		cout << "<table class=\"table table-hover\">";
+		cout << "<tr>";
+		cout << "<th>Question Title</th>";
+		cout << "<th>Upvotes</th>";
+		cout << "</tr>";
+		
+		int i = 0;
+		
+		while(res->next()){
+			cout << "<tr>";
+			cout << "<td>" << res->getString("content") << "</a></td>";
+			cout << "<td>" << res->getString("upvotes") << "</td>";
+			cout << "</tr>";
+			
+			i++;
+		}
+		
+		if (i <= 0) {
+			cout << "<tr>";
+			cout << "<td>N/A</td>";
+			cout << "<td>N/A</td>";
+			cout << "</tr>";
+		}
+		
+		cout << "</table>";
+		
+		delete res;
+		delete stmt;
+		delete con;
+		
+	} catch (sql::SQLException &e) {
+		cout << "<p>Error</p>";
+	}
 }
 
-void Report::postHistory(){
-	/*
-	"SELECT Con.id, Con.utimestamp
-	FROM tblContent Con, tblAnswer A, tblQuestion Q, tblComment C
-	WHERE (A.aowner = '" + this->userid + "') OR (Q.qowner = '" + this->userid + "') OR (C.aowner = '" + this->userid + "')
-	ORDER BY utimestamp DESC LIMIT 10"
-	*/
+void Report::postHistory()
+{
 
 	try {
 		sql::Driver *driver;

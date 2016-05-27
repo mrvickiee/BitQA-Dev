@@ -1,9 +1,3 @@
-/*
-Matthew Twose, mt156, 4510550
-BitQA
-report functionality declaration
-*/
-
 #ifndef _REPORT
 #define _REPORT
 
@@ -11,7 +5,8 @@ report functionality declaration
 #include "../includes/database.hpp"
 using namespace std;
 
-class Report{
+class Report
+{
 private:
 	string userid;
 public:
