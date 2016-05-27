@@ -83,6 +83,7 @@ void BitQA::HTML::displayHeader(std::string title, Cgicc cgicc)
 		<< "<script type=\"text/javascript\" src=\"/includes/javascript/bootstrap.min.js\"></script>" << endl
 		<< "<script type=\"text/javascript\" src=\"/includes/javascript/main.js\"></script>" << endl
 		<< "<script type=\"text/javascript\" src=\"/includes/javascript/cookie.js\"></script>" << endl
+		<< "<script type=\"text/javascript\" src=\"https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js\"></script>"
 	
 		<< head() << endl;
 	
