@@ -33,7 +33,7 @@ void getUserInfo(){
                           );
     
     con->setSchema(BitQA::Database::SCHEMA);
-    prep_stmt = con->prepareStatement("SELECT *, (select tags from tblUserTags where id = A.id) as 'UserTag', (select reputation from tblUserReputation where id = A.id) as 'Reputation' from tblUser A where username = ?");
+    prep_stmt = con->prepareStatement("SELECT *, (select tags from tblUserTags where id = A.id) as 'UserTag', (select reputation from tblUserReputation where username = A.username) as 'Reputation' from tblUser A where username = ?");
     prep_stmt->setString(1, currUsername);
     res = prep_stmt->executeQuery();
     
@@ -83,20 +83,23 @@ void editUserProfile(User user){
     
     delete prep_stmt,prep_stmt2;
     delete con;
-    
-    
+}
+
+void loggedInStatus(){
+	if(BitQA::HTML::getLoggedInStatus(cgi)){
+		valid = true;
+	}
 }
 
 
 
 int main(){
     
-    getUserInfo();
-    
     CgiEnvironment environment = cgi.getEnvironment();
     string displayName, email, tags, location, ageString;
     int age;
-
+	getUserInfo();
+	
     if(environment.getRequestMethod() == "POST"){
     
         displayName = cgi("displayName");
@@ -112,79 +115,79 @@ int main(){
         updateUser.setLocation(location);
         updateUser.setAge(age);
         updateUser.setEmail(email);
-        
-        
+		
         editUserProfile(updateUser);
-        
-        
     }
     {
-    
+
         BitQA::HTML::displayHeader("Edit profile", cgi);
-        cout << "<h3> Edit Profile </h3>";
-        
-        cout << "<form data-ajax=\"false\" method=\"post\">"<<endl;
-        
-        cout << "<div class=\"form-group\">" << endl;
-        
-        cout << "<label for= \"displayName\"> Display name </label>" << endl;
-        cout << "<input type=\"text\" class=\"form-control\" id=\"displayName\" name=\"displayName\" value = \"" << curUser.getDisplayName() << "\"> " << endl;
-        
-        cout << "</div>" << endl;
-        
-        cout << "<div class=\"form-group\">" << endl;
-        
-        cout << "<label for= \"email\"> Email </label>" << endl;
-        cout << "<input type=\"email\" class=\"form-control\" id=\"email\" name=\"email\" value=\"" << curUser.getEmail() << "\">" << endl;
-        
-        cout << "</div>" << endl;
-        
-        cout << "<div class=\"form-group\">" << endl;
-        
-        cout << "<label for= \"tag\"> Tags of interest </label>" << endl;
-        cout << "<input type=\"text\" class=\"form-control\" id=\"tag\" name=\"tag\" value=\"" << curUser.getTag() << "\">"<< endl;
-        
-        cout << "</div>" << endl;
-        
-        cout << "<div class=\"form-group\">" << endl;
-        
-        cout << "<label for= \"location\"> Location </label>" << endl;
-        cout << "<input type=\"text\" class=\"form-control\" id=\"location\" name=\"location\" value=\"" << curUser.getLocation() << "\">" << endl;
-        
-        cout << "</div>" << endl;
-        
-        cout << "<div class=\"form-group\">" << endl;
-        
-        cout << "<label for= \"age\"> Age </label>" << endl;
-        cout << "<input type=\"number\" min=\"1\" max = \"99\" class=\"form-control\" id=\"age\" name=\"age\" value=\"" << curUser.getAge() << "\">" << endl;
-        
-        cout << "</div>" << endl;
-        
-        cout << "<button type=\"submit\" class=\"btn btn-default\"> Update </button> " <<endl;
-        
-        cout << "</div>" << endl;
-        cout << "</form>" << endl;
-    }
-    
-    
-    
-    if (environment.getRequestMethod() == "POST") {
-        if (error) {
-            cout << "<div class=\"alert alert-danger\">" << endl;
-            cout << "<strong>Error!</strong> "<< endl;
-            cout << "</div>";
-        } else {
-            cout << "<div class=\"alert alert-success\">" << endl;
-            cout << "<strong>Success!</strong> Profile updated successfully." << endl;
-            cout << "</div>";
-            cout << cgicc::HTTPRedirectHeader(BitQA::HTML::HOST + "/profile.html?username=" + curUser.getUsername()) << endl;
+		
+		if(BitQA::HTML::getLoggedInStatus(cgi)){
+			cout << "<h3> Edit Profile </h3>";
+			
+			cout << "<form data-ajax=\"false\" method=\"post\">"<<endl;
+			
+			cout << "<div class=\"form-group\">" << endl;
+			
+			cout << "<label for= \"displayName\"> Display name </label>" << endl;
+			cout << "<input type=\"text\" class=\"form-control\" id=\"displayName\" name=\"displayName\" value = \"" << curUser.getDisplayName() << "\"> " << endl;
+			
+			cout << "</div>" << endl;
+			
+			cout << "<div class=\"form-group\">" << endl;
+			
+			cout << "<label for= \"email\"> Email </label>" << endl;
+			cout << "<input type=\"email\" class=\"form-control\" id=\"email\" name=\"email\" value=\"" << curUser.getEmail() << "\">" << endl;
+			
+			cout << "</div>" << endl;
+			
+			cout << "<div class=\"form-group\">" << endl;
+			
+			cout << "<label for= \"tag\"> Tags of interest </label>" << endl;
+			cout << "<input type=\"text\" class=\"form-control\" id=\"tag\" name=\"tag\" value=\"" << curUser.getTag() << "\">"<< endl;
+			
+			cout << "</div>" << endl;
+			
+			cout << "<div class=\"form-group\">" << endl;
+			
+			cout << "<label for= \"location\"> Location </label>" << endl;
+			cout << "<input type=\"text\" class=\"form-control\" id=\"location\" name=\"location\" value=\"" << curUser.getLocation() << "\">" << endl;
+			
+			cout << "</div>" << endl;
+			
+			cout << "<div class=\"form-group\">" << endl;
+			
+			cout << "<label for= \"age\"> Age </label>" << endl;
+			cout << "<input type=\"number\" min=\"1\" max = \"99\" class=\"form-control\" id=\"age\" name=\"age\" value=\"" << curUser.getAge() << "\">" << endl;
+			
+			cout << "</div>" << endl;
+			
+			cout << "<button type=\"submit\" class=\"btn btn-default\"> Update </button> " <<endl;
+			
+			cout << "</div>" << endl;
+			cout << "</form>" << endl;
+		
+		}else{
+			cout << "Dont attempt to break the server please!";
+		}
+	}
+	
+		if (environment.getRequestMethod() == "POST") {
+			if (error) {
+				cout << "<div class=\"alert alert-danger\">" << endl;
+				cout << "<strong>Error!</strong> "<< endl;
+				cout << "</div>";
+			} else {
+				cout << "<div class=\"alert alert-success\">" << endl;
+				cout << "<strong>Success!</strong> Profile updated successfully." << endl;
+				cout << "</div>";
+				cout << "<script>window.location.href=\""
+					 << BitQA::HTML::HOST + "/profile.html?username=" + curUser.getUsername()
+					 <<"\"</script>" << endl;
+			}
+			
+		}
 
-            
-        }
-    }
-
-    
-    
     BitQA::HTML::displayFooter();
     return 0;
     
