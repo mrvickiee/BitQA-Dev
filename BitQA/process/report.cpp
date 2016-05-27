@@ -212,7 +212,78 @@ void Report::topQuestions()
 
 void Report::activityGraph()
 {
-	cout << "<p>activityGraph</p>";
+	
+	try {
+		sql::Driver *driver;
+		sql::Connection *con;
+		sql::Statement *stmt;
+		sql::ResultSet *res;
+		
+		string temp = "";
+		
+		driver = get_driver_instance();
+		con = driver->connect(BitQA::Database::HOST,
+							  BitQA::Database::USERNAME,
+							  BitQA::Database::PASSWORD
+							  );
+		
+		con->setSchema(BitQA::Database::SCHEMA);
+		
+		stmt = con->createStatement();
+		
+		vector<string> results;
+		
+		/*
+		 * Questions
+		 */
+		res = stmt->executeQuery("SELECT count(*) AS \"count\" FROM BitQA.tblQuestion WHERE qowner = '" + this->userid + "';");
+		
+		while(res->next()) {
+			temp  = res->getString("count");
+		}
+		
+		results.push_back(temp);
+		
+		/*
+		 * Answers
+		 */
+		res = stmt->executeQuery("SELECT count(*) AS \"count\" FROM BitQA.tblAnswer WHERE aowner = '" + this->userid + "';");
+		
+		while(res->next()) {
+			temp  = res->getString("count");
+		}
+		
+		results.push_back(temp);
+		
+		/*
+		 * Comments
+		 */
+		res = stmt->executeQuery("SELECT count(*) AS \"count\" FROM BitQA.tblComment WHERE aowner = '" + this->userid + "';");
+		
+		while(res->next()) {
+			temp  = res->getString("count");
+		}
+		
+		results.push_back(temp);
+		
+		string finalArray;
+		
+		for (int i = 0; i < results.size(); i++) {
+			finalArray += results[i] + (i < results.size()-1? ", ": "");
+		}
+		
+		cout << "<script>var datas = datas || {}; var datas = [" << finalArray << "];</script>" << endl;
+		
+		cout << "<div style=\"width:500px\"><canvas style=\"width: 500px; height: 250px;\" id=\"myChart\" width=\"400\" height=\"400\"></canvas></div>" << endl;
+		cout << "<script src=\"/includes/javascript/report.js\"></script>";
+		
+		delete res;
+		delete stmt;
+		delete con;
+		
+	} catch (sql::SQLException &e) {
+		cout << "<p>Error</p>";
+	}
 }
 
 void Report::topTags()

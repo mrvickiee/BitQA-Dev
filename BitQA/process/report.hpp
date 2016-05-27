@@ -1,7 +1,8 @@
 #ifndef _REPORT
 #define _REPORT
 
-#include<iostream>
+#include <iostream>
+#include <vector>
 #include "../includes/database.hpp"
 using namespace std;
 
