@@ -27,7 +27,7 @@ namespace BitQA
 		int CommentID;
 		int OwnerID;
 		int ContentID;
-		int CommentOwner;
+		string CommentOwner;
 	};
 }
 

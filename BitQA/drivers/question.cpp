@@ -109,7 +109,9 @@ void getQuestionStack(int id, Cgicc cgicc, string userName)
 		
 		string qryOwner = res->getString("owner");
 
-		if (qryOwner == userName) {
+		if ((qryOwner == userName) ||
+			(userprofile.canDo("DELETEANYANS"))
+		) {
 			// cout << "<div class=\"row-fluid\"><div class=\"span12\"><div style=\"width:1200px;\">";
 			
 			cout << " <div style=\"margin-left: -15px;\" class=\"container-fluid\"><div class=\"row\">";
@@ -259,6 +261,8 @@ void getQuestionStack(int id, Cgicc cgicc, string userName)
 void getAnswerStack(int id, Cgicc cgicc, string userName)
 {
 
+	BitQA::Profile userprofile(userName);
+	
 	vector<BitQA::Answer> answerList;
 	vector<BitQA::Voter> voters = BitQA::Vote::getContentIDVoted(userName);
 	BitQA::Voter currentVote;
@@ -371,7 +375,9 @@ void getAnswerStack(int id, Cgicc cgicc, string userName)
 		
 		string qryOwner = res->getString("owner");
 		
-		if (qryOwner == userName) {
+		if ((qryOwner == userName) ||
+			(userprofile.canDo("DELETEANYANS"))
+		) {
 			cout << "<form method='post'>" << endl;
 			cout << "<input type=\"hidden\" name=\"type\" value=\"delanswer\">";
 			cout << "<input type=\"hidden\" name=\"answerid\" value=\"" << answerList[i].getAnswerID() <<"\">";
@@ -462,7 +468,9 @@ void getAnswerStack(int id, Cgicc cgicc, string userName)
 			
 			//cout << "comid: " << commentList[j].getCommentID() << " usr:" << userName << endl;
 			
-			if (qryOwner == userName) {
+			if ((qryOwner == userName)  ||
+				(userprofile.canDo("DELETEANYANS"))
+			) {
 				cout << "<form method='post'>" << endl;
 				cout << "<input type=\"hidden\" name=\"type\" value=\"delcomment\">";
 				cout << "<input type=\"hidden\" name=\"commentid\" value=\"" << commentList[j].getCommentID() <<"\">";
@@ -579,7 +587,9 @@ void getAnswerStack(int id, Cgicc cgicc, string userName)
 			
 			string qryOwner = res->getString("owner");
 			
-			if (qryOwner == userName) {
+			if ((qryOwner == userName)  ||
+				(userprofile.canDo("DELETEANYANS"))
+			) {
 				cout << "<form method='post'>" << endl;
 				cout << "<input type=\"hidden\" name=\"type\" value=\"delanswer\">";
 				cout << "<input type=\"hidden\" name=\"answerid\" value=\"" << answerList[i].getAnswerID() <<"\">";
@@ -669,7 +679,9 @@ void getAnswerStack(int id, Cgicc cgicc, string userName)
 				
 				//cout << "comid: " << commentList[j].getCommentID() << " usr:" << userName << endl;
 				
-				if (qryOwner == userName) {
+				if ((qryOwner == userName) ||
+					(userprofile.canDo("DELETEANYANS"))
+				) {
 					cout << "<form method='post'>" << endl;
 					cout << "<input type=\"hidden\" name=\"type\" value=\"delcomment\">";
 					cout << "<input type=\"hidden\" name=\"commentid\" value=\"" << commentList[j].getCommentID() <<"\">";
@@ -829,6 +841,8 @@ void processPOST(int id, Cgicc cgicc, bool &exit)
 									  );
 				
 				con->setSchema(BitQA::Database::SCHEMA);
+				
+								cout << "<H1>USER: " << userName << "</H1>";
 				
 				prep_stmt = con->prepareStatement("CALL ProcInsertComment(?, ?, ?);");
 				prep_stmt->setInt(1, stoi(cgicc("content-id")));

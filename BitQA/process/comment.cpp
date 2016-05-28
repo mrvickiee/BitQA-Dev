@@ -27,7 +27,7 @@ BitQA::Comment::Comment(int CommentID)
 	
 	while (res->next()) {
 		this->ContentID = res->getInt("contentId");
-		this->CommentOwner = res->getInt("aowner");
+		this->CommentOwner = res->getString("aowner");
 	}
 	
 	delete res;
@@ -43,7 +43,7 @@ string BitQA::Comment::getContentID()
 
 string BitQA::Comment::getOwnerID()
 {
-	return to_string(this->CommentOwner);
+	return this->CommentOwner;
 }
 
 
@@ -126,7 +126,7 @@ string BitQA::Comment::getUsername()
 	con->setSchema(BitQA::Database::SCHEMA);
 	stmt = con->createStatement();
 	
-	res = stmt->executeQuery("SELECT displayname FROM tblUser WHERE username = '" + to_string(this->CommentOwner) + "'");
+	res = stmt->executeQuery("SELECT displayname FROM tblUser WHERE username = '" + this->CommentOwner + "'");
 	
 	while (res->next()) {
 		username = res->getString("displayname");
