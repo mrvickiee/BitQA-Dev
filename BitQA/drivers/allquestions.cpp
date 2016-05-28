@@ -34,6 +34,29 @@ int main(){
 	BitQA::HTML::displayHeader("All Questions", cgicc);
 	
 	try {
+		
+		int acAnswersOnly = 0;
+		int mostRep = 0;
+		int mostVote = 0;
+		
+		CgiEnvironment environment = cgicc.getEnvironment();
+		
+		if (environment.getRequestMethod() == "POST") {
+			cout << "its a post" << endl;
+			if (cgicc("mostvote") == "on"){
+				mostVote = 1;
+				//cout << "most vote on:" << endl;
+			}
+			
+			if (cgicc("mostrep") == "on"){
+				mostRep = 1;
+			}
+			
+			if (cgicc("withanswer") == "true"){
+				acAnswersOnly = 1;
+			}
+		}
+		
 		sql::Driver *driver;
 		sql::Connection *con;
 		sql::PreparedStatement *prep_stmt;
@@ -69,9 +92,12 @@ int main(){
 		
 		toVal = fromVal + 100;
 		
-		prep_stmt = con->prepareStatement("CALL GetAllQuestions(?,?);");
+		prep_stmt = con->prepareStatement("CALL GetAllQuestions(?,?,?,?,?);");
 		prep_stmt->setInt(1, fromVal);
 		prep_stmt->setInt(2, toVal);
+		prep_stmt->setInt(3, acAnswersOnly);
+		prep_stmt->setInt(4, mostRep);
+		prep_stmt->setInt(5, mostVote);
 		res = prep_stmt->executeQuery();
 		
 		cout << "<h1>Showing all questions</h1>" << endl;
@@ -81,13 +107,12 @@ int main(){
 		cout << "<div class=\"panel panel-default\">"
 			<< "<div class=\"panel-heading\">"
 			<< "<h3 class=\"panel-title\">Filter questions</h3></div><div class=\"panel-body\">"
-			<< "<form method=\"get\">"
+			<< "<form method=\"POST\">"
 			<< "<table style=\"padding: 10px;\">"
 			<< "<col width = \"200\"><tr height=\"20px\">"
 			<< "<td><b>Questions:</b></td>"
 			<< "<td><b>Sort by:</b></td></tr>"
 			<< "<tr height=\"50px\">"
-		//ok
 			<< "<td><label class=\"checkbox-inline\"><input type=\"checkbox\" name=\"withanswer\" value=\"true\">Answered</label></td>"
 			<< "<td><label class=\"radio-inline\"><input type=\"radio\" name=\"mostvote\">Most voted</label>"
 			<< "<label class=\"radio-inline\"><input type=\"radio\" name=\"mostrep\">Most reputed</label></td></tr>"
