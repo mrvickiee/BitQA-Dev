@@ -23,7 +23,8 @@ Report report;
 
 void getUserInfo(){
     string currUsername = cgi("username");
-    sql::Driver *driver;
+	
+	sql::Driver *driver;
     sql::Connection *con;
     sql::PreparedStatement *prep_stmt;
     sql::ResultSet *res;

@@ -31,6 +31,45 @@ string User::getUsername(){
     return username;
 }
 
+User User::getUserObj(string currUsername){
+
+	User curUser;
+
+	sql::Driver *driver;
+	sql::Connection *con;
+	sql::PreparedStatement *prep_stmt;
+	sql::ResultSet *res;
+
+	driver = get_driver_instance();
+	con = driver->connect(BitQA::Database::HOST,
+						  BitQA::Database::USERNAME,
+						  BitQA::Database::PASSWORD
+						  );
+
+	con->setSchema(BitQA::Database::SCHEMA);
+	prep_stmt = con->prepareStatement("SELECT *, (select tags from tblUserTags where id = A.id) as 'UserTag', (select reputation from tblUserReputation where username = A.username) as 'Reputation' from tblUser A where username = ?");
+	prep_stmt->setString(1, currUsername);
+	res = prep_stmt->executeQuery();
+
+	if(res->next()){            //get user info and populate
+		curUser.setUsername(currUsername);
+		curUser.setLocation(res->getString("location"));
+		curUser.setDisplayName(res->getString("displayname"));
+		curUser.setAge(res->getInt("age"));
+		curUser.setEmail(res->getString("email"));
+		curUser.setTag(res->getString("UserTag"));
+		curUser.setReputation(res->getInt("Reputation"));
+		curUser.setID(res->getInt("id"));
+		curUser.setPassword(res->getString("passhash"));
+
+	}
+	delete prep_stmt;
+	delete con;
+
+	return curUser;
+}
+
+
 int User::checkUserRight(string rights){
     
     
@@ -60,6 +99,13 @@ int User::checkUserRight(string rights){
         
         return reputation;
 }
+
+
+
+
+
+
+
 
 string User::getPassword(){
     return password;
