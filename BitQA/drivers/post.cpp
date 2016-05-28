@@ -102,9 +102,25 @@ int main()
 			response += "Error getting post: " + string(e.what()) + "<br>";
 		}
 		
+		if (error) {
+			cout << "<div class=\"alert alert-danger\">" << endl;
+			cout << "<strong>Error!</strong> " << response << endl;
+			cout << "</div>";
+		} else {
+			
+		
+		cout << "<center><h1>Question posted successfully</h1>";
+		cout << "<h4>James is processing your question and checking for memes...</h4>" << endl;
+		cout << "<h5>View it <a  href= 'allquestions.html'>here</a></h5>" << endl;
+		cout << "<br><br>" << endl;
+		cout << "<img align='middle' src='https://cdn4.iconfinder.com/data/icons/ballicons-2-free/100/669348-letter-512.png'></center>" << endl;
+		}
+		
 	}
 	
-	{
+	
+	
+	else {
 		
 		
         cout << "<h1>Post a new question</h1>";
@@ -125,20 +141,10 @@ int main()
 		
 		cout << BitQA::HTML::spacer(10);
 		
-		if (environment.getRequestMethod() == "POST") {
-			if (error) {
-				cout << "<div class=\"alert alert-danger\">" << endl;
-				cout << "<strong>Error!</strong> " << response << endl;
-				cout << "</div>";
-			} else {
-				cout << "<div class=\"alert alert-success\">" << endl;
-				cout << "<strong>Success</strong> Added question. View it <a  href= 'allquestions.html'>here</a>" << endl;
-				cout << "</div>";
-			}
-		}
 		
-		BitQA::HTML::displayFooter();
+		
 	}
 	
+	BitQA::HTML::displayFooter();
 	return 0;
 }
