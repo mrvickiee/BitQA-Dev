@@ -7,11 +7,25 @@
 //
 
 #include <stdio.h>
+#include <algorithm>
+#include <regex>
 #include "../includes/database.hpp"
 #include "../includes/html.hpp"
 
 using namespace cgicc;
 using namespace std;
+
+string removeMarkup(string input){
+	string res = input;
+	replace( res.begin(), res.end(), '<', ' ');
+	replace( res.begin(), res.end(), '>', ' ');
+	//string res = "<xmp>" + input + "</xmp>";
+	//string res = "<b href='sss'>hello</b>";
+	//res = regex_replace(res, regex(" *\\<[^>]*\\> *"), "");
+	//res = regex_replace(res, regex("(<[a-zA-Z]*>)|(<\/[a-zA-Z]*>)"), "");
+	
+	return res;
+}
 
 int main(){
 	
@@ -67,7 +81,12 @@ int main(){
 		while (res->next()) {
 			cout << "<div class=\"panel panel-default\"><div class=\"panel-body\">" << endl;
 			cout << "<h4><a href='question.html?id=" << res->getString("id") <<  "'>" <<  res->getString("questionTitle") << endl;
-			cout << "</a></h4>" << "Information" << "</div></div>" << endl;
+			cout << "</a></h4>" << removeMarkup(res->getString("content").substr(0,100)) << (res->getString("content").length()>100? "..." : "");
+			
+			cout << "<div><br><span>&#128129;: <a href='profile.html?username=" << res->getString("username") << "'>" << res->getString("displayname") << "</a>&nbsp;</span><span>&#9202;: " << res->getString("utimestamp") <<"&nbsp;</span><span>&#128077;: " << res->getString("votes") <<"&nbsp;</span></div>" << endl;
+			
+			
+			cout<< "</div></div>" << endl;
 			
 		}
 		
