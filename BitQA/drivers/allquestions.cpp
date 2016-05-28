@@ -35,14 +35,14 @@ int main(){
 	
 	try {
 		
-		int acAnswersOnly = 0;
+		int acAnswersOnly = 1;
 		int mostRep = 0;
 		int mostVote = 0;
 		
 		CgiEnvironment environment = cgicc.getEnvironment();
 		
 		if (environment.getRequestMethod() == "POST") {
-			cout << "its a post" << endl;
+			//cout << "its a post" << endl;
 			if (cgicc("mostvote") == "on"){
 				mostVote = 1;
 				//cout << "most vote on:" << endl;
@@ -50,10 +50,12 @@ int main(){
 			
 			if (cgicc("mostrep") == "on"){
 				mostRep = 1;
+				//cout << "most rep on:" << endl;
 			}
 			
-			if (cgicc("withanswer") == "true"){
-				acAnswersOnly = 1;
+			if (cgicc("withanswer") != "true"){
+				acAnswersOnly = 0;
+				//cout << "acans on:" << endl;
 			}
 		}
 		
@@ -96,8 +98,8 @@ int main(){
 		prep_stmt->setInt(1, fromVal);
 		prep_stmt->setInt(2, toVal);
 		prep_stmt->setInt(3, acAnswersOnly);
-		prep_stmt->setInt(4, mostRep);
-		prep_stmt->setInt(5, mostVote);
+		prep_stmt->setInt(4, mostVote);
+		prep_stmt->setInt(5, mostRep);
 		res = prep_stmt->executeQuery();
 		
 		cout << "<h1>Showing all questions</h1>" << endl;
@@ -113,7 +115,7 @@ int main(){
 			<< "<td><b>Questions:</b></td>"
 			<< "<td><b>Sort by:</b></td></tr>"
 			<< "<tr height=\"50px\">"
-			<< "<td><label class=\"checkbox-inline\"><input type=\"checkbox\" name=\"withanswer\" value=\"true\">Answered</label></td>"
+			<< "<td><label class=\"checkbox-inline\"><input type=\"checkbox\" name=\"withanswer\" value=\"true\" checked>Answered</label></td>"
 			<< "<td><label class=\"radio-inline\"><input type=\"radio\" name=\"mostvote\">Most voted</label>"
 			<< "<label class=\"radio-inline\"><input type=\"radio\" name=\"mostrep\">Most reputed</label></td></tr>"
 			<< "<tr height=\"20px\"><td><input class=\"btn btn-primary\" type=\"submit\" value=\"Refine\"/></td></tr></table></form></div></div><br><br>" << endl;
@@ -125,7 +127,7 @@ int main(){
 			cout << "<h4><a href='question.html?id=" << res->getString("id") <<  "'>" <<  res->getString("questionTitle") << endl;
 			cout << "</a></h4>" << removeMarkup(res->getString("content").substr(0,100)) << (res->getString("content").length()>100? "..." : "");
 			
-			cout << "<div><br><span>&#128129;: <a href='profile.html?username=" << res->getString("username") << "'>" << res->getString("displayname") << "</a>&nbsp;</span><span>&#9202;: " << res->getString("utimestamp") <<"&nbsp;</span><span>&#128077;: " << res->getString("votes") <<"&nbsp;</span></div>" << endl;
+			cout << "<div><br><span>&#128129;: <a href='profile.html?username=" << res->getString("username") << "'>" << res->getString("displayname") << "</a>&nbsp;</span><span>&#128336;: " << res->getString("utimestamp") <<"&nbsp;</span><span>&#128077;: " << res->getString("votes") <<"&nbsp;</span></div>" << endl;
 			
 			
 			cout<< "</div></div>" << endl;
