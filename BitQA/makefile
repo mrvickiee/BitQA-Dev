@@ -13,5 +13,6 @@ build:
 	g++ -std=c++0x includes/database.cpp includes/json.cpp includes/html.cpp process/user.cpp api/vote.cpp -o ../www/api/vote.html -lmysqlcppconn -lcgicc
 	g++ -std=c++0x includes/database.cpp includes/html.cpp includes/md5.cpp process/user.cpp drivers/editpassword.cpp -o ../www/editpassword.html -lmysqlcppconn -lcgicc
 	g++ -std=c++0x includes/database.cpp includes/html.cpp process/user.cpp drivers/accdeactivate.cpp -o ../www/accdeactivate.html -lmysqlcppconn -lcgicc
+	g++ -std=c++0x includes/database.cpp includes/html.cpp process/user.cpp drivers/editcontent.cpp -o ../www/editcontent.html -lmysqlcppconn -lcgicc
 current:
 	g++ -std=c++0x includes/database.cpp includes/html.cpp process/search.cpp drivers/search.cpp -o ../www/search.html -lmysqlcppconn -lcgicc
