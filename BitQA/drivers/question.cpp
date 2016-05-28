@@ -110,11 +110,23 @@ void getQuestionStack(int id, Cgicc cgicc, string userName)
 		string qryOwner = res->getString("owner");
 
 		if (qryOwner == userName) {
-			cout << "<form action='' method='post'>" << endl;
+			// cout << "<div class=\"row-fluid\"><div class=\"span12\"><div style=\"width:1200px;\">";
+			
+			cout << " <div style=\"margin-left: -15px;\" class=\"container-fluid\"><div class=\"row\">";
+			cout << "<div class=\"col-xs-2 col-sm-2 col-md-2 col-lg-2\">";
+			cout << "<form style=\"width: 200px\" action='' method='post'>" << endl;
 			cout << "<input type=\"hidden\" name=\"type\" value=\"delquestion\">";
-			cout << "<input type=\"hidden\" name=\"questionid\" value=\"" << question.getQuestionID() <<"\">";
+			cout << "<input type=\"hidden\" name=\"questionid\" value=\"" << qid <<"\">";
 			cout << "<button type=\"submit\" class=\"btn btn-danger\">Delete</button>" << endl;
 			cout << "</form><br>" << endl;
+			cout << "</div>";
+			
+			cout << "<div style=\"margin-left: -45px;\" class=\"col-xs-2 col-sm-2 col-md-2 col-lg-2\">";
+			cout << "<a href=\"/editcontent.html?contentid=" << question.getQuestionContentID() << "&questionid=" << qid << "\" class=\"btn btn-default\">&#129300;</a>" << endl;
+			cout << "<br>" << endl;
+			cout << "</div></div>";
+			// cout << "</div></div></div>";
+			
 		}
 		
 		//-------
@@ -124,7 +136,7 @@ void getQuestionStack(int id, Cgicc cgicc, string userName)
 		//--Setfeatured question
 		cout << "<form method='post'>" << endl;
 		cout << "<input type=\"hidden\" name=\"type\" value=\"setfeatured\">";
-		cout << "<input type=\"hidden\" name=\"questionid\" value=\"" << question.getQuestionID() <<"\">";
+		cout << "<input type=\"hidden\" name=\"questionid\" value=\"" << qid <<"\">";
 		cout << "<input class='btn btn-default btn-sm' type='submit' value=&#127775;>" << endl;
 		
 		cout << "</form>" << endl;
@@ -208,6 +220,9 @@ void getQuestionStack(int id, Cgicc cgicc, string userName)
 				cout << "<input class='btn btn-default btn-sm' type='submit' value=&#10060;>" << endl;
 				
 				cout << "</form>" << endl;
+				
+				cout << "<a href=\"/editcontent.html?contentid=" << commentList[i].getContentID() << "&questionid=" << qid << "\" class=\"btn btn-default\">&#129300;</a>" << endl;
+				
 			}
 			
 			//-----
@@ -363,6 +378,9 @@ void getAnswerStack(int id, Cgicc cgicc, string userName)
 			cout << "<input class='btn btn-default btn-sm' type='submit' value=&#10060;>" << endl;
 			
 			cout << "</form>" << endl;
+			
+			cout << "<a href=\"/editcontent.html?contentid=" << answerList[i].getContentID() << "&questionid=" << qid << "\" class=\"btn btn-default\">&#129300;</a>" << endl;
+			
 		}
 		
 		//-----
@@ -451,6 +469,8 @@ void getAnswerStack(int id, Cgicc cgicc, string userName)
 				cout << "<input class='btn btn-default btn-sm' type='submit' value=&#10060;>" << endl;
 				
 				cout << "</form>" << endl;
+				
+				cout << "<a href=\"/editcontent.html?contentid=" << commentList[j].getContentID() << "&questionid=" << qid << "\" class=\"btn btn-default\">&#129300;</a>" << endl;
 			}
 			
 			//-----
@@ -566,6 +586,8 @@ void getAnswerStack(int id, Cgicc cgicc, string userName)
 				cout << "<input class='btn btn-default btn-sm' type='submit' value=&#10060;>" << endl;
 				
 				cout << "</form>" << endl;
+				
+				cout << "<a href=\"/editcontent.html?contentid=" << answerList[i].getContentID() << "&questionid=" << qid << "\" class=\"btn btn-default\">&#129300;</a>" << endl;
 			}
 			
 			//-----
@@ -654,6 +676,10 @@ void getAnswerStack(int id, Cgicc cgicc, string userName)
 					cout << "<input class='btn btn-default btn-sm' type='submit' value=&#10060;>" << endl;
 					
 					cout << "</form>" << endl;
+					
+					cout << "<a href=\"/editcontent.html?contentid=" << commentList[j].getContentID() << "&questionid=" << qid << "\" class=\"btn btn-default\">&#129300;</a>" << endl;
+					
+					
 				}
 				
 				//-----

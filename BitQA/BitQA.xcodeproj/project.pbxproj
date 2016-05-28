@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		1A0B38DC1CF8036F00B916CA /* profile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A0B38DA1CF8036F00B916CA /* profile.cpp */; };
+		1A0B38E91CF9603300B916CA /* editcontent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A0B38E81CF9603300B916CA /* editcontent.cpp */; };
+		1A0B38EB1CF9626F00B916CA /* libmysqlcppconn.7.1.1.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A643A341CC29CCC008C1AC5 /* libmysqlcppconn.7.1.1.6.dylib */; };
+		1A0B38EC1CF9627100B916CA /* libcgicc.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A643A391CC2A228008C1AC5 /* libcgicc.3.dylib */; };
+		1A0B38ED1CF9628B00B916CA /* html.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA8F0E1CC6737D00E19ADD /* html.cpp */; };
+		1A0B38EE1CF96DE600B916CA /* database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AC771871CD8FA1B005D3D41 /* database.cpp */; };
 		1A4EA2711CDF604A00143486 /* post.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A9F04601CD640940068B252 /* post.cpp */; };
 		1A4EA2721CDF604C00143486 /* index.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A944B731CBF5ECA00C63F00 /* index.cpp */; };
 		1A4EA2731CDF604E00143486 /* database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AC771871CD8FA1B005D3D41 /* database.cpp */; };
@@ -100,6 +105,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		1A0B38DF1CF95FF400B916CA /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		1A4EA25D1CDF601800143486 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -231,6 +245,8 @@
 /* Begin PBXFileReference section */
 		1A0B38DA1CF8036F00B916CA /* profile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = profile.cpp; path = includes/profile.cpp; sourceTree = "<group>"; };
 		1A0B38DB1CF8036F00B916CA /* profile.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = profile.hpp; path = includes/profile.hpp; sourceTree = "<group>"; };
+		1A0B38E11CF95FF400B916CA /* editcontent.html */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = editcontent.html; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A0B38E81CF9603300B916CA /* editcontent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = editcontent.cpp; path = drivers/editcontent.cpp; sourceTree = "<group>"; };
 		1A4EA25F1CDF601800143486 /* index.html */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = index.html; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A4EA26A1CDF601E00143486 /* post.html */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = post.html; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A4EA2801CDF644F00143486 /* question.html */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = question.html; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -292,6 +308,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1A0B38DE1CF95FF400B916CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A0B38EB1CF9626F00B916CA /* libmysqlcppconn.7.1.1.6.dylib in Frameworks */,
+				1A0B38EC1CF9627100B916CA /* libcgicc.3.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1A4EA25C1CDF601800143486 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -494,6 +519,7 @@
 				1A4FEAE21CF352F3007AAF64 /* vote.html */,
 				392D81BD1CF85DC900520742 /* editpassword.html */,
 				395515641CF92F61005C7BC6 /* accdeactivate.html */,
+				1A0B38E11CF95FF400B916CA /* editcontent.html */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -514,6 +540,7 @@
 				568CF2A01CE074E100E1A986 /* browse.cpp */,
 				568F2BE21CE70DCF00C085AD /* allquestions.cpp */,
 				3955156B1CF92F99005C7BC6 /* accdeactivate.cpp */,
+				1A0B38E81CF9603300B916CA /* editcontent.cpp */,
 			);
 			name = drivers;
 			sourceTree = "<group>";
@@ -538,6 +565,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		1A0B38E01CF95FF400B916CA /* editcontent.html */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A0B38E71CF95FF400B916CA /* Build configuration list for PBXNativeTarget "editcontent.html" */;
+			buildPhases = (
+				1A0B38DD1CF95FF400B916CA /* Sources */,
+				1A0B38DE1CF95FF400B916CA /* Frameworks */,
+				1A0B38DF1CF95FF400B916CA /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = editcontent.html;
+			productName = editcontent.html;
+			productReference = 1A0B38E11CF95FF400B916CA /* editcontent.html */;
+			productType = "com.apple.product-type.tool";
+		};
 		1A4EA25E1CDF601800143486 /* index.html */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1A4EA2631CDF601800143486 /* Build configuration list for PBXNativeTarget "index.html" */;
@@ -785,6 +829,9 @@
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = CSCI222;
 				TargetAttributes = {
+					1A0B38E01CF95FF400B916CA = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
 					1A4EA25E1CDF601800143486 = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
@@ -855,11 +902,22 @@
 				1A4FEAE11CF352F3007AAF64 /* vote.html */,
 				392D81BC1CF85DC900520742 /* editpassword.html */,
 				395515631CF92F61005C7BC6 /* accdeactivate.html */,
+				1A0B38E01CF95FF400B916CA /* editcontent.html */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1A0B38DD1CF95FF400B916CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A0B38ED1CF9628B00B916CA /* html.cpp in Sources */,
+				1A0B38E91CF9603300B916CA /* editcontent.cpp in Sources */,
+				1A0B38EE1CF96DE600B916CA /* database.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1A4EA25B1CDF601800143486 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1023,6 +1081,34 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		1A0B38E51CF95FF400B916CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/../www";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/usr/local/Cellar/mysql-connector-c++/1.1.6_1/lib",
+					/usr/local/Cellar/cgicc/lib,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		1A0B38E61CF95FF400B916CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/../www";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/usr/local/Cellar/mysql-connector-c++/1.1.6_1/lib",
+					/usr/local/Cellar/cgicc/lib,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		1A4EA2641CDF601800143486 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1503,6 +1589,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1A0B38E71CF95FF400B916CA /* Build configuration list for PBXNativeTarget "editcontent.html" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A0B38E51CF95FF400B916CA /* Debug */,
+				1A0B38E61CF95FF400B916CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		1A4EA2631CDF601800143486 /* Build configuration list for PBXNativeTarget "index.html" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
