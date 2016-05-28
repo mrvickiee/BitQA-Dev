@@ -77,6 +77,23 @@ int main(){
 		cout << "<h1>Showing all questions</h1>" << endl;
 		cout << "<br><br>" << endl;
 		
+		//print filter div
+		cout << "<div class=\"panel panel-default\">"
+			<< "<div class=\"panel-heading\">"
+			<< "<h3 class=\"panel-title\">Filter questions</h3></div><div class=\"panel-body\">"
+			<< "<form method=\"get\">"
+			<< "<table style=\"padding: 10px;\">"
+			<< "<col width = \"200\"><tr height=\"20px\">"
+			<< "<td><b>Questions:</b></td>"
+			<< "<td><b>Sort by:</b></td></tr>"
+			<< "<tr height=\"50px\">"
+		//ok
+			<< "<td><label class=\"checkbox-inline\"><input type=\"checkbox\" name=\"withanswer\" value=\"true\">Answered</label></td>"
+			<< "<td><label class=\"radio-inline\"><input type=\"radio\" name=\"mostvote\">Most voted</label>"
+			<< "<label class=\"radio-inline\"><input type=\"radio\" name=\"mostrep\">Most reputed</label></td></tr>"
+			<< "<tr height=\"20px\"><td><input class=\"btn btn-primary\" type=\"submit\" value=\"Refine\"/></td></tr></table></form></div></div><br><br>" << endl;
+		
+		
 		//print results
 		while (res->next()) {
 			cout << "<div class=\"panel panel-default\"><div class=\"panel-body\">" << endl;
