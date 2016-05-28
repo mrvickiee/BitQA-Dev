@@ -157,10 +157,28 @@ int main(){
 	
 	
 	cout << "<script>"
-	     << "$(document).ready( function(){"
-	     << "$('topQuesTbl').DataTable();"
-		 << "});</script>"
-		 << endl;
+	<< "$('#topQuesTbl').DataTable({paging:false,"
+	<< "searching:false,"
+	<< "autowidth:false,"
+	<< "info:false});"
+	
+	<< "$('#topAnsTbl').DataTable({paging:false,"
+	<< "searching:false,"
+	<< "autowidth:false,"
+	<< "info:false});"
+	
+	<< "$('#topPostingHistoryTbl').DataTable({paging:false,"
+	<< "searching:true,"
+	<< "autowidth:false,"
+	<< "info:false});"
+
+	<< "$('#topTagTbl').DataTable({paging:false,"
+	<< "searching:false,"
+	<< "autowidth:false,"
+	<< "info:false});"
+	
+	<< "</script>"
+	<< endl;
     BitQA::HTML::displayFooter();
     
     
