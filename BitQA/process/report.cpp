@@ -363,7 +363,7 @@ void Report::topPostedQuestions()
 		
 		res = stmt->executeQuery("SELECT Q.id, Q.questionTitle, C.upvotes FROM tblQuestion Q JOIN tblContent C ON Q.contentId = C.id WHERE Q.qowner = '" + this->userid + "' AND Q.deleted=0 ORDER BY C.upvotes DESC LIMIT 10;");
 		
-		cout << "<table class=\"table table-hover\">";
+		cout << "<table class=\"table table-hover\" id=\"topQuesTbl\">";
 		cout << "<tr>";
 		cout << "<th>Question Title</th>";
 		cout << "<th>Upvotes</th>";
@@ -421,7 +421,7 @@ void Report::topPostedAnswers()
 		
 		cout << "<table class=\"table table-hover\">";
 		cout << "<tr>";
-		cout << "<th>Question Title</th>";
+		cout << "<th>Title</th>";
 		cout << "<th>Upvotes</th>";
 		cout << "</tr>";
 		

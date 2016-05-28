@@ -66,6 +66,7 @@
 		3955156F1CF92FEE005C7BC6 /* libmysqlcppconn.7.1.1.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A643A341CC29CCC008C1AC5 /* libmysqlcppconn.7.1.1.6.dylib */; };
 		395515701CF9314A005C7BC6 /* html.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA8F0E1CC6737D00E19ADD /* html.cpp */; };
 		395515711CF9314C005C7BC6 /* database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AC771871CD8FA1B005D3D41 /* database.cpp */; };
+		395515721CF966EE005C7BC6 /* report.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A9AB89F1CE97EAB00578B9A /* report.cpp */; };
 		3972D8751CF1E11100B9B011 /* editprofile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3972D8741CF1E11100B9B011 /* editprofile.cpp */; };
 		3972D8761CF1E14400B9B011 /* user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 398A78121CE3817000487375 /* user.cpp */; };
 		3972D8771CF1E14A00B9B011 /* libcgicc.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A643A391CC2A228008C1AC5 /* libcgicc.3.dylib */; };
@@ -925,6 +926,7 @@
 				1A990CFA1CE74570007F8B88 /* profile.cpp in Sources */,
 				1A990CFF1CE74590007F8B88 /* html.cpp in Sources */,
 				1A990CFE1CE7458E007F8B88 /* database.cpp in Sources */,
+				395515721CF966EE005C7BC6 /* report.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1589,6 +1591,7 @@
 				395515691CF92F61005C7BC6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3972D8731CF1E0A400B9B011 /* Build configuration list for PBXNativeTarget "editprofile.html" */ = {
 			isa = XCConfigurationList;

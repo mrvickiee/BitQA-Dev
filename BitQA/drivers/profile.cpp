@@ -11,6 +11,7 @@
 #include "../includes/database.hpp"
 #include "../process/user.hpp"
 #include "../includes/md5.hpp"
+#include "../process/report.hpp"
 using namespace std;
 using namespace cgicc;
 
@@ -18,6 +19,7 @@ User curUser;
 cgicc::Cgicc cgi;
 CgiEnvironment environment = cgi.getEnvironment();
 bool valid = false;
+Report report;
 
 void getUserInfo(){
     string currUsername = cgi("username");
@@ -45,8 +47,8 @@ void getUserInfo(){
         curUser.setEmail(res->getString("email"));
         curUser.setTag(res->getString("UserTag"));
         curUser.setReputation(res->getInt("Reputation"));
-        
         valid = true;
+		report.setUserId(curUser.getUsername());
     }
     
     delete prep_stmt;
@@ -65,7 +67,7 @@ int main(){
     if(valid){
     
     
-    cout << "<div class=\"row\">" << endl;
+    cout << "<div class=\"row\" style=\"margin-left:10%\">" << endl;	//user details
     cout << " <div class=\"col-xs-4\">" << endl;
     cout << "<h2>" ;
     cout << curUser.getDisplayName();
@@ -107,9 +109,58 @@ int main(){
     cout << "</div>" << endl;
     cout << "</div>" << endl;
     cout << "</div>" << endl;
+		
+		
+	
+	cout << "<div class=\"row\" style=\"margin-top:5%\">"<< endl;
+	
+	cout << "<div class=\"col-xs-5\" style=\"margin-left:9%;\" >"<< endl;
+	cout << "<h3>Top most upvoted question</h3>";
+	report.topPostedQuestions();
+	cout << "</div>";
+	
+	cout << "<div class=\"col-xs-5\" >"<< endl;
+	cout << "<h3>Top most upvoted Answer</h3>";
+	report.topPostedAnswers();
+	cout << "</div>";
+	cout << "</div>";
+
+
+	cout << "<div class=\"row\" style=\"margin-top:5%\">"<< endl;
+
+	cout << "<div class=\"col-xs-10\" style=\"margin-left:9%\" >"<< endl;
+	cout << "<h3> Posting History </h3>"<< endl;
+	report.postHistory();
+	cout << "</div>"<< endl;
+		
+	cout << "</div>";
+	
+	cout << "<div class=\"row\" style=\"margin-top:5%\">"<< endl;		//user report
+	cout << "<div class=\"col-xs-5\" style=\"margin-left:9%;\">"<< endl;
+	cout << "<h3>Top tags</h3>"<< endl;
+	report.topTags();
+	
+	cout << "</div>"<< endl;
+	
+	cout << "<div class=\"col-xs-5\" >"<< endl;
+	
+	cout << "<h3>Activity Graph</h3>";
+	report.activityGraph();
+	cout << "</div>";
+	
+	cout << "</div>"<< endl;
+
+		
     }else{
         cout << "<h1> User not found </h1>" << endl;
     }
+	
+	
+	cout << "<script>"
+	     << "$(document).ready( function(){"
+	     << "$('topQuesTbl').DataTable();"
+		 << "});</script>"
+		 << endl;
     BitQA::HTML::displayFooter();
     
     
