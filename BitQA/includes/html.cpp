@@ -119,13 +119,14 @@ void BitQA::HTML::displayHeader(std::string title, Cgicc cgicc)
 		<< "<link rel=\"stylesheet\" href=\"/includes/css/bootstrap.min.css\" />" << endl
 		<< "<link rel=\"stylesheet\" href=\"/includes/css/style.css\" />" << endl
 		<< "<link href=\"//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css\" rel=\"stylesheet\">" << endl
-	
+		<< "<link rel=\"stylesheet\" type=\"text/css\" href=\"https://cdn.datatables.net/u/bs/dt-1.10.12/datatables.min.css\"/>"
 		// Scripts
 		<< "<script type=\"text/javascript\" src=\"/includes/javascript/jquery.min.js\"></script>" << endl
 		<< "<script type=\"text/javascript\" src=\"/includes/javascript/bootstrap.min.js\"></script>" << endl
 		<< "<script type=\"text/javascript\" src=\"/includes/javascript/main.js\"></script>" << endl
 		<< "<script type=\"text/javascript\" src=\"/includes/javascript/cookie.js\"></script>" << endl
 		<< "<script type=\"text/javascript\" src=\"https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js\"></script>"
+	    << "<script type=\"text/javascript\" src=\"https://cdn.datatables.net/u/bs/dt-1.10.12/datatables.min.js\"></script>"
 	
 		<< head() << endl;
 	

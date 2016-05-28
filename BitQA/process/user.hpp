@@ -51,7 +51,7 @@ public:
     int getReputation();
     static int checkUserRight(string);
 	void setPassword(string);
-    
+	static User getUserObj(string);
 };
 
 

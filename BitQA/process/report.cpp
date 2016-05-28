@@ -307,11 +307,13 @@ void Report::topTags()
 		
 		res = stmt->executeQuery("SELECT tags, count(*) AS frequency FROM tblQuestion WHERE deleted = 0 AND qowner = '" + this->userid + "' GROUP BY tags ORDER BY count(*) DESC LIMIT 5;");
 
-		cout << "<table class=\"table table-hover\">";
+		cout << "<table class=\"table table-hover\" id=\"topTagTbl\">";
+		cout << "<thead>";
 		cout << "<tr>";
 		cout << "<th>Tags</th>";
 		cout << "<th>Frequency</th>";
 		cout << "</tr>";
+		cout << "</thead>";
 		
 		int i = 0;
 		
@@ -363,11 +365,13 @@ void Report::topPostedQuestions()
 		
 		res = stmt->executeQuery("SELECT Q.id, Q.questionTitle, C.upvotes FROM tblQuestion Q JOIN tblContent C ON Q.contentId = C.id WHERE Q.qowner = '" + this->userid + "' AND Q.deleted=0 ORDER BY C.upvotes DESC LIMIT 10;");
 		
-		cout << "<table class=\"table table-hover\">";
+		cout << "<table class=\"table table-hover\" id=\"topQuesTbl\">";
+		cout << "<thead>";
 		cout << "<tr>";
 		cout << "<th>Question Title</th>";
 		cout << "<th>Upvotes</th>";
 		cout << "</tr>";
+		cout <<"</thead>";
 		
 		int i = 0;
 		
@@ -419,11 +423,13 @@ void Report::topPostedAnswers()
 		
 		res = stmt->executeQuery("SELECT A.id, C.content, C.upvotes FROM tblAnswer A JOIN tblContent C ON A.contentId = C.id WHERE A.aowner = '" + this->userid + "' AND A.deleted=0 ORDER BY C.upvotes DESC LIMIT 10;");
 		
-		cout << "<table class=\"table table-hover\">";
+		cout << "<table class=\"table table-hover\" id=\"topAnsTbl\">";
+		cout << "<thead>";
 		cout << "<tr>";
-		cout << "<th>Question Title</th>";
+		cout << "<th>Title</th>";
 		cout << "<th>Upvotes</th>";
 		cout << "</tr>";
+		cout << "</thead>";
 		
 		int i = 0;
 		
@@ -476,11 +482,14 @@ void Report::postHistory()
 		
 		res = stmt->executeQuery("SELECT tblQuestion.id, tblQuestion.questionTitle, tblContent.utimestamp FROM BitQA.tblQuestion JOIN tblContent ON tblQuestion.contentId = tblContent.id WHERE tblQuestion.qowner = '" + this->userid + "' AND tblQuestion.deleted=0 ORDER BY tblContent.utimestamp DESC LIMIT 10;");
 
-		cout << "<table class=\"table table-hover\">";
+		cout << "<table class=\"table table-hover\" id=\"topPostingHistoryTbl\">";
+		cout << "<thead>";
 		cout << "<tr>";
 		cout << "<th>Question</th>";
 		cout << "<th>Timestamp</th>";
 		cout << "</tr>";
+		cout << "</thead>";
+		
 		
 		int i = 0;
 		
