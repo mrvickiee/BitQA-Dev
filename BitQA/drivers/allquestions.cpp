@@ -7,11 +7,25 @@
 //
 
 #include <stdio.h>
+#include <algorithm>
+#include <regex>
 #include "../includes/database.hpp"
 #include "../includes/html.hpp"
 
 using namespace cgicc;
 using namespace std;
+
+string removeMarkup(string input){
+	string res = input;
+	replace( res.begin(), res.end(), '<', ' ');
+	replace( res.begin(), res.end(), '>', ' ');
+	//string res = "<xmp>" + input + "</xmp>";
+	//string res = "<b href='sss'>hello</b>";
+	//res = regex_replace(res, regex(" *\\<[^>]*\\> *"), "");
+	//res = regex_replace(res, regex("(<[a-zA-Z]*>)|(<\/[a-zA-Z]*>)"), "");
+	
+	return res;
+}
 
 int main(){
 	
@@ -20,6 +34,29 @@ int main(){
 	BitQA::HTML::displayHeader("All Questions", cgicc);
 	
 	try {
+		
+		int acAnswersOnly = 0;
+		int mostRep = 0;
+		int mostVote = 0;
+		
+		CgiEnvironment environment = cgicc.getEnvironment();
+		
+		if (environment.getRequestMethod() == "POST") {
+			cout << "its a post" << endl;
+			if (cgicc("mostvote") == "on"){
+				mostVote = 1;
+				//cout << "most vote on:" << endl;
+			}
+			
+			if (cgicc("mostrep") == "on"){
+				mostRep = 1;
+			}
+			
+			if (cgicc("withanswer") == "true"){
+				acAnswersOnly = 1;
+			}
+		}
+		
 		sql::Driver *driver;
 		sql::Connection *con;
 		sql::PreparedStatement *prep_stmt;
@@ -55,19 +92,43 @@ int main(){
 		
 		toVal = fromVal + 100;
 		
-		prep_stmt = con->prepareStatement("CALL GetAllQuestions(?,?);");
+		prep_stmt = con->prepareStatement("CALL GetAllQuestions(?,?,?,?,?);");
 		prep_stmt->setInt(1, fromVal);
 		prep_stmt->setInt(2, toVal);
+		prep_stmt->setInt(3, acAnswersOnly);
+		prep_stmt->setInt(4, mostRep);
+		prep_stmt->setInt(5, mostVote);
 		res = prep_stmt->executeQuery();
 		
 		cout << "<h1>Showing all questions</h1>" << endl;
 		cout << "<br><br>" << endl;
 		
+		//print filter div
+		cout << "<div class=\"panel panel-default\">"
+			<< "<div class=\"panel-heading\">"
+			<< "<h3 class=\"panel-title\">Filter questions</h3></div><div class=\"panel-body\">"
+			<< "<form method=\"POST\">"
+			<< "<table style=\"padding: 10px;\">"
+			<< "<col width = \"200\"><tr height=\"20px\">"
+			<< "<td><b>Questions:</b></td>"
+			<< "<td><b>Sort by:</b></td></tr>"
+			<< "<tr height=\"50px\">"
+			<< "<td><label class=\"checkbox-inline\"><input type=\"checkbox\" name=\"withanswer\" value=\"true\">Answered</label></td>"
+			<< "<td><label class=\"radio-inline\"><input type=\"radio\" name=\"mostvote\">Most voted</label>"
+			<< "<label class=\"radio-inline\"><input type=\"radio\" name=\"mostrep\">Most reputed</label></td></tr>"
+			<< "<tr height=\"20px\"><td><input class=\"btn btn-primary\" type=\"submit\" value=\"Refine\"/></td></tr></table></form></div></div><br><br>" << endl;
+		
+		
 		//print results
 		while (res->next()) {
 			cout << "<div class=\"panel panel-default\"><div class=\"panel-body\">" << endl;
 			cout << "<h4><a href='question.html?id=" << res->getString("id") <<  "'>" <<  res->getString("questionTitle") << endl;
-			cout << "</a></h4>" << "Information" << "</div></div>" << endl;
+			cout << "</a></h4>" << removeMarkup(res->getString("content").substr(0,100)) << (res->getString("content").length()>100? "..." : "");
+			
+			cout << "<div><br><span>&#128129;: <a href='profile.html?username=" << res->getString("username") << "'>" << res->getString("displayname") << "</a>&nbsp;</span><span>&#9202;: " << res->getString("utimestamp") <<"&nbsp;</span><span>&#128077;: " << res->getString("votes") <<"&nbsp;</span></div>" << endl;
+			
+			
+			cout<< "</div></div>" << endl;
 			
 		}
 		
