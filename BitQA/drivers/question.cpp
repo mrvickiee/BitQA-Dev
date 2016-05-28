@@ -486,88 +486,55 @@ void getAnswerStack(int id, Cgicc cgicc, string userName)
 		
 		if (!answerList[i].isAcceptedAnswer()) {
 			
-		
-		
-		cout << " <div class=\"container-fluid\">";
-		cout << "<div class=\"row\">";
-		cout << "<div class=\"col-xs-1 col-sm-1 col-md-1 col-lg-1\">";
-		cout << "<h3><a href=\"#\">&#128077;</a></h3>";
-		cout << "<span><b>" << answerList[i].getVotes() << "</b></span>";
-		cout << "<h3><a href=\"#\">&#128078;</a></h3>";
-		cout << "</div>";
-		cout << "<div class=\"col-xs-8 col-sm-8 col-md-8 col-lg-8\">";
-		if (answerList[i].isAcceptedAnswer()) cout << "<h5>&#128175; Accepted Answer</h5>" << endl;
-		cout << "<br><p>" << answerList[i].getDetails() << "</p>";
-		
-		
-		cout << "<p><i><b>Answered by " << answerList[i].getUsername() << "</i></b></p>";
-		
-		//-----Delete comment
-		sql::Driver *driver;
-		sql::Connection *con;
-		sql::Statement *stmt;
-		sql::ResultSet *res;
-		
-		
-		driver = get_driver_instance();
-		con = driver->connect(BitQA::Database::HOST,
-							  BitQA::Database::USERNAME,
-							  BitQA::Database::PASSWORD
-							  );
-		
-		con->setSchema(BitQA::Database::SCHEMA);
-		
-		stmt = con->createStatement();
-		
-		res = stmt->executeQuery("CALL ProcGetOwner('A', " + to_string(answerList[i].getAnswerID()) + ");");
-		
-		res->next();
-		
-		string qryOwner = res->getString("owner");
-		
-		if (qryOwner == userName) {
-			cout << "<form method='post'>" << endl;
-			cout << "<input type=\"hidden\" name=\"type\" value=\"delanswer\">";
-			cout << "<input type=\"hidden\" name=\"answerid\" value=\"" << answerList[i].getAnswerID() <<"\">";
-			cout << "<input class='btn btn-default btn-sm' type='submit' value=&#10060;>" << endl;
-			
-			cout << "</form>" << endl;
-		}
-		
-		//-----
-		
-		//--Set accepted answer
-		if (qowner == userName) {
-			cout << "<form method='post'>" << endl;
-			cout << "<input type=\"hidden\" name=\"type\" value=\"setanswer\">";
-			cout << "<input type=\"hidden\" name=\"answerid\" value=\"" << answerList[i].getAnswerID() <<"\">";
-			cout << "<input type=\"hidden\" name=\"quesid\" value=\"" << qid <<"\">";
-			cout << "<input class='btn btn-default btn-sm' type='submit' value=&#128175;>" << endl;
-			
-			cout << "</form>" << endl;
-		}
-		
-		//-------
-		
-		
-		cout << "</div>";
-		cout << "</div></div>";
-		
-		vector<BitQA::Comment> commentList = answerList[i].getComments();
-		
-		
-		
-		for (int j = 0; j < commentList.size(); j++) {
-			
+			cout << " <div class=\"container-fluid\">";
 			cout << "<div class=\"row\">";
-			cout << "<div class=\"col-xs-2 col-sm-2 col-md-2 col-lg-2\"></div>";
 			cout << "<div class=\"col-xs-1 col-sm-1 col-md-1 col-lg-1\">";
-			cout << "<h5><a href=\"#\">&#128077;</a></h5>";
-			cout << "<span><b>" << commentList[j].getVotes() << "</b></span>";
+			
+			currentVote.ContentId = answerList[i].getContentID();
+			currentVote.Type = 'U';
+			
+			if (BitQA::Vote::searchContentIDVoted(voters, currentVote)) {
+				cout << "<h3><span style=\"background-color:green;\" class=\"bitqa-fake-link vote-up\" data-user-id=\"" << answerList[i].getUserID()
+				<< "\" data-selected=\"true"
+				<< "\" id=\"up" << answerList[i].getContentID()
+				<< "\" data-vote-type=\"up"
+				<< "\" data-content-id=\"" << answerList[i].getContentID()
+				<< "\" >&#128077;</span></h3>";
+			} else {
+				cout << "<h3><span class=\"bitqa-fake-link vote-up\" data-user-id=\"" << answerList[i].getUserID()
+				<< "\" id=\"up" << answerList[i].getContentID()
+				<< "\" data-vote-type=\"up"
+				<< "\" data-content-id=\"" << answerList[i].getContentID()
+				<< "\" >&#128077;</span></h3>";
+			}
+			
+			cout << "<span><b><span id=\"" << answerList[i].getContentID() << "\">" << answerList[i].getVotes() << "</span></b></span>";
+			
+			currentVote.ContentId = answerList[i].getContentID();
+			currentVote.Type = 'D';
+			
+			if (BitQA::Vote::searchContentIDVoted(voters, currentVote)) {
+				cout << "<h3><span style=\"background-color:red;\" class=\"bitqa-fake-link vote-down\" data-user-id=\"" << answerList[i].getUserID()
+				<< "\" data-selected=\"true"
+				<< "\" id=\"down" << answerList[i].getContentID()
+				<< "\" data-vote-type=\"down"
+				<< "\" data-content-id=\"" << answerList[i].getContentID()
+				<< "\" >&#128078;</span></h3>";
+			} else {
+				cout << "<h3><span class=\"bitqa-fake-link vote-down\" data-user-id=\"" << answerList[i].getUserID()
+				<< "\" id=\"down" << answerList[i].getContentID()
+				<< "\" data-vote-type=\"down"
+				<< "\" data-content-id=\"" << answerList[i].getContentID()
+				<< "\" >&#128078;</span></h3>";
+			}
+			
 			cout << "</div>";
-			cout << "<div class=\"col-xs-5 col-sm-5 col-md-5 col-lg-5\">";
-			cout << "<p>" << commentList[j].getDetails() << "</p>";
-			cout << "<p><b>Comment by " << commentList[j].getUsername() << "</b></p>";
+			cout << "<div class=\"col-xs-8 col-sm-8 col-md-8 col-lg-8\">";
+			if (answerList[i].isAcceptedAnswer()) cout << "<h5>&#128175; Accepted Answer</h5>" << endl;
+			cout << "<br><p>" << answerList[i].getDetails() << "</p>";
+			
+			
+			cout << "<p><i><b>Answered by " << answerList[i].getUsername() << "</i></b></p>";
 			
 			//-----Delete comment
 			sql::Driver *driver;
@@ -586,18 +553,16 @@ void getAnswerStack(int id, Cgicc cgicc, string userName)
 			
 			stmt = con->createStatement();
 			
-			res = stmt->executeQuery("CALL ProcGetOwner('C', " + commentList[j].getCommentIDStr() + ");");
+			res = stmt->executeQuery("CALL ProcGetOwner('A', " + to_string(answerList[i].getAnswerID()) + ");");
 			
 			res->next();
 			
 			string qryOwner = res->getString("owner");
 			
-			//cout << "comid: " << commentList[j].getCommentID() << " usr:" << userName << endl;
-			
 			if (qryOwner == userName) {
 				cout << "<form method='post'>" << endl;
-				cout << "<input type=\"hidden\" name=\"type\" value=\"delcomment\">";
-				cout << "<input type=\"hidden\" name=\"commentid\" value=\"" << commentList[j].getCommentID() <<"\">";
+				cout << "<input type=\"hidden\" name=\"type\" value=\"delanswer\">";
+				cout << "<input type=\"hidden\" name=\"answerid\" value=\"" << answerList[i].getAnswerID() <<"\">";
 				cout << "<input class='btn btn-default btn-sm' type='submit' value=&#10060;>" << endl;
 				
 				cout << "</form>" << endl;
@@ -605,26 +570,114 @@ void getAnswerStack(int id, Cgicc cgicc, string userName)
 			
 			//-----
 			
+			//--Set accepted answer
+			if (qowner == userName) {
+				cout << "<form method='post'>" << endl;
+				cout << "<input type=\"hidden\" name=\"type\" value=\"setanswer\">";
+				cout << "<input type=\"hidden\" name=\"answerid\" value=\"" << answerList[i].getAnswerID() <<"\">";
+				cout << "<input type=\"hidden\" name=\"quesid\" value=\"" << qid <<"\">";
+				cout << "<input class='btn btn-default btn-sm' type='submit' value=&#128175;>" << endl;
+				
+				cout << "</form>" << endl;
+			}
+			
+			//-------
+			
+			
+			cout << "</div>";
+			cout << "</div></div>";
+			
+			vector<BitQA::Comment> commentList = answerList[i].getComments();
+			
+			
+			
+			for (int j = 0; j < commentList.size(); j++) {
+				
+				cout << "<div class=\"row\">";
+				cout << "<div class=\"col-xs-2 col-sm-2 col-md-2 col-lg-2\"></div>";
+				cout << "<div class=\"col-xs-1 col-sm-1 col-md-1 col-lg-1\">";
+				
+				currentVote.ContentId = stoi(commentList[j].getContentID());
+				currentVote.Type = 'U';
+				
+				if (BitQA::Vote::searchContentIDVoted(voters, currentVote)) {
+					cout << "<h5><span style=\"background-color:green;\" class=\"bitqa-fake-link vote-up\" data-user-id=\"" << commentList[i].getOwnerID()
+					<< "\" data-selected=\"true"
+					<< "\" id=\"up" << commentList[j].getContentID()
+					<< "\" data-vote-type=\"up"
+					<< "\" data-content-id=\"" << commentList[j].getContentID()
+					<< "\" >&#128077;</span></h5>";
+				} else {
+					cout << "<h5><span class=\"bitqa-fake-link vote-up\" data-user-id=\"" << commentList[i].getOwnerID()
+					<< "\" id=\"up" << commentList[j].getContentID()
+					<< "\" data-vote-type=\"up"
+					<< "\" data-content-id=\"" << commentList[j].getContentID()
+					<< "\" >&#128077;</span></h5>";
+				}
+				
+				cout << "<span><b><span id=\"" << commentList[j].getContentID() << "\">" << commentList[j].getVotes() << "</span></b></span>";
+				
+				cout << "</div>";
+				cout << "<div class=\"col-xs-5 col-sm-5 col-md-5 col-lg-5\">";
+				cout << "<p>" << commentList[j].getDetails() << "</p>";
+				cout << "<p><b>Comment by " << commentList[j].getUsername() << "</b></p>";
+				
+				//-----Delete comment
+				sql::Driver *driver;
+				sql::Connection *con;
+				sql::Statement *stmt;
+				sql::ResultSet *res;
+				
+				
+				driver = get_driver_instance();
+				con = driver->connect(BitQA::Database::HOST,
+									  BitQA::Database::USERNAME,
+									  BitQA::Database::PASSWORD
+									  );
+				
+				con->setSchema(BitQA::Database::SCHEMA);
+				
+				stmt = con->createStatement();
+				
+				res = stmt->executeQuery("CALL ProcGetOwner('C', " + commentList[j].getCommentIDStr() + ");");
+				
+				res->next();
+				
+				string qryOwner = res->getString("owner");
+				
+				//cout << "comid: " << commentList[j].getCommentID() << " usr:" << userName << endl;
+				
+				if (qryOwner == userName) {
+					cout << "<form method='post'>" << endl;
+					cout << "<input type=\"hidden\" name=\"type\" value=\"delcomment\">";
+					cout << "<input type=\"hidden\" name=\"commentid\" value=\"" << commentList[j].getCommentID() <<"\">";
+					cout << "<input class='btn btn-default btn-sm' type='submit' value=&#10060;>" << endl;
+					
+					cout << "</form>" << endl;
+				}
+				
+				//-----
+				
+				cout << "<hr>";
+				cout << "</div>";
+				cout << "</div>";
+			}
+			
+			cout << "<div class=\"row\">";
+			cout << "<div class=\"col-xs-2 col-sm-2 col-md-2 col-lg-2\"></div>";
+			cout << "<div class=\"col-xs-1 col-sm-1 col-md-1 col-lg-1\">";
+			cout << "<form action=\"\" method=\"post\"><div class=\"form-group\">"
+			<< "<label for=\"comment\">Comment:</label>"
+			<< "<textarea name=\"data\" style=\"width:645px\" class=\"input-large form-control\" cols=\"20\" rows=\"2\" id=\"comment\"></textarea><br>";
+			cout << "<input type=\"hidden\" name=\"content-id\" value=\"" << answerList[i].getContentID() << "\">";
+			cout << "<input type=\"hidden\" name=\"type\" value=\"comment\">";
+			cout << "<input class=\"btn btn-default\" type=\"submit\">"
+			<< "</form></div>";
+			cout << "<div class=\"row\" style=\"width: 300px\">";
+			cout << "<a style=\"display:none\" href=\"\">Comment on this answer</a>";
+			cout << "</div>";
+			cout << "</div></div>";
 			cout << "<hr>";
-			cout << "</div>";
-			cout << "</div>";
-		}
-		
-		cout << "<div class=\"row\">";
-		cout << "<div class=\"col-xs-2 col-sm-2 col-md-2 col-lg-2\"></div>";
-		cout << "<div class=\"col-xs-1 col-sm-1 col-md-1 col-lg-1\">";
-		cout << "<form action=\"\" method=\"post\"><div class=\"form-group\">"
-		<< "<label for=\"comment\">Comment:</label>"
-		<< "<textarea name=\"data\" style=\"width:645px\" class=\"input-large form-control\" cols=\"20\" rows=\"2\" id=\"comment\"></textarea><br>";
-		cout << "<input type=\"hidden\" name=\"content-id\" value=\"" << answerList[i].getContentID() << "\">";
-		cout << "<input type=\"hidden\" name=\"type\" value=\"comment\">";
-		cout << "<input class=\"btn btn-default\" type=\"submit\">"
-		<< "</form></div>";
-		cout << "<div class=\"row\" style=\"width: 300px\">";
-		cout << "<a style=\"display:none\" href=\"javascript:void();\">Comment on this answer</a>";
-		cout << "</div>";
-		cout << "</div></div>";
-		cout << "<hr>";
 		}
 	}
 	
