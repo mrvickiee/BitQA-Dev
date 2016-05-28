@@ -114,19 +114,19 @@ void getQuestionStack(int id, Cgicc cgicc, string userName)
 		) {
 			// cout << "<div class=\"row-fluid\"><div class=\"span12\"><div style=\"width:1200px;\">";
 			
-			cout << " <div style=\"margin-left: -15px;\" class=\"container-fluid\"><div class=\"row\">";
-			cout << "<div class=\"col-xs-2 col-sm-2 col-md-2 col-lg-2\">";
+			cout << " <div style=\"margin-left: -15px;\" class=\"container-fluid\">";
+			cout << "<div style=\"margin-left: -15px;\" class=\"col-xs-2 col-sm-2 col-md-2 col-lg-2\">";
 			cout << "<form style=\"width: 200px\" action='' method='post'>" << endl;
 			cout << "<input type=\"hidden\" name=\"type\" value=\"delquestion\">";
 			cout << "<input type=\"hidden\" name=\"questionid\" value=\"" << qid <<"\">";
-			cout << "<button type=\"submit\" class=\"btn btn-danger\">Delete</button>" << endl;
+			cout << "<button type=\"submit\" class=\"btn btn-default\">&#10060;</button>" << endl;
 			cout << "</form><br>" << endl;
 			cout << "</div>";
 			
-			cout << "<div style=\"margin-left: -45px;\" class=\"col-xs-2 col-sm-2 col-md-2 col-lg-2\">";
-			cout << "<a href=\"/editcontent.html?contentid=" << question.getQuestionContentID() << "&questionid=" << qid << "\" class=\"btn btn-default\">&#129300;</a>" << endl;
+			cout << "<div style=\"margin-left: -75px;\" class=\"col-xs-2 col-sm-2 col-md-2 col-lg-2\">";
+			cout << "<a href=\"/editcontent.html?contentid=" << question.getQuestionContentID() << "&questionid=" << qid << "\" class=\"btn btn-default\">&#128064;</a>" << endl;
 			cout << "<br>" << endl;
-			cout << "</div></div>";
+			cout << "</div>";
 			// cout << "</div></div></div>";
 			
 		}
@@ -139,7 +139,7 @@ void getQuestionStack(int id, Cgicc cgicc, string userName)
 		cout << "<form method='post'>" << endl;
 		cout << "<input type=\"hidden\" name=\"type\" value=\"setfeatured\">";
 		cout << "<input type=\"hidden\" name=\"questionid\" value=\"" << qid <<"\">";
-		cout << "<input class='btn btn-default btn-sm' type='submit' value=&#127775;>" << endl;
+		cout << "<div style=\"margin-left: -75px;\" class=\"col-xs-2 col-sm-2 col-md-2 col-lg-2\"><input class='btn btn-default' type='submit' value=&#127775;></div>" << endl;
 		
 		cout << "</form>" << endl;
 		
@@ -216,14 +216,14 @@ void getQuestionStack(int id, Cgicc cgicc, string userName)
 			string qryOwner = res->getString("owner");
 			
 			if (qryOwner == userName) {
-				cout << "<form method='post'>" << endl;
+				cout << "<div style=\"margin-left: -15px;\" class=\"col-xs-2 col-sm-2 col-md-2 col-lg-2\"><form method='post'>" << endl;
 				cout << "<input type=\"hidden\" name=\"type\" value=\"delcomment\">";
 				cout << "<input type=\"hidden\" name=\"commentid\" value=\"" << commentList[i].getCommentID() <<"\">";
 				cout << "<input class='btn btn-default btn-sm' type='submit' value=&#10060;>" << endl;
 				
-				cout << "</form>" << endl;
+				cout << "</form></div>" << endl;
 				
-				cout << "<a href=\"/editcontent.html?contentid=" << commentList[i].getContentID() << "&questionid=" << qid << "\" class=\"btn btn-default\">&#129300;</a>" << endl;
+				cout << "<div style=\"margin-left: -30px;\" class=\"col-xs-2 col-sm-2 col-md-2 col-lg-2\"><a href=\"/editcontent.html?contentid=" << commentList[i].getContentID() << "&questionid=" << qid << "\" class=\"btn btn-default btn-sm\">&#128064;</a></div>" << endl;
 				
 			}
 			
@@ -378,14 +378,14 @@ void getAnswerStack(int id, Cgicc cgicc, string userName)
 		if ((qryOwner == userName) ||
 			(userprofile.canDo("DELETEANYANS"))
 		) {
-			cout << "<form method='post'>" << endl;
+			cout << "<div style=\"margin-left: -15px;\" class=\"col-xs-2 col-sm-2 col-md-2 col-lg-2\"><form method='post'>" << endl;
 			cout << "<input type=\"hidden\" name=\"type\" value=\"delanswer\">";
 			cout << "<input type=\"hidden\" name=\"answerid\" value=\"" << answerList[i].getAnswerID() <<"\">";
 			cout << "<input class='btn btn-default btn-sm' type='submit' value=&#10060;>" << endl;
 			
-			cout << "</form>" << endl;
+			cout << "</form></div>" << endl;
 			
-			cout << "<a href=\"/editcontent.html?contentid=" << answerList[i].getContentID() << "&questionid=" << qid << "\" class=\"btn btn-default\">&#129300;</a>" << endl;
+			cout << "<div style=\"margin-left: -75px;\" class=\"col-xs-2 col-sm-2 col-md-2 col-lg-2\"><a href=\"/editcontent.html?contentid=" << answerList[i].getContentID() << "&questionid=" << qid << "\" class=\"btn btn-default btn-sm\">&#128064;</a></div>" << endl;
 			
 		}
 		
@@ -393,20 +393,20 @@ void getAnswerStack(int id, Cgicc cgicc, string userName)
 		
 		//--Set accepted answer
 		if (qowner == userName) {
-			cout << "<form method='post'>" << endl;
+			cout << "<div style=\"margin-left: -75px;\" class=\"col-xs-2 col-sm-2 col-md-2 col-lg-2\"><form method='post'>" << endl;
 			cout << "<input type=\"hidden\" name=\"type\" value=\"setanswer\">";
 			cout << "<input type=\"hidden\" name=\"answerid\" value=\"" << answerList[i].getAnswerID() <<"\">";
 			cout << "<input type=\"hidden\" name=\"quesid\" value=\"" << qid <<"\">";
 			cout << "<input class='btn btn-default btn-sm' type='submit' value=&#128175;>" << endl;
 			
-			cout << "</form>" << endl;
+			cout << "</form></div><br>" << endl;
 		}
 		
 		//-------
 
 		
 		cout << "</div>";
-		cout << "</div></div>";
+		cout << "</div></div><br>";
 		
 		vector<BitQA::Comment> commentList = answerList[i].getComments();
 		
@@ -471,14 +471,14 @@ void getAnswerStack(int id, Cgicc cgicc, string userName)
 			if ((qryOwner == userName)  ||
 				(userprofile.canDo("DELETEANYANS"))
 			) {
-				cout << "<form method='post'>" << endl;
+				cout << "<div style=\"margin-left: -15px;\" class=\"col-xs-2 col-sm-2 col-md-2 col-lg-2\"><form method='post'>" << endl;
 				cout << "<input type=\"hidden\" name=\"type\" value=\"delcomment\">";
 				cout << "<input type=\"hidden\" name=\"commentid\" value=\"" << commentList[j].getCommentID() <<"\">";
 				cout << "<input class='btn btn-default btn-sm' type='submit' value=&#10060;>" << endl;
 				
-				cout << "</form>" << endl;
+				cout << "</form></div>" << endl;
 				
-				cout << "<a href=\"/editcontent.html?contentid=" << commentList[j].getContentID() << "&questionid=" << qid << "\" class=\"btn btn-default\">&#129300;</a>" << endl;
+				cout << "<div style=\"margin-left: -30px;\" class=\"col-xs-2 col-sm-2 col-md-2 col-lg-2\"><a href=\"/editcontent.html?contentid=" << commentList[j].getContentID() << "&questionid=" << qid << "\" class=\"btn btn-default btn-sm\">&#128064;</a></div>" << endl;
 			}
 			
 			//-----
@@ -590,27 +590,27 @@ void getAnswerStack(int id, Cgicc cgicc, string userName)
 			if ((qryOwner == userName)  ||
 				(userprofile.canDo("DELETEANYANS"))
 			) {
-				cout << "<form method='post'>" << endl;
+				cout << "<div style=\"margin-left: -15px;\" class=\"col-xs-2 col-sm-2 col-md-2 col-lg-2\"><form method='post'>" << endl;
 				cout << "<input type=\"hidden\" name=\"type\" value=\"delanswer\">";
 				cout << "<input type=\"hidden\" name=\"answerid\" value=\"" << answerList[i].getAnswerID() <<"\">";
 				cout << "<input class='btn btn-default btn-sm' type='submit' value=&#10060;>" << endl;
 				
-				cout << "</form>" << endl;
+				cout << "</form></div>" << endl;
 				
-				cout << "<a href=\"/editcontent.html?contentid=" << answerList[i].getContentID() << "&questionid=" << qid << "\" class=\"btn btn-default\">&#129300;</a>" << endl;
+				cout << "<div style=\"margin-left: -75px;\" class=\"col-xs-2 col-sm-2 col-md-2 col-lg-2\"><a href=\"/editcontent.html?contentid=" << answerList[i].getContentID() << "&questionid=" << qid << "\" class=\"btn btn-default btn-sm\">&#128064;</a></div>" << endl;
 			}
 			
 			//-----
 			
 			//--Set accepted answer
 			if (qowner == userName) {
-				cout << "<form method='post'>" << endl;
+				cout << "<div style=\"margin-left: -75px;\" class=\"col-xs-2 col-sm-2 col-md-2 col-lg-2\"><form method='post'>" << endl;
 				cout << "<input type=\"hidden\" name=\"type\" value=\"setanswer\">";
 				cout << "<input type=\"hidden\" name=\"answerid\" value=\"" << answerList[i].getAnswerID() <<"\">";
 				cout << "<input type=\"hidden\" name=\"quesid\" value=\"" << qid <<"\">";
 				cout << "<input class='btn btn-default btn-sm' type='submit' value=&#128175;>" << endl;
 				
-				cout << "</form>" << endl;
+				cout << "</form></div>" << endl;
 			}
 			
 			//-------
@@ -682,14 +682,14 @@ void getAnswerStack(int id, Cgicc cgicc, string userName)
 				if ((qryOwner == userName) ||
 					(userprofile.canDo("DELETEANYANS"))
 				) {
-					cout << "<form method='post'>" << endl;
+					cout << "<div style=\"margin-left: -15px;\" class=\"col-xs-2 col-sm-2 col-md-2 col-lg-2\"><form method='post'>" << endl;
 					cout << "<input type=\"hidden\" name=\"type\" value=\"delcomment\">";
 					cout << "<input type=\"hidden\" name=\"commentid\" value=\"" << commentList[j].getCommentID() <<"\">";
 					cout << "<input class='btn btn-default btn-sm' type='submit' value=&#10060;>" << endl;
 					
-					cout << "</form>" << endl;
+					cout << "</form></div>" << endl;
 					
-					cout << "<a href=\"/editcontent.html?contentid=" << commentList[j].getContentID() << "&questionid=" << qid << "\" class=\"btn btn-default\">&#129300;</a>" << endl;
+					cout << "<div style=\"margin-left: -30px;\" class=\"col-xs-2 col-sm-2 col-md-2 col-lg-2\"><a href=\"/editcontent.html?contentid=" << commentList[j].getContentID() << "&questionid=" << qid << "\" class=\"btn btn-default btn-sm\">&#128064;</a></div>" << endl;
 					
 					
 				}
