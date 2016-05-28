@@ -119,10 +119,10 @@ int MySearch::getUser()
 		//Testing
 		//cout << "<br> <p>" << this->searchTerm << "</p>" << endl;
 		stmt = con->createStatement();
-		res = stmt->executeQuery("SELECT username FROM tblUser WHERE displayname = '" + (this->searchTerm) + "'");
+		res = stmt->executeQuery("SELECT username FROM tblUser WHERE username = '" + (this->searchTerm) + "'");
 
 		while (res->next()) {
-			foundID = stoi(res->getString("username"));
+			//foundID = stoi(res->getString("username"));
 			found = true;
 		}
 		
@@ -132,13 +132,13 @@ int MySearch::getUser()
 		
 	} catch (sql::SQLException &e) {
 		foundID = -1;
-		return foundID;
+		return found;
 	}
 	if(!found) {
 		cout << "<h2> User not found </h2>" << endl;
 	}
 	
-	return foundID;
+	return found;
 }
 
 string MySearch::getSearchTerm()

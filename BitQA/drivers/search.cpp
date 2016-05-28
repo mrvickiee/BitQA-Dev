@@ -56,7 +56,7 @@ int main() {
 		}
 		
 		
-		cout << "<h2> Search results for \"" << searchObj.getSearchTerm() <<  "\"</h2>" << endl;	
+		cout << "<h2> Search results for \"" << searchObj.getSearchTerm() <<  "\"</h2>" << endl;
 		
 		//If user bring up user page, if question bring up search results
 		if(isUser(searchTerm))
@@ -64,9 +64,9 @@ int main() {
 			//Show link to user page
 			int userID = searchObj.getUser();
 			if(userID != -1) {
-				string userPage = to_string(userID);
-				userPage = (BitQA::HTML::HOST + "/profile.html?username=" + userPage);
-				cout << "<a href=\"" << userPage << "\">" << searchObj.getSearchTerm() << "</a>" << endl;
+				cout << "<script>window.location.href=\""
+				<< BitQA::HTML::HOST + "/profile.html?username=" + searchObj.getSearchTerm()
+				<<"\"</script>" << endl;
 			}
 		}else
 		{
