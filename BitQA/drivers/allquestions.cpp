@@ -127,7 +127,7 @@ int main(){
 			cout << "<h4><a href='question.html?id=" << res->getString("id") <<  "'>" <<  res->getString("questionTitle") << endl;
 			cout << "</a></h4>" << removeMarkup(res->getString("content").substr(0,100)) << (res->getString("content").length()>100? "..." : "");
 			
-			cout << "<div><br><span>&#128129;: <a href='profile.html?username=" << res->getString("username") << "'>" << res->getString("displayname") << "</a>&nbsp;</span><span>&#9202;: " << res->getString("utimestamp") <<"&nbsp;</span><span>&#128077;: " << res->getString("votes") <<"&nbsp;</span></div>" << endl;
+			cout << "<div><br><span>&#128129;: <a href='profile.html?username=" << res->getString("username") << "'>" << res->getString("displayname") << "</a>&nbsp;</span><span>&#128336;: " << res->getString("utimestamp") <<"&nbsp;</span><span>&#128077;: " << res->getString("votes") <<"&nbsp;</span></div>" << endl;
 			
 			
 			cout<< "</div></div>" << endl;
