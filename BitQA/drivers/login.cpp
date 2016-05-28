@@ -34,7 +34,7 @@ bool verifyUser(string username, string password){
                           );
     
     con->setSchema(BitQA::Database::SCHEMA);
-    prep_stmt = con->prepareStatement("SELECT * FROM tblUser where username = ?");
+    prep_stmt = con->prepareStatement("SELECT * FROM tblUser where username = ? AND deleted = 0");
     prep_stmt->setString(1, username);
     res = prep_stmt->executeQuery();
     

@@ -84,6 +84,7 @@ void updateUserPassword(){
 
 int main(){
 	getUserInfo();
+	BitQA::HTML::displayHeader("Change password", cgi);
 	if(environment.getRequestMethod() == "POST"){
 		try{
 			newPassword = cgi("newPassword");
@@ -111,10 +112,9 @@ int main(){
 		}
 	}
 	{
-		if(BitQA::HTML::getLoggedInStatus(cgi)){
 
-			BitQA::HTML::displayHeader("Change password", cgi);
-			
+		
+		if(BitQA::HTML::getLoggedInStatus(cgi)){
 			cout << "<h3> Change Password </h3>";
 			
 			cout <<  "<form data-ajax=\"false\" method=\"post\">" << endl;

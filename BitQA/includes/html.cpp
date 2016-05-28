@@ -167,7 +167,8 @@ void BitQA::HTML::displayHeader(std::string title, Cgicc cgicc)
 		<< BitQA::HTML::getUsername(cgicc) << "\">View profile</a></li>"
 		<< "<li><a href=\"/editprofile.html\">Edit profile details</a></li>"
 		<< "<li><a href=\"/editpassword.html\">Change password</a></li>"
-		<< "<li><a id=\"navBarLogout\" href=\"#\">Logout</a></li>"
+		<< "<li><a href=\"/accdeactivate.html\">Account deactivation</a></li>"
+		<< "<li><a name=\"btnLogout\" id=\"navBarLogout\" href=\"#\">Logout</a></li>"
 		<<"</ul>"
 		<<"</li>"
 		<< endl;

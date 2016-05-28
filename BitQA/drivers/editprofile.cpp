@@ -99,6 +99,7 @@ int main(){
     string displayName, email, tags, location, ageString;
     int age;
 	getUserInfo();
+	BitQA::HTML::displayHeader("Edit profile", cgi);
 	
     if(environment.getRequestMethod() == "POST"){
     
@@ -117,11 +118,17 @@ int main(){
         updateUser.setEmail(email);
 		
         editUserProfile(updateUser);
+		
+		
+		cout << "<script>window.location.href=\""
+		<< BitQA::HTML::HOST + "/profile.html?username=" + curUser.getUsername()
+		<<"\"</script>" << endl;
+
+		
     }
     {
 
-        BitQA::HTML::displayHeader("Edit profile", cgi);
-		
+
 		if(BitQA::HTML::getLoggedInStatus(cgi)){
 			cout << "<h3> Edit Profile </h3>";
 			
@@ -181,9 +188,6 @@ int main(){
 				cout << "<div class=\"alert alert-success\">" << endl;
 				cout << "<strong>Success!</strong> Profile updated successfully." << endl;
 				cout << "</div>";
-				cout << "<script>window.location.href=\""
-					 << BitQA::HTML::HOST + "/profile.html?username=" + curUser.getUsername()
-					 <<"\"</script>" << endl;
 			}
 			
 		}
