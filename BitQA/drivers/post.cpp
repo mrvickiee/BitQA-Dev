@@ -113,7 +113,7 @@ int main()
 		cout << "<h4>James is processing your question and checking for memes...</h4>" << endl;
 		cout << "<h5>View it <a  href= 'allquestions.html'>here</a></h5>" << endl;
 		cout << "<br><br>" << endl;
-		cout << "<img align='middle' src='https://cdn4.iconfinder.com/data/icons/ballicons-2-free/100/669348-letter-512.png'></center>" << endl;
+		cout << "<img style='width:40%;' align='middle' src='https://cdn4.iconfinder.com/data/icons/ballicons-2-free/100/669348-letter-512.png'></center>" << endl;
 		}
 		
 	}
