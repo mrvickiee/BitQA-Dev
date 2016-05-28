@@ -86,7 +86,7 @@ void editUserProfile(User user){
     
     prep_stmt2->executeUpdate();
     
-    delete prep_stmt,prep_stmt2;
+    delete prep_stmt;
     delete con;
 }
 

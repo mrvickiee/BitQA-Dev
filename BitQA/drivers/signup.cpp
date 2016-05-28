@@ -50,7 +50,7 @@ void addUser(User user){
     prep_stmt3->setString(1, user.getUsername());
     prep_stmt3->executeUpdate();
     
-    delete prep_stmt,prep_stmt2,prep_stmt3;
+    delete prep_stmt;
     delete con;
 }
 

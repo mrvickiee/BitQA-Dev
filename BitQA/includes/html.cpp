@@ -114,6 +114,7 @@ void BitQA::HTML::displayHeader(std::string title, Cgicc cgicc)
 	
 		// Mobile 1st
 		<< "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">" << endl
+		<< "<link type=\"image/x-icon\" rel=\"shortcut icon\" href=\"/favicon.ico\" />" << endl
 	
 		// CSS
 		<< "<link rel=\"stylesheet\" href=\"/includes/css/bootstrap.min.css\" />" << endl

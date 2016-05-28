@@ -37,7 +37,7 @@ int main(){
 		prep_stmt = con->prepareStatement("UPDATE tblUser SET deleted = 1 WHERE username = ?");
 		prep_stmt->setString(1,BitQA::HTML::getUsername(cgi));
 		prep_stmt->executeUpdate();
-		delete con,prep_stmt;
+		delete con;
 		cout<< "<script>"
 		<< "Cookies.remove(\"username\");"
 		<< "Cookies.remove(\"displayname\");"

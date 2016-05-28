@@ -46,7 +46,7 @@ void updateUserPassword(){
 	prep_stmt->executeUpdate();
 
 	
-	delete con,prep_stmt;
+	delete con;
 
 }
 
