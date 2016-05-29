@@ -28,6 +28,7 @@ public:
 	void topPostedQuestions();
 	void topPostedAnswers();
 	void postHistory();
+	void allUsers();
 };
 
 #endif
