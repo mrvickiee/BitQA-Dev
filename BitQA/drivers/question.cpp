@@ -6,6 +6,8 @@
 #include "../process/vote.hpp"
 #include "../includes/profile.hpp"
 
+#include <regex>
+
 using namespace cgicc;
 using namespace std;
 
@@ -196,10 +198,62 @@ void getQuestionStack(int id, Cgicc cgicc, string userName)
 		
 		//----
 		
+		/*
+		 * Tags
+		 */
+		cout << "</div>";
+		cout << "<div style=\"margin-left: -15px;\" class=\"container-fluid\">";
+		cout << "<p><b>Tags: </b>";
+		
+		{
+			sql::Driver *driver;
+			sql::Connection *con;
+			sql::Statement *stmt;
+			sql::ResultSet *res;
+			
+			
+			driver = get_driver_instance();
+			con = driver->connect(BitQA::Database::HOST,
+								  BitQA::Database::USERNAME,
+								  BitQA::Database::PASSWORD
+								  );
+			
+			con->setSchema(BitQA::Database::SCHEMA);
+			
+			stmt = con->createStatement();
+			
+			res = stmt->executeQuery("SELECT tags FROM tblQuestion WHERE id = " + question.getQuestionID());
+			
+			string tags = "";
+			
+			while (res->next()) {
+				tags = res->getString("tags");
+			};
+			
+			string s(tags);
+			regex e("<(.*?)>");
+			
+			regex_iterator<string::iterator> rit(s.begin(), s.end(), e);
+			regex_iterator<string::iterator> rend;
+			
+			while (rit != rend) {
+				
+				string original = rit->str();
+				size_t s = original.find("<");
+				size_t e = original.find(">", s);
+				string sub = original.substr(s + 1, e - s -1);
+				
+				cout << "<a href=\"\">" + sub + "</a>" << endl;
+				++rit;
+			}
+			
+		}
+		
+		cout << "</p>";
+		cout << "</div>";
 		
 		cout << "</div>";
-		cout << "</div></div>";
-		
+		cout << "</div>";
 		
 		/*
 		 * Question Comments
