@@ -52,10 +52,10 @@ void doSearch(Cgicc cgi, string param)
 	}else
 	{
 		if(!filter) {
-			searchObj.getQuestion(filter);
+			searchObj.getQuestion(filter, 100);
 		}else
 		{
-			searchObj.getQuestion(filter);
+			searchObj.getQuestion(filter, 100);
 		}
 	}
 }

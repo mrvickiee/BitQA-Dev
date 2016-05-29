@@ -5,6 +5,7 @@
 #include "../includes/database.hpp"
 #include "../process/vote.hpp"
 #include "../includes/profile.hpp"
+#include "../process/search.hpp"
 
 #include <regex>
 
@@ -13,8 +14,16 @@ using namespace std;
 
 string qowner;
 string qid;
+string tag;
 
 bool isDuplicate;
+
+void doSearch(Cgicc cgi, string param)
+{
+	//Create search object with term
+	MySearch searchObj(param);
+	searchObj.getQuestion(false, 10);
+}
 
 void getQuestionStack(int id, Cgicc cgicc, string userName)
 {
@@ -237,6 +246,8 @@ void getQuestionStack(int id, Cgicc cgicc, string userName)
 			regex_iterator<string::iterator> rend;
 			
 			while (rit != rend) {
+				
+				tag = rit->str();
 				
 				string original = rit->str();
 				size_t s = original.find("<");
@@ -1227,6 +1238,12 @@ int main()
 			
 			getAnswerStack(id, cgicc, userName);
 		}
+		
+		cout << "<br><br>";
+		cout << "<div class=\"col-xs-9 col-sm-9 col-md-9 col-lg-9\">";
+		cout << "<h2>Related Questions</h2>";
+		doSearch(cgicc, tag);
+		cout << "</div>";
 		
 	} catch (sql::SQLException &e) {
 		
