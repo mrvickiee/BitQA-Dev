@@ -243,7 +243,7 @@ void getQuestionStack(int id, Cgicc cgicc, string userName)
 				size_t e = original.find(">", s);
 				string sub = original.substr(s + 1, e - s -1);
 				
-				cout << "<a href=\"\">" + sub + "</a>" << endl;
+				cout << "<a href=\"/search.html?tag=" << sub << "\">" + sub + "</a>" << endl;
 				++rit;
 			}
 			
