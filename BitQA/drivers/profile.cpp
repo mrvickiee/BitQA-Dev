@@ -46,7 +46,7 @@ void getUserInfo(){
                           );
     
     con->setSchema(BitQA::Database::SCHEMA);
-    prep_stmt = con->prepareStatement("SELECT *, (select tags from tblUserTags where id = A.id) as 'UserTag', (select reputation from tblUserReputation where username = A.username) as 'Reputation' from tblUser A where username = ?");
+    prep_stmt = con->prepareStatement("SELECT *, (select tags from tblUserTags where id = A.id) as 'UserTag', (select reputation from tblUserReputation where username = A.username) as 'Reputation' from tblUser A where username = ? AND deleted=0");
     prep_stmt->setString(1, currUsername);
     res = prep_stmt->executeQuery();
     
@@ -117,7 +117,9 @@ int main(){
 		
 	
 	if(viewer.getReputation() >= User().checkUserRight("DELETEANYPROFILE")){
-		cout << "<dt><button class=\"btn btn-danger\">Deactivate</button></dt>" << endl;
+		cout << "<dt><a href=\"/admindeactivate.html?username="
+			 << curUser.getUsername()
+			 <<"\" class=\"btn btn-danger\">Deactivate</a></dt>" << endl;
 	}
 		
 	if(viewer.getReputation() >= User().checkUserRight("EDITANYPROFILE")){

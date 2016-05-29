@@ -155,6 +155,8 @@ int main(){
 	}
 	
 	
-	
+	BitQA::HTML::displayFooter();
+	return 0;
+
 	
 }
