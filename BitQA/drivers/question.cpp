@@ -103,11 +103,11 @@ void getQuestionStack(int id, Cgicc cgicc, string userName)
 			
 			stmt = con->createStatement();
 			
-			res = stmt->executeQuery("SELECT isDuplicate from tblQuestion WHERE qowner = '" + question.getUsername() + "'");
+			res = stmt->executeQuery("SELECT duplicate from tblQuestion WHERE id = " + question.getQuestionID());
 			
 			res->next();
 			
-			bool duplicate = res->getBoolean("isDuplicate");
+			bool duplicate = res->getBoolean("duplicate");
 			
 			if (duplicate) {
 				cout << "<div class=\"alert alert-warning\"><strong>Duplicate Question!</strong> This question has been marked as duplicate.</div>";
