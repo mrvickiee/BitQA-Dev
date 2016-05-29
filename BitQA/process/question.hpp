@@ -23,12 +23,14 @@ namespace BitQA
 		string getQuestionContentID();
 		string getQuestionID();
 		string getQuestionOwner();
+		bool getIfDuplicate();
 		
 	private:
 		Question();
 		int QuestionID;
 		int ContentID;
 		string QuestionOwner;
+		bool isDuplicate;
 	};
 }
 
