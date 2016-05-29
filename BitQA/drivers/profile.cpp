@@ -16,10 +16,20 @@ using namespace std;
 using namespace cgicc;
 
 User curUser;
+User viewer;
 cgicc::Cgicc cgi;
 CgiEnvironment environment = cgi.getEnvironment();
 bool valid = false;
 Report report;
+
+void getViewerInfo(){
+	if(curUser.getUsername() != BitQA::HTML::getUsername(cgi)){
+		viewer = User().getUserObj(BitQA::HTML::getUsername(cgi));
+	}else{
+		viewer.setReputation(0);
+	}
+}
+
 
 void getUserInfo(){
     string currUsername = cgi("username");
@@ -63,11 +73,10 @@ int main(){
     
     
     BitQA::HTML::displayHeader("Profile", cgi);
-    getUserInfo();
+    getUserInfo();				//order of this two function is critical
+	getViewerInfo();
     
     if(valid){
-    
-    
     cout << "<div class=\"row\" style=\"margin-left:10%\">" << endl;	//user details
     cout << " <div class=\"col-xs-4\">" << endl;
     cout << "<h2>" ;
@@ -105,8 +114,18 @@ int main(){
     cout << "<dd>";
     cout << curUser.getReputation();
     cout << "</dd>" << endl;
-    cout << "<dt>Roles</dt>" << endl;
-    cout << "<dd></dd>" << endl;
+		
+	
+	if(viewer.getReputation() >= User().checkUserRight("DELETEANYPROFILE")){
+		cout << "<dt><button class=\"btn btn-danger\">Deactivate</button></dt>" << endl;
+	}
+		
+	if(viewer.getReputation() >= User().checkUserRight("EDITANYPROFILE")){
+		cout << "<dd><a href=\"/adminedit.html?username="
+			 << curUser.getUsername()
+			 <<"\" class=\"btn btn-warning\">Edit</a></dd>" << endl;
+	}
+		
     cout << "</div>" << endl;
     cout << "</div>" << endl;
     cout << "</div>" << endl;
