@@ -26,16 +26,23 @@ BitQA::Question::Question(int QuestionID)
 	stmt = con->createStatement();
 	
 	
-	res = stmt->executeQuery("SELECT contentId, qowner FROM tblQuestion WHERE id = '" + to_string(this->QuestionID) + "' AND deleted=0");
+	res = stmt->executeQuery("SELECT contentId, qowner, duplicate FROM tblQuestion WHERE id = '" + to_string(this->QuestionID) + "' AND deleted=0");
 	
 	while (res->next()) {
 		this->ContentID = res->getInt("contentId");
 		this->QuestionOwner = res->getString("qowner");
+		this->isDuplicate = (res->getInt("duplicate")==0 ? false :true);
+		//cout << "dup: " << res->getInt("duplicate") << endl;
+		//cout << "isdup: " << (int)isDuplicate << endl;
 	}
 	
 	delete res;
 	delete stmt;
 	delete con;
+}
+
+bool BitQA::Question::getIfDuplicate(){
+	return isDuplicate;
 }
 
 string BitQA::Question::getQuestionContentID()

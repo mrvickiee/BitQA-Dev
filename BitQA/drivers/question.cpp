@@ -12,11 +12,14 @@ using namespace std;
 string qowner;
 string qid;
 
+bool isDuplicate;
+
 void getQuestionStack(int id, Cgicc cgicc, string userName)
 {
 	BitQA::Profile userprofile(userName);
 	
 	BitQA::Question question(id);
+	isDuplicate = question.getIfDuplicate();
 	vector<BitQA::Voter> voters = BitQA::Vote::getContentIDVoted(userName);
 	BitQA::Voter currentVoter;
 	
@@ -25,6 +28,8 @@ void getQuestionStack(int id, Cgicc cgicc, string userName)
 		/*
 		 * Question
 		 */
+		
+		//if (isDuplicate) cout << "Is duplicate" << endl;
 		
 		qowner = question.getQuestionOwner();
 		qid = question.getQuestionID();
@@ -282,7 +287,7 @@ void getQuestionStack(int id, Cgicc cgicc, string userName)
 		cout << "<div class=\"col-xs-1 col-sm-1 col-md-1 col-lg-1\">";
 		cout << "<form action=\"\" method=\"post\"><div class=\"form-group\">"
 			<< "<label for=\"comment\">Comment:</label>"
-			<< "<textarea name=\"data\" style=\"width:645px\" class=\"input-large form-control\" cols=\"20\" rows=\"2\" id=\"comment\"></textarea><br>";
+			<< "<textarea" << (isDuplicate ? " disabled" : "")  <<" name=\"data\" style=\"width:645px\" class=\"input-large form-control\" cols=\"20\" rows=\"2\" id=\"comment\"></textarea><br>";
 		cout << "<input type=\"hidden\" name=\"content-id\" value=\"" << question.getQuestionContentID() << "\">";
 		cout << "<input type=\"hidden\" name=\"type\" value=\"comment\">";
 		cout << "<input class=\"btn btn-default\" type=\"submit\">"
@@ -537,7 +542,7 @@ void getAnswerStack(int id, Cgicc cgicc, string userName)
 		cout << "<div class=\"col-xs-1 col-sm-1 col-md-1 col-lg-1\">";
 		cout << "<form action=\"\" method=\"post\"><div class=\"form-group\">"
 			<< "<label for=\"comment\">Comment:</label>"
-			<< "<textarea name=\"data\" style=\"width:645px\" class=\"input-large form-control\" cols=\"20\" rows=\"2\" id=\"comment\"></textarea><br>";
+			<< "<textarea" << (isDuplicate ? " disabled" : "")  <<" name=\"data\" style=\"width:645px\" class=\"input-large form-control\" cols=\"20\" rows=\"2\" id=\"comment\"></textarea><br>";
 		cout << "<input type=\"hidden\" name=\"content-id\" value=\"" << answerList[i].getContentID() << "\">";
 		cout << "<input type=\"hidden\" name=\"type\" value=\"comment\">";
 		cout << "<input class=\"btn btn-default\" type=\"submit\">"
@@ -750,7 +755,7 @@ void getAnswerStack(int id, Cgicc cgicc, string userName)
 			cout << "<div class=\"col-xs-1 col-sm-1 col-md-1 col-lg-1\">";
 			cout << "<form action=\"\" method=\"post\"><div class=\"form-group\">"
 			<< "<label for=\"comment\">Comment:</label>"
-			<< "<textarea name=\"data\" style=\"width:645px\" class=\"input-large form-control\" cols=\"20\" rows=\"2\" id=\"comment\"></textarea><br>";
+			<< "<textarea" << (isDuplicate ? " disabled" : "")  <<" name=\"data\" style=\"width:645px\" class=\"input-large form-control\" cols=\"20\" rows=\"2\" id=\"comment\"></textarea><br>";
 			cout << "<input type=\"hidden\" name=\"content-id\" value=\"" << answerList[i].getContentID() << "\">";
 			cout << "<input type=\"hidden\" name=\"type\" value=\"comment\">";
 			cout << "<input class=\"btn btn-default\" type=\"submit\">"
@@ -766,7 +771,7 @@ void getAnswerStack(int id, Cgicc cgicc, string userName)
 	cout << "<div class=\"row\"><div class=\"col-xs-9 col-sm-9 col-md-9 col-lg-9\">";
 	cout << "<form action=\"\" method=\"post\"><div class=\"form-group\">"
 	<< "<label for=\"answer\">Add new answer:</label>"
-	<< "<textarea name=\"data\" style=\"width:100%\" class=\"input-large form-control\" cols=\"20\" rows=\"5\" id=\"answer\"></textarea><br>";
+	<< "<textarea" << (isDuplicate ? " disabled" : "")  <<" name=\"data\" style=\"width:100%\" class=\"input-large form-control\" cols=\"20\" rows=\"5\" id=\"answer\"></textarea><br>";
 	cout << "<input type=\"hidden\" name=\"question-id\" value=\"" << to_string(id) << "\">";
 	cout << "<input type=\"hidden\" name=\"type\" value=\"questionAnswer\">";
 	cout << "<input class=\"btn btn-default\" type=\"submit\">"
