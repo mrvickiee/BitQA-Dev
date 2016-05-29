@@ -46,47 +46,6 @@ string BitQA::HTML::getDisplayName(Cgicc cgicc)
 }
 
 
-//User BitQA::HTML::getUserObj(Cgicc cgi){
-//	
-//	User curUser;
-//	
-//	string currUsername = getUsername(cgi);
-//	sql::Driver *driver;
-//	sql::Connection *con;
-//	sql::PreparedStatement *prep_stmt;
-//	sql::ResultSet *res;
-//	
-//	driver = get_driver_instance();
-//	con = driver->connect(BitQA::Database::HOST,
-//						  BitQA::Database::USERNAME,
-//						  BitQA::Database::PASSWORD
-//						  );
-//	
-//	con->setSchema(BitQA::Database::SCHEMA);
-//	prep_stmt = con->prepareStatement("SELECT *, (select tags from tblUserTags where id = A.id) as 'UserTag', (select reputation from tblUserReputation where username = A.username) as 'Reputation' from tblUser A where username = ?");
-//	prep_stmt->setString(1, currUsername);
-//	res = prep_stmt->executeQuery();
-//	
-//	if(res->next()){            //get user info and populate
-//		curUser.setUsername(currUsername);
-//		curUser.setLocation(res->getString("location"));
-//		curUser.setDisplayName(res->getString("displayname"));
-//		curUser.setAge(res->getInt("age"));
-//		curUser.setEmail(res->getString("email"));
-//		curUser.setTag(res->getString("UserTag"));
-//		curUser.setReputation(res->getInt("Reputation"));
-//		curUser.setID(res->getInt("id"));
-//		curUser.setPassword(res->getString("passhash"));
-//		
-//	}
-//	delete prep_stmt;
-//	delete con;
-//
-//	return curUser;
-//}
-
-
-
 string BitQA::HTML::getUsername(Cgicc cgicc)
 {
 	CgiEnvironment environment = cgicc.getEnvironment();
@@ -144,23 +103,29 @@ void BitQA::HTML::displayHeader(std::string title, Cgicc cgicc)
 		<< "</div>";
 	
 	cout << "<div id=\"navbar\" class=\"navbar-collapse collapse\"><ul class=\"nav navbar-nav\"><!--<li><a style=\"padding:10px;\"><img width=\"30px\" src=\"/images/logo.png\"></a></li>--><li><a href=\"/post.html\">Post</a></li><li><a href=\"allquestions.html\">Browse</a></li><li><a href=\"report.html\">Report</a></li>";
+	
+	User curUser = User().getUserObj(BitQA::HTML::getUsername(cgicc));
+	if(curUser.getReputation() >= User().checkUserRight("ISADMIN")){
+		cout << "<li class=\"dropdown\">"
+		<< "<a href=\"#\" class =\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">"
+		<< "Admin"
+		<< "<span class=\"caret\"></span></a>"
+		<< "<ul class=\"dropdown-menu\">"
+		<< "<li><a href=\"/viewalluser.html\">View All User</a></li>"
+		<< "<li><a href=\"#\">Customise points</a></li>"
+		<<"</ul>"
+		<<"</li>"
+		<< endl;
+	}
+
 	cout << "</ul>";
 	
 	cout << "<div class=\"col-sm-3 col-md-3 pull-right\"><form action=\"search.html\" method=\"post\" class=\"navbar-form\" role=\"search\"><div class=\"input-group\"><input type=\"text\" class=\"form-control\" placeholder=\"Search\" name=\"search\" id=\"search\"><div class=\"input-group-btn\"><button class=\"btn btn-default\" type=\"submit\"><i class=\"glyphicon glyphicon-search\"></i></button></div></div></form></div>";
 	
+	
 	cout << "<ul class=\"nav navbar-nav navbar-right\">";
 	
 	if (BitQA::HTML::getLoggedInStatus(cgicc)) {
-		/*cout << "<li><a href=\"/profile.html?username="			//old code
-			<< BitQA::HTML::getUsername(cgicc)
-			<< "\">Welcome, "
-		    << BitQA::HTML::getDisplayName(cgicc) << "</a></li>" << endl;
-		
-        cout <<"<li><a href=\"/editprofile.html\">Edit profile</a></li>"
-			<< "<li><a id=\"navBarLogout\" href=\"#\">Logout</a></li>";
-		 */
-		//try new dropdown toggle
-	
 		cout << "<li class=\"dropdown\">"
 		<< "<a href=\"#\" class =\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">"
 		<< BitQA::HTML::getDisplayName(cgicc)

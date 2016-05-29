@@ -402,6 +402,68 @@ void Report::topPostedQuestions()
 	}
 }
 
+void Report::allUsers(){
+	
+	try {
+		sql::Driver *driver;
+		sql::Connection *con;
+		sql::Statement *stmt;
+		sql::ResultSet *res;
+		
+		
+		driver = get_driver_instance();
+		con = driver->connect(BitQA::Database::HOST,
+							  BitQA::Database::USERNAME,
+							  BitQA::Database::PASSWORD
+							  );
+		
+		con->setSchema(BitQA::Database::SCHEMA);
+		
+		stmt = con->createStatement();
+		
+		
+		res = stmt->executeQuery("SELECT tblUser.username, tblUser.displayname, tblUserReputation.reputation, tblUser.creationdate FROM tblUser JOIN tblUserReputation ON tblUser.username = tblUserReputation.username WHERE tblUser.deleted = 0  ORDER BY tblUserReputation.reputation desc");
+		
+		cout << "<table class=\"table table-hover\" id=\"allUserTable\">";
+		cout << "<thead>";
+		cout << "<tr>";
+		cout << "<th>Username</th>";
+		cout << "<th>Reputation</th>";
+		cout << "<th>Creation Date</th>";
+		cout << "<th></th>";
+		cout << "<th></th>";
+		cout << "<th></th>";
+		cout << "</tr>";
+		cout << "</thead>";
+		while(res->next()){
+			cout << "<tr>";
+			cout << "<td><a href=\"/profile.html?username=" << res->getString("username") << "\">" << res->getString("username") << "</td>";
+			cout << "<td>" << res->getString("reputation") << "</td>";
+			cout << "<td>" << res->getString("creationdate") << "</td>";
+			
+			
+			cout << "<td> <a href=\"/changerep.html?username="
+				 << res->getString("username") <<"\" class=\"btn btn-info\"> Change rep pts </a> </td>";
+			
+			cout << "<td> <a href=\"/adminedit.html?username="
+				 << res->getString("username") << "\" class=\"btn btn-warning\"> Edit </a> </td>";
+			
+			cout << "<td> <a href=\"/admindeactivate.html?username="
+				 << res->getString("username")
+				 <<"\" class=\"btn btn-danger\"> Deactivate </a> </td>";
+			cout << "</tr>";
+		}
+		cout << "</table>";
+		
+		delete res;
+		delete stmt;
+		delete con;
+		
+	} catch (sql::SQLException &e) {
+		cout << "<p>Error</p>";
+	}
+}
+
 void Report::topPostedAnswers()
 {
 	try {
