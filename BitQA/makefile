@@ -1,9 +1,9 @@
 build:
 	g++ -std=c++0x includes/database.cpp includes/html.cpp drivers/index.cpp -o ../www/index.html -lmysqlcppconn -lcgicc
-	g++ -std=c++0x includes/database.cpp includes/html.cpp drivers/post.cpp -o ../www/post.html -lmysqlcppconn -lcgicc
-	g++-4.9 -std=c++0x includes/database.cpp includes/profile.cpp includes/html.cpp process/question.cpp process/answer.cpp process/comment.cpp process/vote.cpp drivers/question.cpp -o ../www/question.html -lmysqlcppconn -lcgicc
-	g++ -std=c++0x includes/database.cpp includes/html.cpp process/browse.cpp drivers/browse.cpp -o ../www/browse.html -lmysqlcppconn -lcgicc
-	g++ -std=c++0x includes/database.cpp includes/html.cpp process/report.cpp drivers/report.cpp -o ../www/report.html -lmysqlcppconn -lcgicc
+	g++ -std=c++0x includes/database.cpp includes/html.cpp process/user.cpp drivers/post.cpp -o ../www/post.html -lmysqlcppconn -lcgicc
+	g++-4.9 -std=c++0x includes/database.cpp includes/profile.cpp includes/html.cpp process/user.cpp process/question.cpp process/answer.cpp process/comment.cpp process/vote.cpp drivers/question.cpp -o ../www/question.html -lmysqlcppconn -lcgicc
+	g++ -std=c++0x includes/database.cpp includes/html.cpp process/user.cpp process/browse.cpp drivers/browse.cpp -o ../www/browse.html -lmysqlcppconn -lcgicc
+	g++ -std=c++0x includes/database.cpp includes/html.cpp process/user.cpp process/report.cpp drivers/report.cpp -o ../www/report.html -lmysqlcppconn -lcgicc
 	g++ -std=c++0x includes/database.cpp includes/md5.cpp includes/html.cpp process/user.cpp drivers/signup.cpp -o ../www/signup.html -lmysqlcppconn -lcgicc
 	g++ -std=c++0x includes/database.cpp includes/md5.cpp includes/html.cpp process/user.cpp drivers/login.cpp -o ../www/login.html -lmysqlcppconn -lcgicc
 	g++ -std=c++0x includes/database.cpp process/user.cpp includes/html.cpp drivers/allquestions.cpp -o ../www/allquestions.html -lmysqlcppconn -lcgicc
