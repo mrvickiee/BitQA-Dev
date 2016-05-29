@@ -85,6 +85,34 @@ void getQuestionStack(int id, Cgicc cgicc, string userName)
 		cout << "<br><p>" << question.getDetails() << "</p>";
 		cout << "<p><i><b>Questioned by " << question.getUsername() << "</i></b></p>";
 		
+		// Check for duplicate
+		{
+			sql::Driver *driver;
+			sql::Connection *con;
+			sql::Statement *stmt;
+			sql::ResultSet *res;
+			
+			
+			driver = get_driver_instance();
+			con = driver->connect(BitQA::Database::HOST,
+								  BitQA::Database::USERNAME,
+								  BitQA::Database::PASSWORD
+								  );
+			
+			con->setSchema(BitQA::Database::SCHEMA);
+			
+			stmt = con->createStatement();
+			
+			res = stmt->executeQuery("SELECT duplicate from tblQuestion WHERE id = " + question.getQuestionID());
+			
+			res->next();
+			
+			bool duplicate = res->getBoolean("duplicate");
+			
+			if (duplicate) {
+				cout << "<div class=\"alert alert-warning\"><strong>Duplicate Question!</strong> This question has been marked as duplicate.</div>";
+			}
+		}
 		
 		//pass username with question id
 		sql::Driver *driver;
@@ -143,6 +171,22 @@ void getQuestionStack(int id, Cgicc cgicc, string userName)
 		
 		cout << "</form>" << endl;
 		
+		}
+		
+		//----
+		
+		//-------
+		
+		if (userprofile.canDo("MARKDUPLICATE")){
+			
+			//--Setfeatured question
+			cout << "<form method='post'>" << endl;
+			cout << "<input type=\"hidden\" name=\"type\" value=\"markduplicate\">";
+			cout << "<input type=\"hidden\" name=\"questionid\" value=\"" << qid <<"\">";
+			cout << "<div style=\"margin-left: -75px;\" class=\"col-xs-2 col-sm-2 col-md-2 col-lg-2\"><input class='btn btn-default' type='submit' value=&#128588;></div>" << endl;
+			
+			cout << "</form>" << endl;
+			
 		}
 		
 		//----
@@ -828,6 +872,47 @@ void processPOST(int id, Cgicc cgicc, bool &exit)
 
 				
 			
+			} else if (postType == "markduplicate"){
+				
+				string quid = cgicc("questionid");
+				
+				sql::Driver *driver;
+				sql::Connection *con;
+				sql::Statement *stmt;
+				sql::ResultSet *res;
+				
+				
+				driver = get_driver_instance();
+				con = driver->connect(BitQA::Database::HOST,
+									  BitQA::Database::USERNAME,
+									  BitQA::Database::PASSWORD
+									  );
+				
+				con->setSchema(BitQA::Database::SCHEMA);
+				
+				stmt = con->createStatement();
+				
+				string deleteId = cgicc("questionid");
+				
+				res = stmt->executeQuery("CALL ProcSetMarkedDuplicate(" + quid + ");");
+				
+				res->next();
+				string qryResult = res->getString("result");
+				if (qryResult == "OK") {
+					
+					cout << "<div class=\"alert alert-success alert-dismissible\" role=\"alert\">";
+					cout << "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">";
+					cout << "<span aria-hidden=\"true\">&times;</span></button>";
+					cout << "<strong>Marked Duplicate question set</strong> successfully</div>";
+				} else {
+					cout << "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\">";
+					cout << "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">";
+					cout << "<span aria-hidden=\"true\">&times;</span></button>";
+					cout << "<strong>Featured question set</strong> failed</div>";
+				}
+				
+				
+				
 			} else if (postType == "comment") {
 				
 				sql::Driver *driver;
