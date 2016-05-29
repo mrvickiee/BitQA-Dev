@@ -86,7 +86,17 @@ void BitQA::HTML::displayHeader(std::string title, Cgicc cgicc)
 		<< "<script type=\"text/javascript\" src=\"/includes/javascript/main.js\"></script>" << endl
 		<< "<script type=\"text/javascript\" src=\"/includes/javascript/cookie.js\"></script>" << endl
 		<< "<script type=\"text/javascript\" src=\"https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js\"></script>"
-	    << "<script type=\"text/javascript\" src=\"https://cdn.datatables.net/u/bs/dt-1.10.12/datatables.min.js\"></script>"
+		<< "<script type=\"text/javascript\" src=\"https://cdn.datatables.net/u/bs/dt-1.10.12/datatables.min.js\"></script>" << endl
+		//Google analytics
+	
+	<< "<script>" << endl <<
+	"(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){" << endl <<
+  "(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o)," << endl <<
+  "m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)" << endl <<
+	"})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');" << endl <<
+	"ga('create', 'UA-78499119-1', 'auto');" << endl <<
+	"ga('send', 'pageview');" << endl <<
+	"</script>" << endl
 	
 		<< head() << endl;
 	

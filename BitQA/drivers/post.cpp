@@ -132,10 +132,10 @@ int main()
         "<input type=\"text\" name=\"questionTitle\" class=\"form-control\" value='" <<
         questionTitle << "'></td></tr><tr height='10px'></tr><tr class='row'><td>Description:</td><td>" <<
         "<textarea name=\"questionDescription\" style=\"height: 100px\" class=\"form-control\">" << questionDescription
-        << "</textarea></td></tr><tr height='10px'></tr><tr class='row'><td>Tags:</td><td><textarea name=\"questionTags\" style=\"height: 100px\" class=\"form-control\">" << questionTags <<
+        << "</textarea></td></tr><tr height='10px'></tr><tr class='row'><td>Tags:</td><td><textarea name=\"questionTags\" style=\"height: 35px\" class=\"form-control\">" << questionTags <<
         "</textarea></td></tr></table>"
         
-        << "</div><input class=\"btn btn-primary\" type=\"submit\">";
+        << "<br><p><b>Note: </b>You must use the tags surrounded in tags &lt;tag&gt;</p></div><input class=\"btn btn-primary\" type=\"submit\">";
         
         cout << "</form>";
 		
