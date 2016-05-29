@@ -441,7 +441,9 @@ void getAnswerStack(int id, Cgicc cgicc, string userName)
 		//-----
 		
 		//--Set accepted answer
-		if (qowner == userName) {
+		if ((qowner == userName) ||
+			(userprofile.canDo("SETACCEPTEDANSOTHERUSER"))
+		) {
 			cout << "<div style=\"margin-left: -75px;\" class=\"col-xs-2 col-sm-2 col-md-2 col-lg-2\"><form method='post'>" << endl;
 			cout << "<input type=\"hidden\" name=\"type\" value=\"setanswer\">";
 			cout << "<input type=\"hidden\" name=\"answerid\" value=\"" << answerList[i].getAnswerID() <<"\">";
@@ -652,7 +654,9 @@ void getAnswerStack(int id, Cgicc cgicc, string userName)
 			//-----
 			
 			//--Set accepted answer
-			if (qowner == userName) {
+			if ((qowner == userName) ||
+				(userprofile.canDo("SETACCEPTEDANSOTHERUSER"))
+			) {
 				cout << "<div style=\"margin-left: -75px;\" class=\"col-xs-2 col-sm-2 col-md-2 col-lg-2\"><form method='post'>" << endl;
 				cout << "<input type=\"hidden\" name=\"type\" value=\"setanswer\">";
 				cout << "<input type=\"hidden\" name=\"answerid\" value=\"" << answerList[i].getAnswerID() <<"\">";
