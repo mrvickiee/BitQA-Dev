@@ -34,10 +34,6 @@ MySearch::MySearch(string query)
 void MySearch::getQuestion(bool filter)
 {
 	bool found = false;
-	
-	//Splits words into individual tags
-	string searchTags;
-	searchTags = spaceToTag(this->searchTerm);
 
 	try {
 		sql::Driver *driver;
@@ -57,11 +53,10 @@ void MySearch::getQuestion(bool filter)
 		stmt = con->createStatement();
 			
 		if(!filter) {
-			res = stmt->executeQuery("SELECT contentId, questionTitle FROM tblQuestion WHERE tags LIKE '" + searchTags + "'");
+			res = stmt->executeQuery("SELECT contentId, questionTitle FROM tblQuestion JOIN tblContent ON tblQuestion.contentId = tblContent.id WHERE tags LIKE '%" + this->searchTerm + "%' AND tblQuestion.deleted = 0 ORDER BY tblContent.utimestamp;");
 		}else {
-			res = stmt->executeQuery("SELECT contentId, questionTitle FROM tblQuestion WHERE tags LIKE '" + searchTags + "' AND acceptedAnswer = 0");
+			res = stmt->executeQuery("SELECT contentId, questionTitle FROM tblQuestion JOIN tblContent ON tblQuestion.contentId = tblContent.id WHERE tags LIKE '%" + this->searchTerm + "%' AND tblQuestion.deleted = 0 AND acceptedAnswer = 0 ORDER BY tblContent.utimestamp;");
 		}
-
 
 		cout << "<table>";
 		while (res->next()) {
