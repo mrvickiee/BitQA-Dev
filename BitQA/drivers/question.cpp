@@ -210,9 +210,8 @@ void getQuestionStack(int id, Cgicc cgicc, string userName)
 		/*
 		 * Tags
 		 */
-		cout << "</div>";
-		cout << "<div style=\"margin-left: -15px;\" class=\"container-fluid\">";
-		cout << "<p><b>Tags: </b>";
+		
+		cout << "<div style=\"margin-left: -15px;\" class=\"container-fluid\"><p style=\"margin-top: 5px;\"><b>Tags: </b>";
 		
 		{
 			sql::Driver *driver;
@@ -260,9 +259,8 @@ void getQuestionStack(int id, Cgicc cgicc, string userName)
 			
 		}
 		
-		cout << "</p>";
+		cout << "</p></div>";
 		cout << "</div>";
-		
 		cout << "</div>";
 		cout << "</div>";
 		
