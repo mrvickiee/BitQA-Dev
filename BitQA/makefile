@@ -16,9 +16,9 @@ build:
 	g++ -std=c++0x includes/database.cpp includes/html.cpp process/user.cpp drivers/editcontent.cpp -o ../www/editcontent.html -lmysqlcppconn -lcgicc
 	g++ -std=c++0x includes/database.cpp includes/html.cpp process/user.cpp drivers/adminedit.cpp -o ../www/adminedit.html -lmysqlcppconn -lcgicc
 	g++ -std=c++0x includes/database.cpp includes/html.cpp process/user.cpp drivers/admindeactivate.cpp -o ../www/admindeactivate.html -lmysqlcppconn -lcgicc
-	g++ -std=c++0x includes/database.cpp includes/html.cpp process/user.cpp drivers/viewAllUser.cpp -o ../www/viewalluser.html -lmysqlcppconn -lcgicc
+	g++ -std=c++0x includes/database.cpp includes/html.cpp process/user.cpp process/report.cpp drivers/viewAllUser.cpp -o ../www/viewalluser.html -lmysqlcppconn -lcgicc
 	g++ -std=c++0x includes/database.cpp includes/html.cpp process/user.cpp drivers/changeRep.cpp -o ../www/changerep.html -lmysqlcppconn -lcgicc
-	g++ -std=c++0x includes/database.cpp includes/html.cpp process/user.cpp drivers/changeptssys.cpp.cpp -o ../www/changeptssys.html -lmysqlcppconn -lcgicc
+	g++ -std=c++0x includes/database.cpp includes/html.cpp process/user.cpp drivers/changeptssys.cpp -o ../www/changeptssys.html -lmysqlcppconn -lcgicc
 	g++ -std=c++0x includes/database.cpp includes/html.cpp process/user.cpp drivers/processptschange.cpp -o ../www/processptschange.html -lmysqlcppconn -lcgicc
 current:
 	g++ -std=c++0x includes/database.cpp includes/html.cpp process/search.cpp drivers/search.cpp -o ../www/search.html -lmysqlcppconn -lcgicc
