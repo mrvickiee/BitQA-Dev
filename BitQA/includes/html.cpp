@@ -112,7 +112,7 @@ void BitQA::HTML::displayHeader(std::string title, Cgicc cgicc)
 		<< "<span class=\"caret\"></span></a>"
 		<< "<ul class=\"dropdown-menu\">"
 		<< "<li><a href=\"/viewalluser.html\">View All User</a></li>"
-		<< "<li><a href=\"#\">Customise points</a></li>"
+		<< "<li><a href=\"/changeptssys.html\">Customise points</a></li>"
 		<<"</ul>"
 		<<"</li>"
 		<< endl;
