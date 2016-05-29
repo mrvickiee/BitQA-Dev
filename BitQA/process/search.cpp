@@ -31,7 +31,7 @@ MySearch::MySearch(string query)
 	this->searchTerm = query;
 }
 
-void MySearch::getQuestion(bool filter)
+void MySearch::getQuestion(bool filter, int limit)
 {
 	bool found = false;
 
@@ -53,9 +53,9 @@ void MySearch::getQuestion(bool filter)
 		stmt = con->createStatement();
 			
 		if(!filter) {
-			res = stmt->executeQuery("SELECT contentId, questionTitle FROM tblQuestion JOIN tblContent ON tblQuestion.contentId = tblContent.id WHERE tags LIKE '%" + this->searchTerm + "%' AND tblQuestion.deleted = 0 ORDER BY tblContent.utimestamp;");
+			res = stmt->executeQuery("SELECT contentId, questionTitle FROM tblQuestion JOIN tblContent ON tblQuestion.contentId = tblContent.id WHERE tags LIKE '%" + this->searchTerm + "%' AND tblQuestion.deleted = 0 ORDER BY tblContent.utimestamp LIMIT " + to_string(limit));
 		}else {
-			res = stmt->executeQuery("SELECT contentId, questionTitle FROM tblQuestion JOIN tblContent ON tblQuestion.contentId = tblContent.id WHERE tags LIKE '%" + this->searchTerm + "%' AND tblQuestion.deleted = 0 AND acceptedAnswer = 0 ORDER BY tblContent.utimestamp;");
+			res = stmt->executeQuery("SELECT contentId, questionTitle FROM tblQuestion JOIN tblContent ON tblQuestion.contentId = tblContent.id WHERE tags LIKE '%" + this->searchTerm + "%' AND tblQuestion.deleted = 0 AND acceptedAnswer = 0 ORDER BY tblContent.utimestamp LIMIT " + to_string(limit));
 		}
 
 		cout << "<table>";
@@ -78,7 +78,7 @@ void MySearch::getQuestion(bool filter)
 		delete con;
 			
 		} catch (sql::SQLException &e) {
-			cout <<"<h1>error</h1>";
+			cout <<"<p>Could not find any questions at this time</p>";
 			return;
 		}
 		
