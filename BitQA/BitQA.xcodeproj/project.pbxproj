@@ -13,6 +13,7 @@
 		1A0B38EC1CF9627100B916CA /* libcgicc.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A643A391CC2A228008C1AC5 /* libcgicc.3.dylib */; };
 		1A0B38ED1CF9628B00B916CA /* html.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA8F0E1CC6737D00E19ADD /* html.cpp */; };
 		1A0B38EE1CF96DE600B916CA /* database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AC771871CD8FA1B005D3D41 /* database.cpp */; };
+		1A0B38EF1CFB26B600B916CA /* search.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A990CE21CE71592007F8B88 /* search.cpp */; };
 		1A4EA2711CDF604A00143486 /* post.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A9F04601CD640940068B252 /* post.cpp */; };
 		1A4EA2721CDF604C00143486 /* index.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A944B731CBF5ECA00C63F00 /* index.cpp */; };
 		1A4EA2731CDF604E00143486 /* database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AC771871CD8FA1B005D3D41 /* database.cpp */; };
@@ -1255,6 +1256,7 @@
 				39E1ABCA1CFB10B3007A2557 /* user.cpp in Sources */,
 				1A4EA28F1CDF64DC00143486 /* question.cpp in Sources */,
 				1A4EA28B1CDF647A00143486 /* question.cpp in Sources */,
+				1A0B38EF1CFB26B600B916CA /* search.cpp in Sources */,
 				1A4EA28D1CDF64BE00143486 /* html.cpp in Sources */,
 				1A0B38DC1CF8036F00B916CA /* profile.cpp in Sources */,
 				1A7BEE501CF5B03400B0B547 /* vote.cpp in Sources */,
@@ -2290,6 +2292,7 @@
 				39E1ABAA1CFACE4D007A2557 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		39E1ABBC1CFAFAA1007A2557 /* Build configuration list for PBXNativeTarget "changerep.html" */ = {
 			isa = XCConfigurationList;
@@ -2298,6 +2301,7 @@
 				39E1ABBE1CFAFAA1007A2557 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		39E1ABD91CFB1125007A2557 /* Build configuration list for PBXNativeTarget "changeptssys.html" */ = {
 			isa = XCConfigurationList;
@@ -2306,6 +2310,7 @@
 				39E1ABDB1CFB1125007A2557 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		39E1ABEB1CFB14EB007A2557 /* Build configuration list for PBXNativeTarget "processptschange.html" */ = {
 			isa = XCConfigurationList;
@@ -2314,6 +2319,7 @@
 				39E1ABED1CFB14EB007A2557 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		568CF2A91CE074F500E1A986 /* Build configuration list for PBXNativeTarget "browse.html" */ = {
 			isa = XCConfigurationList;

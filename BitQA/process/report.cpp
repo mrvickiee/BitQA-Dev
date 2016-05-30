@@ -318,8 +318,13 @@ void Report::topTags()
 		int i = 0;
 		
 		while(res->next()){
+			
+			string tagz = res->getString("tags");
+			tagz.erase(std::remove(tagz.begin(), tagz.end(), '<'), tagz.end());
+			tagz.erase(std::remove(tagz.begin(), tagz.end(), '>'), tagz.end());
+			
 			cout << "<tr>";
-			cout << "<td>" << res->getString("tags") << "</td>";
+			cout << "<td>" << tagz << "</td>";
 			cout << "<td>" << res->getString("frequency") << "</td>";
 			cout << "</tr>";
 			i++;

@@ -5,6 +5,7 @@
 #include "../includes/database.hpp"
 #include "../process/vote.hpp"
 #include "../includes/profile.hpp"
+#include "../process/search.hpp"
 
 #include <regex>
 
@@ -13,8 +14,16 @@ using namespace std;
 
 string qowner;
 string qid;
+string tag;
 
 bool isDuplicate;
+
+void doSearch(Cgicc cgi, string param)
+{
+	//Create search object with term
+	MySearch searchObj(param);
+	searchObj.getQuestion(false, 10);
+}
 
 void getQuestionStack(int id, Cgicc cgicc, string userName)
 {
@@ -201,9 +210,8 @@ void getQuestionStack(int id, Cgicc cgicc, string userName)
 		/*
 		 * Tags
 		 */
-		cout << "</div>";
-		cout << "<div style=\"margin-left: -15px;\" class=\"container-fluid\">";
-		cout << "<p><b>Tags: </b>";
+		
+		cout << "<div style=\"margin-left: -15px;\" class=\"container-fluid\"><p style=\"margin-top: 5px;\"><b>Tags: </b>";
 		
 		{
 			sql::Driver *driver;
@@ -238,6 +246,8 @@ void getQuestionStack(int id, Cgicc cgicc, string userName)
 			
 			while (rit != rend) {
 				
+				tag = rit->str();
+				
 				string original = rit->str();
 				size_t s = original.find("<");
 				size_t e = original.find(">", s);
@@ -249,9 +259,8 @@ void getQuestionStack(int id, Cgicc cgicc, string userName)
 			
 		}
 		
-		cout << "</p>";
+		cout << "</p></div>";
 		cout << "</div>";
-		
 		cout << "</div>";
 		cout << "</div>";
 		
@@ -1227,6 +1236,12 @@ int main()
 			
 			getAnswerStack(id, cgicc, userName);
 		}
+		
+		cout << "<br><br>";
+		cout << "<div class=\"col-xs-9 col-sm-9 col-md-9 col-lg-9\">";
+		cout << "<h2>Related Questions</h2>";
+		doSearch(cgicc, tag);
+		cout << "</div>";
 		
 	} catch (sql::SQLException &e) {
 		

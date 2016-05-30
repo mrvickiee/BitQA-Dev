@@ -128,7 +128,7 @@ $(".vote-up").click(function(event) {
                     $("#" + content.attr("data-content-id")).text(finalScore);
 
                     // User has selected
-                    content.css("background-color", "green");
+                    content.css("background-color", "rgb(249, 83, 83)");
                     content.attr("data-selected", true);
 
                 };
@@ -259,7 +259,7 @@ $(".vote-down").click(function(event) {
                     $("#" + content.attr("data-content-id")).text(finalScore);
 
                     // User has selected
-                    content.css("background-color", "red");
+                    content.css("background-color", "rgb(245, 178, 40)");
                     content.attr("data-selected", true);
 
                 };
