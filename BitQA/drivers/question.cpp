@@ -54,7 +54,7 @@ void getQuestionStack(int id, Cgicc cgicc, string userName)
 		
 		if (BitQA::Vote::searchContentIDVoted(voters, currentVoter)) {
 			
-			cout << "<h3><span style=\"background-color: green;\" class=\"bitqa-fake-link vote-up\" data-user-id=\"" << question.getQuestionOwner()
+			cout << "<h3><span style=\"background-color: rgb(249, 83, 83);\" class=\"bitqa-fake-link vote-up\" data-user-id=\"" << question.getQuestionOwner()
 					<< "\" data-selected=\"true"
 					<< "\" id=\"up" << question.getQuestionContentID()
 					<< "\" data-vote-type=\"up"
@@ -79,7 +79,7 @@ void getQuestionStack(int id, Cgicc cgicc, string userName)
 		
 		if (BitQA::Vote::searchContentIDVoted(voters, currentVoter)) {
 			
-			cout << "<h3><span style=\"background-color: red;\" class=\"bitqa-fake-link vote-down\" data-user-id=\"" << question.getQuestionOwner()
+			cout << "<h3><span style=\"background-color: rgb(245, 178, 40);\" class=\"bitqa-fake-link vote-down\" data-user-id=\"" << question.getQuestionOwner()
 					<< "\" data-selected=\"true"
 					<< "\" id=\"down" << question.getQuestionContentID()
 					<< "\" data-vote-type=\"down"
@@ -281,7 +281,7 @@ void getQuestionStack(int id, Cgicc cgicc, string userName)
 			currentVoter.Type = 'U';
 			
 			if (BitQA::Vote::searchContentIDVoted(voters, currentVoter)) {
-				cout << "<h5><span style=\"background-color: green;\" class=\"bitqa-fake-link vote-up\" data-user-id=\"" << commentList[i].getOwnerID()
+				cout << "<h5><span style=\"background-color: rgb(249, 83, 83);\" class=\"bitqa-fake-link vote-up\" data-user-id=\"" << commentList[i].getOwnerID()
 					<< "\" data-selected=\"true"
 					<< "\" id=\"up" << commentList[i].getContentID()
 					<< "\" data-vote-type=\"up"
@@ -422,7 +422,7 @@ void getAnswerStack(int id, Cgicc cgicc, string userName)
 		currentVote.Type = 'U';
 		
 		if (BitQA::Vote::searchContentIDVoted(voters, currentVote)) {
-			cout << "<h3><span style=\"background-color:green;\" class=\"bitqa-fake-link vote-up\" data-user-id=\"" << answerList[i].getUserID()
+			cout << "<h3><span style=\"background-color:rgb(249, 83, 83);\" class=\"bitqa-fake-link vote-up\" data-user-id=\"" << answerList[i].getUserID()
 				<< "\" data-selected=\"true"
 				<< "\" id=\"up" << answerList[i].getContentID()
 				<< "\" data-vote-type=\"up"
@@ -442,7 +442,7 @@ void getAnswerStack(int id, Cgicc cgicc, string userName)
 		currentVote.Type = 'D';
 		
 		if (BitQA::Vote::searchContentIDVoted(voters, currentVote)) {
-			cout << "<h3><span style=\"background-color:red;\" class=\"bitqa-fake-link vote-down\" data-user-id=\"" << answerList[i].getUserID()
+			cout << "<h3><span style=\"background-color:rgb(245, 178, 40);\" class=\"bitqa-fake-link vote-down\" data-user-id=\"" << answerList[i].getUserID()
 				<< "\" data-selected=\"true"
 				<< "\" id=\"down" << answerList[i].getContentID()
 				<< "\" data-vote-type=\"down"
@@ -536,7 +536,7 @@ void getAnswerStack(int id, Cgicc cgicc, string userName)
 			currentVote.Type = 'U';
 			
 			if (BitQA::Vote::searchContentIDVoted(voters, currentVote)) {
-				cout << "<h5><span style=\"background-color:green;\" class=\"bitqa-fake-link vote-up\" data-user-id=\"" << commentList[i].getOwnerID()
+				cout << "<h5><span style=\"background-color:rgb(249, 83, 83);\" class=\"bitqa-fake-link vote-up\" data-user-id=\"" << commentList[i].getOwnerID()
 					<< "\" data-selected=\"true"
 					<< "\" id=\"up" << commentList[j].getContentID()
 					<< "\" data-vote-type=\"up"
@@ -636,7 +636,7 @@ void getAnswerStack(int id, Cgicc cgicc, string userName)
 			currentVote.Type = 'U';
 			
 			if (BitQA::Vote::searchContentIDVoted(voters, currentVote)) {
-				cout << "<h3><span style=\"background-color:green;\" class=\"bitqa-fake-link vote-up\" data-user-id=\"" << answerList[i].getUserID()
+				cout << "<h3><span style=\"background-color:rgb(249, 83, 83);\" class=\"bitqa-fake-link vote-up\" data-user-id=\"" << answerList[i].getUserID()
 				<< "\" data-selected=\"true"
 				<< "\" id=\"up" << answerList[i].getContentID()
 				<< "\" data-vote-type=\"up"
@@ -656,7 +656,7 @@ void getAnswerStack(int id, Cgicc cgicc, string userName)
 			currentVote.Type = 'D';
 			
 			if (BitQA::Vote::searchContentIDVoted(voters, currentVote)) {
-				cout << "<h3><span style=\"background-color:red;\" class=\"bitqa-fake-link vote-down\" data-user-id=\"" << answerList[i].getUserID()
+				cout << "<h3><span style=\"background-color:rgb(245, 178, 40);\" class=\"bitqa-fake-link vote-down\" data-user-id=\"" << answerList[i].getUserID()
 				<< "\" data-selected=\"true"
 				<< "\" id=\"down" << answerList[i].getContentID()
 				<< "\" data-vote-type=\"down"
@@ -749,7 +749,7 @@ void getAnswerStack(int id, Cgicc cgicc, string userName)
 				currentVote.Type = 'U';
 				
 				if (BitQA::Vote::searchContentIDVoted(voters, currentVote)) {
-					cout << "<h5><span style=\"background-color:green;\" class=\"bitqa-fake-link vote-up\" data-user-id=\"" << commentList[i].getOwnerID()
+					cout << "<h5><span style=\"background-color:rgb(249, 83, 83);\" class=\"bitqa-fake-link vote-up\" data-user-id=\"" << commentList[i].getOwnerID()
 					<< "\" data-selected=\"true"
 					<< "\" id=\"up" << commentList[j].getContentID()
 					<< "\" data-vote-type=\"up"
