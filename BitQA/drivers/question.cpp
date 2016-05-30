@@ -999,8 +999,6 @@ void processPOST(int id, Cgicc cgicc, bool &exit)
 				
 				con->setSchema(BitQA::Database::SCHEMA);
 				
-								cout << "<H1>USER: " << userName << "</H1>";
-				
 				prep_stmt = con->prepareStatement("CALL ProcInsertComment(?, ?, ?);");
 				prep_stmt->setInt(1, stoi(cgicc("content-id")));
 				prep_stmt->setString(2, cgicc("data"));
