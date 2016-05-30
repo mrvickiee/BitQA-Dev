@@ -135,7 +135,7 @@ int main()
         << "</textarea></td></tr><tr height='10px'></tr><tr class='row'><td>Tags:</td><td><textarea name=\"questionTags\" style=\"height: 35px\" class=\"form-control\">" << questionTags <<
         "</textarea></td></tr></table>"
         
-        << "<br><p><b>Note: </b>You must use the tags surrounded in tags &lt;tag&gt;</p></div><input class=\"btn btn-primary\" type=\"submit\">";
+        << "<br><p><b>Note: </b>Tags must be surrounded with brackets like &lt;tag&gt;</p></div><input class=\"btn btn-primary\" type=\"submit\">";
         
         cout << "</form>";
 		
