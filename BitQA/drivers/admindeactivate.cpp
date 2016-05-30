@@ -53,7 +53,7 @@ int main(){
 	}
 	{
 		
-		if(admin.getReputation() >= User().checkUserRight("DELETEANYPROFILE")){
+		if(admin.getReputation() >= User().checkUserRight("DELETEANYPROFILE") && BitQA::HTML::getLoggedInStatus(cgi)){
 			cout<< "<div class=\"text-center\">"
 			<< "<h2>Account Deactivation</h2>"
 			<< "Warning: There is no turning back after clicking deactivation button.<br>"

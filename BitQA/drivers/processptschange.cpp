@@ -55,7 +55,7 @@ int main(){
 	{
 		
 		
-		if(admin.getReputation() >= User().checkUserRight("ISADMIN")){
+		if(admin.getReputation() >= User().checkUserRight("ISADMIN") && BitQA::HTML::getLoggedInStatus(cgi)){
 			cout << "<div class=\"text-center\" >";
 			cout <<"<h3>Enter new points for " << actionTitle << "</h3>";
 			cout << "<h4><strong>" <<actionTitle<<"</strong>'s  old points is <em>" << oldPts << "</em> pts</h4><br>";
@@ -66,14 +66,7 @@ int main(){
 			cout << "</form>";
 			cout <<"</div>";
 			
-			
-			
-			
-			
-			
-			
 		}else{
-			
 			
 			cout << "<h1>Admin only. Turn back!</h1>";
 		}

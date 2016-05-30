@@ -95,9 +95,9 @@ int main(){
 
 	{
 		
-		if(admin.getReputation() >= User().checkUserRight("EDITANYPROFILE")){
+		if(admin.getReputation() >= User().checkUserRight("EDITANYPROFILE") && BitQA::HTML::getLoggedInStatus(cgi)){
 			cout << "<h3> Admin page : Edit other user profile </h3>";
-			
+			 
 			cout << "<form data-ajax=\"false\" method=\"post\">"<<endl;
 			
 			cout << "<div class=\"form-group\">" << endl;

@@ -107,7 +107,7 @@ int main(){
 	{
 		
 		
-		if(admin.getReputation() >= User().checkUserRight("ISADMIN")){
+		if(admin.getReputation() >= User().checkUserRight("ISADMIN") && BitQA::HTML::getLoggedInStatus(cgi)){
 			cout << "<h3>System wide points management</h3>";
 			populateTable();
 		}else{

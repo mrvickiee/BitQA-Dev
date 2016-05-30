@@ -67,7 +67,7 @@ int main(){
 		
 		{
 			
-			if(admin.getReputation() >= User().checkUserRight("ASSIGNROLES")){
+			if(admin.getReputation() >= User().checkUserRight("ASSIGNROLES") && BitQA::HTML::getLoggedInStatus(cgi)){
 				cout << "<div class=\"text-center\" >";
 				cout << "<h3>Change reputation points</h3>";
 				

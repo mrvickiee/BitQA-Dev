@@ -115,7 +115,7 @@ void BitQA::HTML::displayHeader(std::string title, Cgicc cgicc)
 	cout << "<div id=\"navbar\" class=\"navbar-collapse collapse\"><ul class=\"nav navbar-nav\"><!--<li><a style=\"padding:10px;\"><img width=\"30px\" src=\"/images/logo.png\"></a></li>--><li><a href=\"/post.html\">Post</a></li><li><a href=\"allquestions.html\">Browse</a></li><li><a href=\"report.html\">Report</a></li>";
 	
 	User curUser = User().getUserObj(BitQA::HTML::getUsername(cgicc));
-	if(curUser.getReputation() >= User().checkUserRight("ISADMIN")){
+	if(curUser.getReputation() >= User().checkUserRight("ISADMIN") && BitQA::HTML::getLoggedInStatus(cgicc)){
 		cout << "<li class=\"dropdown\">"
 		<< "<a href=\"#\" class =\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">"
 		<< "Admin"

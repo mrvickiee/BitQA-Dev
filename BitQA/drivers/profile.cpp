@@ -116,13 +116,13 @@ int main(){
     cout << "</dd>" << endl;
 		
 	
-	if(viewer.getReputation() >= User().checkUserRight("DELETEANYPROFILE")){
+		if(viewer.getReputation() >= User().checkUserRight("DELETEANYPROFILE") && BitQA::HTML::getLoggedInStatus(cgi)){
 		cout << "<dt><a href=\"/admindeactivate.html?username="
 			 << curUser.getUsername()
 			 <<"\" class=\"btn btn-danger\">Deactivate</a></dt>" << endl;
 	}
 		
-	if(viewer.getReputation() >= User().checkUserRight("EDITANYPROFILE")){
+	if(viewer.getReputation() >= User().checkUserRight("EDITANYPROFILE") && BitQA::HTML::getLoggedInStatus(cgi)){
 		cout << "<dd><a href=\"/adminedit.html?username="
 			 << curUser.getUsername()
 			 <<"\" class=\"btn btn-warning\">Edit</a></dd>" << endl;
